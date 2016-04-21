@@ -23,7 +23,10 @@ public class SesionListener implements HttpSessionListener {
 	  Integer numConectados = (Integer) context.getAttribute("usuarios.conectados");
 
 //		   Crea conexión y almacena el objeto en la sesión del usuario
-	  Conexion conexion = new Conexion("localhost", "db", "user", "password");
+	  Conexion conexion = new Conexion(	context.getInitParameter("dbHostname"),
+			  							context.getInitParameter("dbDatabase"),
+			  							context.getInitParameter("dbUsername"),
+			  							context.getInitParameter("dbPassword"));
 
 	  SesionUsuario session = new SesionUsuario();
 	  session.estado = SesionUsuario.CONECTADO;
