@@ -23,9 +23,13 @@ public class CategoriasHelper
 		{
 			jsonCategoria = new JsonObject();
 			jsonCategoria.addProperty("catid", mdlCategorias.catid);
+			jsonCategoria.addProperty("nombre", mdlCategorias.nombre);
 			
 			jsonSubcategorias = CategoriasHelper.getCategoriasRecursive(conexion, mdlCategorias.catid);
-			jsonCategoria.add("subcategorias", jsonSubcategorias);
+			
+			// Si la categoría tiene subcategorías, se añaden al objeto
+			if (jsonSubcategorias.size() > 0)
+				jsonCategoria.add("subcategorias", jsonSubcategorias);
 			
 			jsonCategorias.add(jsonCategoria);
 		}
