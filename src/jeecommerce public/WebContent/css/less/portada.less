@@ -1,0 +1,82 @@
+#portada-header
+{
+	position: relative;
+
+	padding: 0;
+
+	height: 100vh;
+	max-height: 100vh;
+	width: 100vw;
+	max-width: 100vw;
+
+	color: white;
+
+	.background-image
+	{
+		.background-image-blur('../../img/tractor.jpg', bottom right);
+	}
+
+	.contenido
+	{
+		position: absolute;
+		left: 0;
+		right: 0;
+
+		z-index: 9999;
+		
+		padding: 2.5em;
+	}
+}
+
+#intro-main-container
+{
+	.row
+	{
+		margin-top: 3.5em;
+	}
+
+	.row:first-child
+	{
+		margin-top: 0;
+	}
+
+	.row.intro-textos
+	{
+		display: table;
+
+		.portada-caja
+		{
+			float: none;
+			display: table-cell;
+			vertical-align: top;
+		}
+
+		.portada-caja:nth-child(odd).destacado
+		{
+			position: relative;
+
+			background-color: @palegreen;
+
+			&:after
+			{
+				.patron-fondo();
+			}
+		}
+
+		.portada-caja:nth-child(odd)
+		{
+			background-color: @bgCajas;
+		}
+	}
+
+	h2.intro-panel-titulo
+	{
+		font-size: 1.5em;
+	}
+
+}
+
+div.img-testimonio
+{
+	margin-top: 1em;
+}

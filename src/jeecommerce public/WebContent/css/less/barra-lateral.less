@@ -1,0 +1,76 @@
+#caja-amigos
+{
+	ul
+	{
+		list-style: none;
+		padding: 0;
+
+		li
+		{
+			padding-left: 1em;
+		}
+	}
+}
+
+#caja-tendencias
+{
+	 #tendencias-body
+	 {
+		.generarFontTrending(@n)
+		{
+			font-size: 1 + (0.2em  * @n);
+			text-decoration: underline;
+		}
+
+		a.trend10
+		{
+			.generarFontTrending(1);
+		}
+		
+		a.trend20
+		{
+			.generarFontTrending(2);
+		}
+
+		a.trend30
+		{
+			.generarFontTrending(3);
+		}
+
+		a.trend40
+		{
+			.generarFontTrending(4);
+		}
+
+		a.trend50
+		{
+			.generarFontTrending(5);
+		}
+
+		a.trend60
+		{
+			.generarFontTrending(6);
+		}
+
+		a.trend70
+		{
+			.generarFontTrending(7);
+		}
+
+		a.trend80
+		{
+			.generarFontTrending(8);
+		}
+
+		a.trend90
+		{
+			.generarFontTrending(9);
+		}
+
+		a.trend100
+		{
+			.generarFontTrending(12);
+		}
+
+	 }
+}

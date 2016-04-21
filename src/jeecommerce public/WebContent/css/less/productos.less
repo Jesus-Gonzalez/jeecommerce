@@ -1,0 +1,134 @@
+.carousel-inner.productos
+{
+	background-color: white;
+
+	.carousel-caption
+	{
+		color: black;
+
+		img
+		{
+			min-height: 125px;
+			min-width: 125px;
+			max-width: 35%;
+			max-height: 35%;
+		}
+	}
+
+	.spacer
+	{
+		min-height: 450px;
+		overflow: hidden;
+	}
+}
+
+p.valoracion
+{
+	color: gold;
+}
+
+#msg-anade-success
+{
+	display: none;
+}
+
+aside#comentarios
+{
+	#txtarea-comentario
+	{
+		resize: none;
+		padding: 1em 2em;
+	}
+
+	.comentario
+	{
+		margin-top: 2.1em;
+
+		&:first
+		{
+			margin-top: 0;
+		}
+
+		.img-anonimo
+		{
+			padding: 3em 3em 3em 4em;
+			background-color: @darkgreen;
+		}
+
+		.textarea-comentario
+		{
+			position: relative;
+
+			padding: 0;
+			padding-bottom: 1em;
+
+			&:after, &:before
+			{
+				right: 99.8%;
+				top: 5%;
+				border: solid transparent;
+				content: " ";
+				height: 0;
+				width: 0;
+				position: absolute;
+				pointer-events: none;
+			}
+
+			&:after
+			{
+				border-color: rgba(255, 255, 255, 0);
+				border-right-color: #ffffff;
+				border-width: 10px;
+			}
+			
+			&:before
+			{
+				border-color: rgba(0, 0, 0, 0);
+				border-right-color: #000000;
+				border-width: 10px;
+			}
+
+		}
+
+		.wrap-btn-comentar
+		{
+			clear: both;
+			max-width: 250px;
+		}
+	}
+}
+
+#lista-productos
+{
+	.caja-producto
+	{
+		position: relative;
+
+		.icono
+		{
+			position: absolute;
+			top: 2%;
+			right: 7%;
+		}
+
+		.btn
+		{
+			margin-left: 0.5em;
+		}
+	}
+}
+
+.caja-menu
+{
+	margin: 0.5em;
+	padding: 0.5em;
+
+	h3
+	{
+		padding: 0.5em;
+		
+		text-align: center;
+
+		background-color: @bgCajas;
+	}
+}

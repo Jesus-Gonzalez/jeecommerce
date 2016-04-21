@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Servicios Agrícolas "El Pena"</title>
+
+		<!-- Fuentes -->
+		<link href='https://fonts.googleapis.com/css?family=Poiret+One|Ubuntu:400,300' rel='stylesheet' type='text/css'>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+
+		<!-- Scrollmagic -->
+ 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/plugins/ScrollToPlugin.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/plugins/EaselPlugin.min.js"></script>
+ 		<script src="js/scrollmagic/ScrollMagic.js" type="text/javascript" charset="utf-8"></script>
+ 		<script src="js/scrollmagic/animation.gsap.js" type="text/javascript" charset="utf-8"></script>
+ 		<script src="js/scrollmagic/debug.addIndicators.js" type="text/javascript" charset="utf-8"></script>
+
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+
+		<style type="text/css">
+			
+			.full-screen
+			{
+				width: 100%;
+				height: 100vh;
+			}
+
+			#pinContainer {
+				width: 100%;
+				height: 100vh;
+				overflow: hidden;
+			}
+			.panel {
+				width: 100%;
+				height: 100vh;
+				position: absolute;
+			}
+			
+			.background-image
+			{
+				z-index: -100;
+				width: 100%;
+				height: 100vh;
+			}
+
+			.img-slide-1
+			{
+				background-image: url('img/index-slides/slide1.jpg');
+			}
+
+			.blur
+			{
+				-webkit-filter: blur(5px);
+				-moz-filter: blur(5px);
+				-ms-filter: blur(5px);
+				-o-filter: blur(5px);
+				filter: blur(5px);
+			}
+
+			.panel-content
+			{
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 9999;
+				color: white;
+			}
+			
+			.blue
+			{
+				background-color: blue;
+			}
+			
+			.red
+			{
+				background-color: red;
+			}
+			
+			.green
+			{
+				background-color: green;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div id="pinContainer">
+			<section class="panel main">
+				<div class="background-image img-slide-1 blur"></div>
+				<div class="panel-content">
+					<h1>Hola mundo</h1>
+					<p>Probando</p>
+				</div>
+			</section>
+			
+			<section class="panel blue">
+				12211		
+			</section>
+
+			<section class="panel red">
+				<b>TWO</b>
+				<p>Hello world</p>
+			</section>
+			
+			<section class="panel green">
+				<b>THREE</b>
+				<p>Ejemplo</p>
+			</section>
+		</div>
+
+		<!-- jQuery -->
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+ 		<!-- Angular -->
+ 		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+ 		<!-- Scripts propios -->
+ 		<script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
+ 		<!-- Scripts portada -->
+ 		<script src="js/scripts-portada.js" type="text/javascript" charset="utf-8"></script>
+
+ 		<script>
+
+	 		$(document).ready(function () { // wait for document ready
+			// init
+			var controller = new ScrollMagic.Controller();
+
+			// define movement of panels
+			var wipeAnimation = new TimelineMax()
+				.fromTo("section.panel.main", 1, {x: "-100%"}, {x: "0%", ease: Linear.easeNone, delay: 1})  // in from left
+				.fromTo("section.panel.blue", 1, {x: "-100%"}, {x: "0%", ease: Linear.easeNone, delay: 1})  // in from left
+				.fromTo("section.panel.red", 1, {x:  "100%"}, {x: "0%", ease: Linear.easeNone, delay: 1})  // in from right
+				.fromTo("section.panel.green", 1, {y: "-100%"}, {y: "0%", ease: Linear.easeNone, delay: 1}); // in from top
+
+			// create scene to pin and link animation
+			new ScrollMagic.Scene({
+					triggerElement: "#pinContainer",
+					triggerHook: "onLeave",
+					duration: "100%"
+				})
+				.setPin("#pinContainer")
+				.setTween(wipeAnimation)
+				.addIndicators() // add indicators (requires plugin)
+				.addTo(controller);
+
+			});
+
+		</script>
+	</body>
+</html>

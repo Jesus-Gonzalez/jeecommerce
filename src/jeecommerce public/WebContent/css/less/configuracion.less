@@ -1,0 +1,41 @@
+#wrap-configuracion
+{
+	.nav-tabs
+	{
+		border-bottom: 1px solid @palegreen;
+
+		& > li
+		{
+			& > a
+			{
+				color: black;
+				border-radius: 0;
+			}
+
+			& > a:hover, & > a:focus
+			{
+				background-color: @palegreen;
+				border-color: @palegreen;
+			}
+		}
+
+		& > li.active
+		{
+			& > a
+			{
+				border-radius: 0;
+			}
+
+			& > a, & > a:hover, & > a:focus
+			{
+				background-color: @palegreen;
+				border-color: @palegreen;
+			}
+		}
+	}
+
+	.campo
+	{
+		margin: 1em;
+	}
+}

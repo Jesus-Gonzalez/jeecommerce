@@ -1,0 +1,41 @@
+#header-navbar
+{
+	background: @darkgreen;
+
+	a, a:focus, a:hover, .navbar-text
+	{
+		color: white;
+	}
+
+	li.active > a, li.open > a, .dropdown-menu
+	{
+		background-image: none;
+		background-color: lighten(@darkgreen, 10%);
+	}
+
+	.header-dropdown
+	{
+		li.active > a, li:hover > a, li:focus > a, li:active > a
+		{
+			background-color: lighten(@darkgreen, 10%);
+			background-image: none;
+		}
+
+		li:hover > a.btn-primary, li:focus > a.btn-primary, li:active > a.btn-primary
+		{
+			background-color: #245580;
+			background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+		}
+
+		li:hover > a.btn-danger, li:focus > a.btn-danger, li:active > a.btn-danger
+		{
+			background-color: #c12e2a;
+			background-image: none;
+		}
+
+		li
+		{
+			padding: .25em 1em;
+		}
+	}
+}
