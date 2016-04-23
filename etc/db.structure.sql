@@ -174,6 +174,18 @@ CREATE TABLE administradores (
     contrasena character varying NOT NULL
 );
 
+--
+-- TOC entry 5050 (class 1259 OID 75544)
+-- Name: configuracion; Type: TABLE; Schema: private; Owner: -; Tablespace: 
+--
+
+CREATE TABLE private.configuracion
+(
+  parametro character varying NOT NULL,
+  valor character varying NOT NULL,
+  CONSTRAINT pk_configuracion PRIMARY KEY (parametro)
+)
+
 
 --
 -- TOC entry 194 (class 1259 OID 75542)
