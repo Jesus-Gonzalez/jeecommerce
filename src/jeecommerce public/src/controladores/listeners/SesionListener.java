@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import modelos.Carro;
 import modelos.Conexion;
 import modelos.SesionUsuario;
 
@@ -30,6 +31,7 @@ public class SesionListener implements HttpSessionListener {
 
 	  SesionUsuario session = new SesionUsuario();
 	  session.estado = SesionUsuario.CONECTADO;
+	  session.carro = new Carro();
 
 	  sesion.setAttribute("usuario", session);
 	  sesion.setAttribute("conexion", conexion.creaConexion());

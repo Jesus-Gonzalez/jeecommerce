@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 	
@@ -67,101 +69,188 @@
 			</div>
 		</nav>
 
-		<div id="wrap-carro" class="container">
-			
-			<h1><i class="fa fa-shopping-cart"></i> Carro</h1>
 
-			<table id="tabla-carro" class="table table-striped table-hover">
-				<thead id="thead-carro">
-					<tr>
-						<th>Artículo</th>
-						<th>Cantidad</th>
-						<th>Total</th>
-						<th>Eliminar</th>
-					</tr>
-				</thead>
-				
-				<tbody id="tbody-carro">
+		<div id="wrap-configuracion" class="container">
+			<div class="tabbable">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab-perfil" data-toggle="tab">Perfil</a></li>
+					<li><a href="#tab-cuenta" data-toggle="tab">Cuenta</a></li>
+				</ul>
 
-					<tr id="item-1">
-						<td class="item-carro-nombre">Alfalfa Secada al Sol <small class="precio">(30 €)</small></td>
-						<td class="item-carro-cantidad">
-							<div class="input-group input-group-cantidad">
-								<input type="number" id="item-1-cantidad" value="10" min="1" placeholder="Cantidad" class="form-control">
+				<div class="tab-content">
+					<div class="tab-pane active" id="tab-perfil">
+						<form id="perfil" class="col-sm-4 col-xs-12">
+							
+							<div class="form-group">
+
+								<div class="campo">
+									<label for="imagen">Imagen de Perfil:</label>
+									
+									<div class="container">
+
+										<img src="img/autor.png" alt="Foto perfil" height="150" width="150" class="img-responsive img-thumbnail">
+
+										<div class="campo">
+											<input type="file" id="imagen" name="" value="" placeholder="">
+										</div>
+									</div>
+								</div>
+
+								<div class="campo">
+									<label for="nombre">Nombre y Apellidos:</label>
+
+									<div class="input-group">
+										<div class="input-group-addon">
+											<span class="glyphicon glyphicon-user"></span>
+										</div>
+
+										<input type="text" id="nombre" class="form-control" value="Jesús González Jaén" placeholder="Nombre y Apellidos">
+									</div>
+								</div>
+
+								<div class="campo">
+
+									<label for="direccion">Dirección:</label>
+
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-globe"></i>
+										</div>
+
+										<input type="text" id="direccion" value="Calle la Plaza nº 1" placeholder="Dirección" class="form-control">
+									</div>
+
+								</div>
+
+								<div class="campo">
+									
+									<label for="poblacion">Población:</label>
+
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-globe"></i>
+										</div>
+
+										<input type="text" id="poblacion" value="El Puerto de Santa María" placeholder="Ciudad/Población" class="form-control">
+									</div>
+
+								</div>
 								
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-warning">
-										<i class="fa fa-refresh"></i>
-									</button>
-								</span>
-							</div>
-						</td>
-						<td class="item-carro-total">300 €</td>
-						<td class="item-carro-eliminar">
-							<button class="eliminar-producto btn btn-md btn-danger">
-								<i class="fa fa-times"></i>
-							</button>
-						</td>
-					</tr>
-				
-					<tr id="item-1">
-						<td class="item-carro-nombre">Pipas de Girasol <small class="precio">(50 €)</small></td>
-						<td class="item-carro-cantidad">
-							<div class="input-group input-group-cantidad">
-								<input type="number" id="item-1-cantidad" value="5" min="1" placeholder="Cantidad" class="form-control">
-								
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-warning">
-										<i class="fa fa-refresh"></i>
-									</button>
-								</span>
-							</div>
-						</td>
-						<td class="item-carro-total">250 €</td>
-						<td class="item-carro-eliminar">
-							<button class="eliminar-producto btn btn-md btn-danger">
-								<i class="fa fa-times"></i>
-							</button>
-						</td>
-					</tr>
-				
-					<tr id="item-1">
-						<td class="item-carro-nombre">Recogida de Alfalfa <small class="precio">(500 €)</small></td>
-						<td class="item-carro-cantidad">
-							<div class="input-group input-group-cantidad">
-								<input type="number" id="item-1-cantidad" value="1" min="1" placeholder="Cantidad" class="form-control">
-								
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-warning">
-										<i class="fa fa-refresh"></i>
-									</button>
-								</span>
-							</div>
-						</td>
-						<td class="item-carro-total">500 €</td>
-						<td class="item-carro-eliminar">
-							<button class="eliminar-producto btn btn-md btn-danger">
-								<i class="fa fa-times"></i>
-							</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+								<div class="campo">
+									<label for="provincia">Provincia:</label>
 
-			<div id="caja-carro" class="col-sm-4 col-xs-10">
-				<h3><i class="fa fa-money"></i> Total: <strong id="precio-total">1050 €</strong></h3>
-				
-				<div id="caja-carro-botones">
-					<a href="login.html" class="btn btn-lg btn-success">
-						<i class="fa fa-shopping-cart"></i> Realizar compra
-					</a>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-globe"></i>
+										</div>
 
-					<a href="index.html" class="btn btn-md btn-warning">
-						<i class="fa fa-times-circle"></i> Cancelar compra
-					</a>
+										<input type="text" id="provincia" value="Cádiz" placeholder="Provincia" class="form-control">
+									</div>
+								</div>
+
+								<div class="campo">
+									<label for="codigo-postal">Código Postal:</label>
+
+									<div class="input-group">
+										<div class="input-group-addon">
+											<span class="glyphicon glyphicon-map-marker"></span>
+										</div>
+
+										<input type="text" id="codigo-postal" value="11500" placeholder="Código Postal" class="form-control">
+									</div>
+								</div>
+
+								<div class="campo">
+									<label for="telefono">Teléfono:</label>
+
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-phone"></i>
+										</div>
+
+										<input type="tel" id="telefono" value="612345678" placeholder="Teléfono de contacto" class="form-control">
+									</div>
+								</div>
+
+								<div class="campo">
+									<label for="telefono">WhatsApp:</label>
+
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-whatsapp"></i>
+										</div>
+
+										<input type="tel" id="telefono" value="612345678" placeholder="WhatsApp (555-123-456)" class="form-control">
+									</div>
+								</div>
+
+								<div class="campo">
+									<button name="" value="" class="btn btn-lg btn-success">Guardar <i class="fa fa-save"></i></button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="tab-pane" id="tab-cuenta">
+						<form id="cuenta" class="col-sm-4 col-xs-12">
+							<div class="form-group">
+								<div class="campo">
+									<label for="email">Dirección de Correo Electrónico:</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-at"></i>
+										</div>
+										
+										<input type="email" id="email" value="nombre@empresa.es" placeholder="nombre@gmail.com" class="form-control">
+									</div>
+								</div>
+								
+								<div class="campo">
+									<label for="contrasena">Contraseña actual:</label>
+
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-lock"></i>
+										</div>
+										
+										<input type="password" id="contrasena" placeholder="Contraseña actual" class="form-control">
+									</div>
+								</div>
+
+								<small class="text-warning">Debe introducir su contraseña actual si va a cambiar su dirección de correo electrónico o su contraseña.</small>
+
+								<div class="campo">
+									<label for="nueva-contrasena">Nueva contraseña:</label>
+
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-lock"></i>
+										</div>
+										
+										<input type="password" id="nueva-contrasena" placeholder="Nueva contraseña" class="form-control">
+									</div>
+								</div>
+								
+								<div class="campo">
+									<label for="confirmar-contrasena">Confirmar nueva contraseña:</label>
+
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-lock"></i>
+										</div>
+										
+										<input type="password" id="confirmar-contrasena" placeholder="Confirmar contraseña" class="form-control">
+									</div>
+								</div>
+
+								<div class="campo">
+									<button name="" value="" class="btn btn-lg btn-success">Guardar <i class="fa fa-save"></i></button>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
-
 		</div>
 		
 

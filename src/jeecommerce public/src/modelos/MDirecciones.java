@@ -45,7 +45,7 @@ public class MDirecciones
 			
 		} catch (SQLException x) {
 			
-			System.err.println("Error SQL -> MPedidos:getProximaDireccion()");
+			System.err.println("Error SQL -> MDirecciones:getProximaDireccion()");
 			System.err.println("Mensaje de error -> " + x.getMessage());
 			
 			x.printStackTrace();
@@ -68,7 +68,7 @@ public class MDirecciones
 			
 		} catch (SQLException x) {
 			
-			System.err.println("Error SQL -> MPedidos:getDireccionesByUid()");
+			System.err.println("Error SQL -> MDirecciones:getDireccionesByUid()");
 			System.err.println("Mensaje de error -> " + x.getMessage());
 			
 			x.printStackTrace();
@@ -88,13 +88,46 @@ public class MDirecciones
 			
 		} catch (SQLException x) {
 			
-			System.err.println("Error SQL -> MPedidos:getDireccionByDid()");
+			System.err.println("Error SQL -> MDirecciones:getDireccionByDid()");
 			System.err.println("Mensaje de error -> " + x.getMessage());
 			
 			x.printStackTrace();
 		
 			System.exit(-742);
 		}
+	}
+	
+	public long creaDireccion(long uid, String nombre, String direccion, String localidad, String provincia, String codigoPostal, String telefono)
+	{
+		try
+		{
+			PreparedStatement ps = conexion.prepareStatement("INSERT INTO direcciones (nombre, direccion, localidad, provincia, codigo_postal, telefono) VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1, nombre);
+			ps.setString(2, direccion);
+			ps.setString(3, localidad);
+			ps.setString(4, provincia);
+			ps.setString(5, codigoPostal);
+			ps.setString(6, telefono);
+			
+			if (ps.executeUpdate() > 0)
+			{
+				ResultSet rs = ps.getGeneratedKeys();
+				rs.next();
+				return rs.getLong(1);
+			}
+			
+		} catch (SQLException x) {
+		
+			System.err.println("Error SQL -> MDirecciones:creaDireccion()");
+			System.err.println("Mensaje de error -> " + x.getMessage());
+			
+			x.printStackTrace();
+		
+			System.exit(-74444);
+		}
+		
+		
+		return -1;
 	}
 	
 	public boolean eliminaDireccion(long did)
@@ -108,7 +141,7 @@ public class MDirecciones
 			
 		} catch (SQLException x) {
 			
-			System.err.println("Error SQL -> MPedidos:eliminaDireccion()");
+			System.err.println("Error SQL -> MDirecciones:eliminaDireccion()");
 			System.err.println("Mensaje de error -> " + x.getMessage());
 			
 			x.printStackTrace();
@@ -142,7 +175,7 @@ public class MDirecciones
 			
 		} catch (SQLException x) {
 			
-			System.err.println("Error SQL -> MPedidos:actualizaDireccion()");
+			System.err.println("Error SQL -> MDirecciones:actualizaDireccion()");
 			System.err.println("Mensaje de error -> " + x.getMessage());
 			
 			x.printStackTrace();

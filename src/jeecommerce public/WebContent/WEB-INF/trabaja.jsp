@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 	
@@ -5,7 +7,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>¿Dónde estamos? | Servicios Agrícolas "El Pena"</title>
+		<title>Proyecto Final</title>
 
 		<!-- Fuentes -->
 		<link href='https://fonts.googleapis.com/css?family=Poiret+One|Ubuntu:400,300' rel='stylesheet' type='text/css'>
@@ -13,6 +15,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/flag-icon.min.css">
 		<link rel="stylesheet" href="css/less/main.min.css">
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,7 +52,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Carro <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Configuración</a></li>
+								<li><a href="perfil.html">Mi perfil</a></li>
 								<li><a href="#">Cerrar sesión</a></li>
 							</ul>
 						</li>
@@ -67,40 +70,67 @@
 		</nav>
 
 		<div class="container">
-
-			<h1><i class="fa fa-map"></i> ¿Dónde estamos?</h1>
-		
-			<div class="row">
-				<section id="datos-donde-estamos" class="col-sm-5 col-sm-offset-1 col-xs-12">
-					<h3><i class="fa fa-globe"></i> ¿Dónde nos puede encontrar?</h3>
-					<p>Estamos en:</p>
-					<address>
-						Calle Ejemplo nº 1<br>
-						Piso 2, Puerta 4<br>
-						El Puerto de Santa María, 11500<br>
-						Cádiz<br>
-						España
-					</address>
-				</section>
-
-				<div class="col-sm-5 col-offset-1 col-xs-12">
-					<h3><i class="fa fa-map-marker"></i> Situación en el Mapa</h3>
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3203.2410340666856!2d-6.2353365855632195!3d36.59650348684064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0dcfde136c81c9%3A0x931a09f6c9b3f546!2sReal+Plaza+de+Toros+de+El+Puerto+de+Santa+Mar%C3%ADa!5e0!3m2!1ses!2ses!4v1455630043264" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-				</div>
-			</div>	
-			
-			<h2><i class="fa fa-video-camera"></i> Vídeo explicativo de la empresa</h2>
-
-			<div class="row">
-				<div class="col-xs-12">
-
-					<audio id="audio-video-empresa" src="audio/mp3/Cow-SoundBible.com-868293659.mp3" autobuffer></audio>
-
-					<video id="video-empresa" src="video/343376220.mp4" autobuffer controls poster="video/343376220.png"></video>
-				
+			<div id="jumbotron-trabajo" class="jumbotron">
+				<div class="container">
+					<h2><i class="fa fa-bank"></i> Trabajo en Servicios Agrícolas <q>El Pena</q></h2>
+					<p>Encuentra tu trabajo de ensueño entre nuestras filas</p>
+					<p>
+						<a class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal-curriculum"><i class="fa fa-send-o"></i> Enviar CV</a>
+					</p>
 				</div>
 			</div>
+			
+			<h1>Puestos de trabajo ofertados</h1>
 
+			<div id="trabaja-panel-trabajos" class="panel panel-default">
+			    <div class="panel-heading">
+			      <h4 class="panel-title">
+			        <a data-toggle="collapse" href="#trabajos-es"><span class="flag-icon flag-icon-es"></span> España</a>
+			      </h4>
+			    </div>
+			    <div id="trabajos-es" class="panel-collapse collapse">
+			      <div class="panel-body">
+					<ul class="lista-trabajos-disponibles">
+						<li>Trabajo ofertado de ejemplo (<em>2 puestos</em>)</li>
+						<li>Otro trabajo de ejemplo (<em>5 puestos</em>)</li>
+					</ul>
+			      </div>
+			    </div>
+
+
+				<!-- Ejemplo para mostrar el estilo del acordeón únicamente -->
+			    <div class="panel-heading">
+			    	<h4 class="panel-title"><a data-toggle="collapse" href="#trabajos-us"><span class="flag-icon flag-icon-us"></span> Estados Unidos</a></h4>
+			    </div>
+
+			    <div id="trabajos-us" class="panel-collapse collapse">
+			    	<div class="panel-body">
+						<h5 class="text-danger">No hay trabajos disponible en Estados Unidos <span class="flag-icon flag-icon-us"></span></h5>
+			    	</div>
+			    </div>
+
+				<!-- Ejemplo para mostrar el estilo del acordeón únicamente -->
+			    <div class="panel-heading">
+			    	<h4 class="panel-title"><a data-toggle="collapse" href="#trabajos-de"><span class="flag-icon flag-icon-de"></span> Alemania</a></h4>
+			    </div>
+
+			    <div id="trabajos-de" class="panel-collapse collapse">
+			    	<div class="panel-body">
+			    		<h5 class="text-danger">No hay trabajos disponible en Alemania <span class="flag-icon flag-icon-de"></span></h5>
+			    	</div>
+			    </div>
+
+				<!-- Ejemplo para mostrar el estilo del acordeón únicamente -->
+			    <div class="panel-heading">
+			    	<h4 class="panel-title"><a data-toggle="collapse" href="#trabajos-fr"><span class="flag-icon flag-icon-fr"></span> Francia</a></h4>
+			    </div>
+
+			    <div id="trabajos-fr" class="panel-collapse collapse">
+			    	<div class="panel-body">
+			    		<h5 class="text-danger">No hay trabajos disponible en Francia <span class="flag-icon flag-icon-fr"></span></h5>
+			    	</div>
+			    </div>
+			  </div>
 		</div>
 
 		<hr>
@@ -149,6 +179,52 @@
 			</div>
 		</footer>
 
+		<!-- Modal CV -->
+		<div class="modal fade" id="modal-curriculum" tabindex="-1" role="dialog" aria-labelledby="modalCurriculum" ng-app="proyectoFinal" ng-controller="cvCtrl">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="modalCurriculum">Enviar mi CV</h4>
+		      </div>
+		      <form id="form-trabaja-cv" ng-submit="enviarCurriculum($event)" ng-model="cv.form">
+		      	<div class="modal-body">
+		      		<div id="trabaja-cv-exito">
+		      			<h2 class="text-success">Envio Exitoso</h2>
+		      			<p class="text-success">Ha enviado su CV con éxito.</p>
+
+		      			<div class="modal-footer">
+							<button class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						</div>
+		      		</div>
+
+		      		<div id="trabaja-datos-cv">
+			        	<div class="form-group">
+			        		<label for="nombre">Nombre Completo</label>
+			        		<input id="nombre" class="form-control" type="text" placeholder="Nombre y Apellidos" ng-model="cv.nombre">
+			        	</div>
+
+			        	<div class="form-group">
+			        		<label for="correo">Correo Electrónico</label>
+			        		<input type="email" class="form-control" placeholder="ejemplo@gmail.com" ng-model="cv.correo">
+			        	</div>
+						
+						<div class="form-group">
+							<label for="file-cv">Subir CV</label>
+							<input type="file" class="form-control" placeholder="Mi archivo de CV">
+						</div>
+				      	
+				      	<div class="modal-footer">
+					        <button class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					        <input type="submit" value="Enviar CV" type="button" class="btn btn-primary">
+				      	</div>
+				      </div>
+			      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
+
 		<!-- jQuery -->
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<!-- Bootstrap JavaScript -->
@@ -157,5 +233,7 @@
  		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
  		<!-- Scripts propios -->
  		<script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
+ 		<!-- Angular CV -->
+ 		<script src="js/angular/trabaja.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

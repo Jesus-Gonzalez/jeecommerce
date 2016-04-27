@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 	
@@ -56,10 +58,9 @@
 						</li>
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Jesús González <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-secret"></i> Anónimo <b class="caret"></b></a>
 							<ul class="dropdown-menu header-dropdown">
-								<li><a href="configuracion.html">Configuración</a></li>
-								<li><a href="index.html" class="btn btn-xs btn-danger">Salir</a></li>
+								<li><a href="login.html" class="btn btn-xs btn-primary">Registrarse/Identificarse</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -67,83 +68,71 @@
 			</div>
 		</nav>
 
-		<article id="producto" class="container" role="main">
+		<section id="autenticacion" class="container" role="main">
 			<div class="row">
-				<div class="col-sm-4 col-xs-12">
-					<img src="img/alfalfa-packs.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-					<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-				</div>
-				
-				<div class="col-sm-8 col-xs-12 producto">
-					<h1 class="titulo">Alfalfa Secada al Sol (1kg)</h1>
-					<p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni aliquam facere corporis corrupti! Necessitatibus nam voluptates officiis! Architecto iste porro minima ratione molestiae iusto maiores nihil dolorum. Quasi, tenetur, quae.</p>
-					<div class="row">
-						<div class="form-group col-sm-6 col-xs-12">
-							<div class="input-group">
-								<div class="input-group-addon">Cantidad</div>
-								
-								<input type="number" id="txt-cantidad-anadir" value="1" placeholder="Cantidad" class="form-control">
+				<div class="col-sm-6 col-xs-12">
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h3 class="panel-title"><i class="fa fa-user-plus"></i> Registro</h3>
+						</div>
+						<div class="panel-body">
+							<form id="registro">
+								<div class="col-xs-10 col-xs-offset-1 text-center">
+									<p class="text-primary text-center">¿No está registrado?</p>
 
-								<div class="input-group-btn">
-									<button class="btn btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
+									<div class="input-group campo">
+										<input type="email" class="form-control" placeholder="nombre@gmail.com">
+										<div class="input-group-addon"><i class="fa fa-at"></i></div>
+									</div>
+									
+									<div class="input-group campo">
+										<input type="password" class="form-control" placeholder="Contraseña">
+										<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+									</div>
+
+									<div class="input-group campo">
+										<input type="password" class="form-control" placeholder="Repita Contraseña">
+										<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+									</div>
+									<button id="btn-registrar" type="submit" name="registrar" value="Registrarse" class="btn btn-lg btn-success campo" role="button">Registrarse <i class="fa fa-user-plus"></i></button>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
-					
-					<div id="msg-anade-success" class="clearfix">
-						<p class="text-success">¡Producto añadido al carro con éxito!</p>
+				</div>
+
+				<div class="col-sm-6 col-xs-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title"><i class="fa fa-users"></i> Identificarse</h3>
+						</div>
+						<div class="panel-body">
+							<form id="registro">
+								<div class="col-xs-10 col-xs-offset-1 text-center">
+									<p class="text-success text-center">¿Ya está registrado?</p>
+
+									<div class="input-group campo">
+										<input type="email" class="form-control" placeholder="nombre@gmail.com">
+										<div class="input-group-addon"><i class="fa fa-at"></i></div>
+									</div>
+									
+									<div class="input-group campo">
+										<input type="password" class="form-control" placeholder="Contraseña">
+										<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+									</div>
+
+									<button id="btn-identificarse" name="entrar" class="btn btn-lg btn-primary campo" role="button">Identificarse <span class="glyphicon glyphicon-send"></span></button>
+
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-sm btn-warning campo"><span class="glyphicon glyphicon-lock"></span> ¡Olvidé mi contraseña!</button>
+									</span>
+								</div>
+							</form>
+						</div>
 					</div>
-
 				</div>
 			</div>
-		</article>
-
-		<aside id="comentarios" class="container">
-			<h2>Comentarios</h2>
-			<div class="row comentario">
-				<div class="col-xs-2">
-					<span class="img-responsive img-circle img-thumbnail img-anonimo">
-						<i class="fa fa-5x fa-user-secret"></i>
-					</span>
-				</div>
-
-				<div class="col-xs-10">
-					<div class="col-xs-8 textarea-comentario">
-						<textarea id="txtarea-comentario" class="form-control" rows="5" required></textarea>
-					</div>
-					<div class="wrap-btn-comentar">
-						<button id="btn-comentar" class="btn btn-block btn-md btn-primary">Enviar Comentario <span class="glyphicon glyphicon-send"></span></button>
-					</div>
-				</div>
-			</div>
-
-			<div class="row comentario">
-				<div class="col-xs-2">
-					<img src="img/autor.png" alt="Foto Jesús González" class="img-responsive img-circle img-thumbnail">
-				</div>
-
-				<div class="col-xs-10">
-					<h4 class="autor-comentario">Jesús González Jaén <small class="fecha-comentario">29 Febrero 2016</small></h4>
-					<p>¡Hola Mundo!</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque dignissimos rem delectus placeat provident temporibus, sunt impedit! Natus, non expedita vero mollitia dicta, cupiditate veniam odio. Maiores illum laboriosam, illo.</p>
-				</div>
-			</div>
-
-			<div class="row comentario">
-				<div class="col-xs-2">
-					<img src="img/amigo.png" alt="Foto Tux" class="img-responsive img-circle img-thumbnail">
-				</div>
-
-				<div class="col-xs-10">
-					<h4 class="autor-comentario">GNU/Tux <small class="fecha-comentario">32 Enero 2016</small></h4>
-					<p>¡Hola Mundo!</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>Sint facere molestias numquam, modi, incidunt commodi perspiciatis similique assumenda voluptatem nostrum beatae quos aperiam tempore doloremque itaque necessitatibus adipisci facilis earum!</p>
-				</div>
-			</div>
-		</aside>
-
+		</section>
 
 		<hr>
 

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 	
@@ -5,7 +7,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Servicios Agrícolas "El Pena"</title>
+		<title>¿Dónde estamos? | Servicios Agrícolas "El Pena"</title>
 
 		<!-- Fuentes -->
 		<link href='https://fonts.googleapis.com/css?family=Poiret+One|Ubuntu:400,300' rel='stylesheet' type='text/css'>
@@ -24,7 +26,7 @@
 	</head>
 
 	<body>
-		
+
 		<nav id="header-navbar" class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -41,24 +43,24 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse nav-collapse-menu">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="catalogo.html">Productos</a></li>
+						<li><a href="catalogo.html">Productos</a></li>
 						
 					</ul>
-
+					
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Carro <b class="caret"></b></a>
-							<ul class="dropdown-menu header-dropdown">
-								<li><p class="navbar-text"><strong>16</strong> producto en el carro</p></li>
-								<li><p class="navbar-text">Total: <strong>1,500 €</strong></p></li>
-								<li><a href="carro.html" class="btn btn-xs btn-primary">Ver carro</a></li>
+							<ul class="dropdown-menu">
+								<li><a href="#">Configuración</a></li>
+								<li><a href="#">Cerrar sesión</a></li>
 							</ul>
 						</li>
 
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-secret"></i> Anónimo <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Jesús González <b class="caret"></b></a>
 							<ul class="dropdown-menu header-dropdown">
-								<li><a href="login.html" class="btn btn-xs btn-primary">Registrarse/Identificarse</a></li>
+								<li><a href="configuracion.html">Configuración</a></li>
+								<li><a href="index.html" class="btn btn-xs btn-danger">Salir</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -66,71 +68,42 @@
 			</div>
 		</nav>
 
-		<section id="autenticacion" class="container" role="main">
+		<div class="container">
+
+			<h1><i class="fa fa-map"></i> ¿Dónde estamos?</h1>
+		
 			<div class="row">
-				<div class="col-sm-6 col-xs-12">
-					<div class="panel panel-success">
-						<div class="panel-heading">
-							<h3 class="panel-title"><i class="fa fa-user-plus"></i> Registro</h3>
-						</div>
-						<div class="panel-body">
-							<form id="registro">
-								<div class="col-xs-10 col-xs-offset-1 text-center">
-									<p class="text-primary text-center">¿No está registrado?</p>
+				<section id="datos-donde-estamos" class="col-sm-5 col-sm-offset-1 col-xs-12">
+					<h3><i class="fa fa-globe"></i> ¿Dónde nos puede encontrar?</h3>
+					<p>Estamos en:</p>
+					<address>
+						Calle Ejemplo nº 1<br>
+						Piso 2, Puerta 4<br>
+						El Puerto de Santa María, 11500<br>
+						Cádiz<br>
+						España
+					</address>
+				</section>
 
-									<div class="input-group campo">
-										<input type="email" class="form-control" placeholder="nombre@gmail.com">
-										<div class="input-group-addon"><i class="fa fa-at"></i></div>
-									</div>
-									
-									<div class="input-group campo">
-										<input type="password" class="form-control" placeholder="Contraseña">
-										<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-									</div>
-
-									<div class="input-group campo">
-										<input type="password" class="form-control" placeholder="Repita Contraseña">
-										<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-									</div>
-									<button id="btn-registrar" type="submit" name="registrar" value="Registrarse" class="btn btn-lg btn-success campo" role="button">Registrarse <i class="fa fa-user-plus"></i></button>
-								</div>
-							</form>
-						</div>
-					</div>
+				<div class="col-sm-5 col-offset-1 col-xs-12">
+					<h3><i class="fa fa-map-marker"></i> Situación en el Mapa</h3>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3203.2410340666856!2d-6.2353365855632195!3d36.59650348684064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0dcfde136c81c9%3A0x931a09f6c9b3f546!2sReal+Plaza+de+Toros+de+El+Puerto+de+Santa+Mar%C3%ADa!5e0!3m2!1ses!2ses!4v1455630043264" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 				</div>
+			</div>	
+			
+			<h2><i class="fa fa-video-camera"></i> Vídeo explicativo de la empresa</h2>
 
-				<div class="col-sm-6 col-xs-12">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h3 class="panel-title"><i class="fa fa-users"></i> Identificarse</h3>
-						</div>
-						<div class="panel-body">
-							<form id="registro">
-								<div class="col-xs-10 col-xs-offset-1 text-center">
-									<p class="text-success text-center">¿Ya está registrado?</p>
+			<div class="row">
+				<div class="col-xs-12">
 
-									<div class="input-group campo">
-										<input type="email" class="form-control" placeholder="nombre@gmail.com">
-										<div class="input-group-addon"><i class="fa fa-at"></i></div>
-									</div>
-									
-									<div class="input-group campo">
-										<input type="password" class="form-control" placeholder="Contraseña">
-										<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-									</div>
+					<audio id="audio-video-empresa" src="audio/mp3/Cow-SoundBible.com-868293659.mp3" autobuffer></audio>
 
-									<button id="btn-identificarse" name="entrar" class="btn btn-lg btn-primary campo" role="button">Identificarse <span class="glyphicon glyphicon-send"></span></button>
-
-									<span class="input-group-btn">
-										<button type="button" class="btn btn-sm btn-warning campo"><span class="glyphicon glyphicon-lock"></span> ¡Olvidé mi contraseña!</button>
-									</span>
-								</div>
-							</form>
-						</div>
-					</div>
+					<video id="video-empresa" src="video/343376220.mp4" autobuffer controls poster="video/343376220.png"></video>
+				
 				</div>
 			</div>
-		</section>
+
+		</div>
 
 		<hr>
 

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es">
 	
@@ -5,7 +7,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Proyecto Final</title>
+		<title>Servicios Agrícolas "El Pena"</title>
 
 		<!-- Fuentes -->
 		<link href='https://fonts.googleapis.com/css?family=Poiret+One|Ubuntu:400,300' rel='stylesheet' type='text/css'>
@@ -13,7 +15,6 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/flag-icon.min.css">
 		<link rel="stylesheet" href="css/less/main.min.css">
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -25,7 +26,7 @@
 	</head>
 
 	<body>
-
+		
 		<nav id="header-navbar" class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -42,16 +43,17 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse nav-collapse-menu">
 					<ul class="nav navbar-nav">
-						<li><a href="catalogo.html">Productos</a></li>
+						<li class="active"><a href="catalogo.html">Productos</a></li>
 						
 					</ul>
-					
+
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> Carro <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="perfil.html">Mi perfil</a></li>
-								<li><a href="#">Cerrar sesión</a></li>
+							<ul class="dropdown-menu header-dropdown">
+								<li><p class="navbar-text"><strong>16</strong> producto en el carro</p></li>
+								<li><p class="navbar-text">Total: <strong>1,500 €</strong></p></li>
+								<li><a href="carro.html" class="btn btn-xs btn-primary">Ver carro</a></li>
 							</ul>
 						</li>
 
@@ -67,69 +69,83 @@
 			</div>
 		</nav>
 
-		<div class="container">
-			<div id="jumbotron-trabajo" class="jumbotron">
-				<div class="container">
-					<h2><i class="fa fa-bank"></i> Trabajo en Servicios Agrícolas <q>El Pena</q></h2>
-					<p>Encuentra tu trabajo de ensueño entre nuestras filas</p>
-					<p>
-						<a class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal-curriculum"><i class="fa fa-send-o"></i> Enviar CV</a>
-					</p>
+		<article id="producto" class="container" role="main">
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<img src="img/alfalfa-packs.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
+					<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
+				</div>
+				
+				<div class="col-sm-8 col-xs-12 producto">
+					<h1 class="titulo">Alfalfa Secada al Sol (1kg)</h1>
+					<p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni aliquam facere corporis corrupti! Necessitatibus nam voluptates officiis! Architecto iste porro minima ratione molestiae iusto maiores nihil dolorum. Quasi, tenetur, quae.</p>
+					<div class="row">
+						<div class="form-group col-sm-6 col-xs-12">
+							<div class="input-group">
+								<div class="input-group-addon">Cantidad</div>
+								
+								<input type="number" id="txt-cantidad-anadir" value="1" placeholder="Cantidad" class="form-control">
+
+								<div class="input-group-btn">
+									<button class="btn btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="msg-anade-success" class="clearfix">
+						<p class="text-success">¡Producto añadido al carro con éxito!</p>
+					</div>
+
 				</div>
 			</div>
-			
-			<h1>Puestos de trabajo ofertados</h1>
+		</article>
 
-			<div id="trabaja-panel-trabajos" class="panel panel-default">
-			    <div class="panel-heading">
-			      <h4 class="panel-title">
-			        <a data-toggle="collapse" href="#trabajos-es"><span class="flag-icon flag-icon-es"></span> España</a>
-			      </h4>
-			    </div>
-			    <div id="trabajos-es" class="panel-collapse collapse">
-			      <div class="panel-body">
-					<ul class="lista-trabajos-disponibles">
-						<li>Trabajo ofertado de ejemplo (<em>2 puestos</em>)</li>
-						<li>Otro trabajo de ejemplo (<em>5 puestos</em>)</li>
-					</ul>
-			      </div>
-			    </div>
+		<aside id="comentarios" class="container">
+			<h2>Comentarios</h2>
+			<div class="row comentario">
+				<div class="col-xs-2">
+					<span class="img-responsive img-circle img-thumbnail img-anonimo">
+						<i class="fa fa-5x fa-user-secret"></i>
+					</span>
+				</div>
 
+				<div class="col-xs-10">
+					<div class="col-xs-8 textarea-comentario">
+						<textarea id="txtarea-comentario" class="form-control" rows="5" required></textarea>
+					</div>
+					<div class="wrap-btn-comentar">
+						<button id="btn-comentar" class="btn btn-block btn-md btn-primary">Enviar Comentario <span class="glyphicon glyphicon-send"></span></button>
+					</div>
+				</div>
+			</div>
 
-				<!-- Ejemplo para mostrar el estilo del acordeón únicamente -->
-			    <div class="panel-heading">
-			    	<h4 class="panel-title"><a data-toggle="collapse" href="#trabajos-us"><span class="flag-icon flag-icon-us"></span> Estados Unidos</a></h4>
-			    </div>
+			<div class="row comentario">
+				<div class="col-xs-2">
+					<img src="img/autor.png" alt="Foto Jesús González" class="img-responsive img-circle img-thumbnail">
+				</div>
 
-			    <div id="trabajos-us" class="panel-collapse collapse">
-			    	<div class="panel-body">
-						<h5 class="text-danger">No hay trabajos disponible en Estados Unidos <span class="flag-icon flag-icon-us"></span></h5>
-			    	</div>
-			    </div>
+				<div class="col-xs-10">
+					<h4 class="autor-comentario">Jesús González Jaén <small class="fecha-comentario">29 Febrero 2016</small></h4>
+					<p>¡Hola Mundo!</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque dignissimos rem delectus placeat provident temporibus, sunt impedit! Natus, non expedita vero mollitia dicta, cupiditate veniam odio. Maiores illum laboriosam, illo.</p>
+				</div>
+			</div>
 
-				<!-- Ejemplo para mostrar el estilo del acordeón únicamente -->
-			    <div class="panel-heading">
-			    	<h4 class="panel-title"><a data-toggle="collapse" href="#trabajos-de"><span class="flag-icon flag-icon-de"></span> Alemania</a></h4>
-			    </div>
+			<div class="row comentario">
+				<div class="col-xs-2">
+					<img src="img/amigo.png" alt="Foto Tux" class="img-responsive img-circle img-thumbnail">
+				</div>
 
-			    <div id="trabajos-de" class="panel-collapse collapse">
-			    	<div class="panel-body">
-			    		<h5 class="text-danger">No hay trabajos disponible en Alemania <span class="flag-icon flag-icon-de"></span></h5>
-			    	</div>
-			    </div>
+				<div class="col-xs-10">
+					<h4 class="autor-comentario">GNU/Tux <small class="fecha-comentario">32 Enero 2016</small></h4>
+					<p>¡Hola Mundo!</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+					<p>Sint facere molestias numquam, modi, incidunt commodi perspiciatis similique assumenda voluptatem nostrum beatae quos aperiam tempore doloremque itaque necessitatibus adipisci facilis earum!</p>
+				</div>
+			</div>
+		</aside>
 
-				<!-- Ejemplo para mostrar el estilo del acordeón únicamente -->
-			    <div class="panel-heading">
-			    	<h4 class="panel-title"><a data-toggle="collapse" href="#trabajos-fr"><span class="flag-icon flag-icon-fr"></span> Francia</a></h4>
-			    </div>
-
-			    <div id="trabajos-fr" class="panel-collapse collapse">
-			    	<div class="panel-body">
-			    		<h5 class="text-danger">No hay trabajos disponible en Francia <span class="flag-icon flag-icon-fr"></span></h5>
-			    	</div>
-			    </div>
-			  </div>
-		</div>
 
 		<hr>
 
@@ -177,52 +193,6 @@
 			</div>
 		</footer>
 
-		<!-- Modal CV -->
-		<div class="modal fade" id="modal-curriculum" tabindex="-1" role="dialog" aria-labelledby="modalCurriculum" ng-app="proyectoFinal" ng-controller="cvCtrl">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="modalCurriculum">Enviar mi CV</h4>
-		      </div>
-		      <form id="form-trabaja-cv" ng-submit="enviarCurriculum($event)" ng-model="cv.form">
-		      	<div class="modal-body">
-		      		<div id="trabaja-cv-exito">
-		      			<h2 class="text-success">Envio Exitoso</h2>
-		      			<p class="text-success">Ha enviado su CV con éxito.</p>
-
-		      			<div class="modal-footer">
-							<button class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						</div>
-		      		</div>
-
-		      		<div id="trabaja-datos-cv">
-			        	<div class="form-group">
-			        		<label for="nombre">Nombre Completo</label>
-			        		<input id="nombre" class="form-control" type="text" placeholder="Nombre y Apellidos" ng-model="cv.nombre">
-			        	</div>
-
-			        	<div class="form-group">
-			        		<label for="correo">Correo Electrónico</label>
-			        		<input type="email" class="form-control" placeholder="ejemplo@gmail.com" ng-model="cv.correo">
-			        	</div>
-						
-						<div class="form-group">
-							<label for="file-cv">Subir CV</label>
-							<input type="file" class="form-control" placeholder="Mi archivo de CV">
-						</div>
-				      	
-				      	<div class="modal-footer">
-					        <button class="btn btn-default" data-dismiss="modal">Cerrar</button>
-					        <input type="submit" value="Enviar CV" type="button" class="btn btn-primary">
-				      	</div>
-				      </div>
-			      </div>
-		      </form>
-		    </div>
-		  </div>
-		</div>
-
 		<!-- jQuery -->
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<!-- Bootstrap JavaScript -->
@@ -231,7 +201,5 @@
  		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
  		<!-- Scripts propios -->
  		<script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
- 		<!-- Angular CV -->
- 		<script src="js/angular/trabaja.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
