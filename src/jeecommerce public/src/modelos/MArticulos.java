@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class MArticulos
 {
@@ -12,12 +13,16 @@ public class MArticulos
 	public long artid,
 				catid;
 	
-	public String codArticulo;
-	
 	public BigDecimal precio;
 	
 	public String 	nombre,
-					descripcion;
+					descripcion,
+					imagen;
+	
+	public int 	minimo,
+				stock;
+	
+	public long fechaCreacion;
 	
 	private Connection conexion;
 	private ResultSet rs;
@@ -38,9 +43,14 @@ public class MArticulos
 
 				nombre = rs.getString("nombre");
 				descripcion = rs.getString("descripcion");
-				codArticulo = rs.getString("cod_articulo");
+				imagen = rs.getString("imagen");
 				
 				precio = rs.getBigDecimal("precio");
+				
+				minimo = rs.getInt("minimo");
+				stock = rs.getInt("stock");
+				
+				fechaCreacion = rs.getTimestamp("fecha_creacion").getTime();
 				
 				return true;
 				
@@ -147,16 +157,19 @@ public class MArticulos
 		}
 	}
 	
-	public long creaArticulo(long catid, String codArticulo, BigDecimal precio, String nombre, String descripcion)
+	public long creaArticulo(long catid, BigDecimal precio, String nombre, String descripcion, String imagen, int stock, int minimo, long fechaCreacion)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("INSERT INTO articulos (catid, cod_articulo, precio, nombre, descripcion) VALUES (?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conexion.prepareStatement("INSERT INTO articulos (catid, precio, nombre, descripcion, imagen, stock, minimo, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setLong(1, catid);
-			ps.setString(2, codArticulo);
-			ps.setBigDecimal(3, precio);
-			ps.setString(4, nombre);
-			ps.setString(5, descripcion);
+			ps.setBigDecimal(2, precio);
+			ps.setString(3, nombre);
+			ps.setString(4, descripcion);
+			ps.setString(5, imagen);
+			ps.setInt(6, stock);
+			ps.setInt(7, minimo);
+			ps.setTimestamp(8, new Timestamp(fechaCreacion));
 			
 			ps.executeUpdate();
 
@@ -183,21 +196,24 @@ public class MArticulos
 	
 	public long creaArticulo()
 	{
-		return creaArticulo(catid, codArticulo, precio, nombre, descripcion);
+		return creaArticulo(catid, precio, nombre, descripcion, imagen, stock, minimo, fechaCreacion);
 	}
 	
-	public boolean actualizaArticulo(long artid, long catid, String codArticulo, BigDecimal precio, String nombre, String descripcion)
+	public boolean actualizaArticulo(long artid, long catid, BigDecimal precio, String nombre, String descripcion, String imagen, int stock, int minimo, long fechaCreacion)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("UPDATE articulos SET catid = ?, cod_articulo = ?, precio = ?, nombre = ?, descripcion = ? WHERE artid = ?");
+			PreparedStatement ps = conexion.prepareStatement("UPDATE articulos SET catid = ?, precio = ?, nombre = ?, descripcion = ?, imagen = ?, stock = ?, minimo = ?, fecha_creacion = ? WHERE artid = ?");
 			
 			ps.setLong(1, catid);
-			ps.setString(2, codArticulo);
-			ps.setBigDecimal(3, precio);
-			ps.setString(4, nombre);
-			ps.setString(5, descripcion);
-			ps.setLong(6, artid);
+			ps.setBigDecimal(2, precio);
+			ps.setString(3, nombre);
+			ps.setString(4, descripcion);
+			ps.setString(5, imagen);
+			ps.setInt(6, stock);
+			ps.setInt(7, minimo);
+			ps.setTimestamp(8, new Timestamp(fechaCreacion));
+			ps.setLong(9, artid);
 			
 			int filasAfectadas = ps.executeUpdate();
 			
@@ -218,7 +234,7 @@ public class MArticulos
 	
 	public boolean actualizaArticulo()
 	{
-		return actualizaArticulo(artid, catid, codArticulo, precio, nombre, descripcion);
+		return actualizaArticulo(artid, catid, precio, nombre, descripcion, imagen, stock, minimo, fechaCreacion);
 	}
 	
 	public boolean eliminaArticulo(long artid)
@@ -249,5 +265,36 @@ public class MArticulos
 	public boolean eliminaArticulo()
 	{
 		return eliminaArticulo(artid);
+	}
+	
+	public int countProductosByCatId(long catid)
+	{
+		try
+		{
+			String sqlQuery = (catid == -1) ? "SELECT COUNT(*) AS total FROM articulos" : "SELECT COUNT(*) AS total FROM articulos WHERE catid = ?";
+			
+			PreparedStatement ps = conexion.prepareStatement(sqlQuery);
+			
+			if (catid != -1)
+			{
+				ps.setLong(1, catid);
+			}
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next())
+				return rs.getInt("total");
+			
+		} catch (SQLException x) {
+			
+			System.err.println("Error SQL -> MArticulos:actualizaArticulo()");
+			System.err.println("Mensaje de error -> " + x.getMessage());
+			
+			x.printStackTrace();
+		
+			System.exit(-442);
+		}
+		
+		return 0;
 	}
 }

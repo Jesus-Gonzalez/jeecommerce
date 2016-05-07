@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import modelos.MArticulos;
 import modelos.MConfiguracion;
@@ -29,7 +30,9 @@ public class GetArticulos extends HttpServlet {
 		HttpSession sesion = request.getSession();
 		Connection conexion = (Connection) sesion.getAttribute("conexion");
 		
-		if (conexion == null)
+		JsonObject datos = new JsonParser().parse(request.getReader()).getAsJsonObject();
+		
+		if (conexion == null || datos == null)
 		{
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return;
@@ -38,6 +41,7 @@ public class GetArticulos extends HttpServlet {
 		// Obtener numer de elementos por página de la base de datos
 		int numElementosPorPagina = -1;
 		int pagina = -1;
+		long categoria = -1;
 		
 		try
 		{
@@ -53,17 +57,27 @@ public class GetArticulos extends HttpServlet {
 				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				return;
 			}
-			
-			pagina = Integer.parseInt(request.getParameter("pagina"));
+
+			pagina = datos.get("pagina").getAsInt();
+			categoria = datos.get("categoria").getAsInt();
 		}
-		 catch (NumberFormatException x)
+		 catch (ClassCastException x)
 		{
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			return; 
 		}
 		
 		MArticulos mdlArticulos = new MArticulos(conexion);
-		mdlArticulos.getLatestArticulos(numElementosPorPagina, (pagina * numElementosPorPagina));
+		
+		
+		if (categoria == -1)
+		{
+			mdlArticulos.getLatestArticulos(numElementosPorPagina, ((pagina - 1) * numElementosPorPagina));
+			
+		} else {
+			
+			mdlArticulos.getArticulosByCatId(categoria, numElementosPorPagina, (pagina - 1) * numElementosPorPagina);
+		}
 		
 		JsonArray jsonArticulos = new JsonArray();
 		JsonObject jsonArticulo;
@@ -76,6 +90,9 @@ public class GetArticulos extends HttpServlet {
 			jsonArticulo.addProperty("artid", mdlArticulos.artid);
 			jsonArticulo.addProperty("nombre", mdlArticulos.nombre);
 			jsonArticulo.addProperty("precio", mdlArticulos.precio);
+			jsonArticulo.addProperty("imagen", mdlArticulos.imagen);
+			jsonArticulo.addProperty("stock", mdlArticulos.stock);
+			jsonArticulo.addProperty("fechaCreacion", mdlArticulos.fechaCreacion);
 			
 			jsonArticulos.add(jsonArticulo);
 		}

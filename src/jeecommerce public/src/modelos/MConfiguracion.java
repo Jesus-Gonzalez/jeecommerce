@@ -45,7 +45,7 @@ public class MConfiguracion
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("SELECT * FROM configuracion WHERE parametro = ?");
+			PreparedStatement ps = conexion.prepareStatement("SELECT * FROM private.configuracion WHERE parametro = ?");
 			ps.setString(1, parametro);
 			
 			rs = ps.executeQuery();
@@ -64,7 +64,7 @@ public class MConfiguracion
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("INSERT INTO configuracion (parametro, valor) VALUES (?, ?)");
+			PreparedStatement ps = conexion.prepareStatement("INSERT INTO private.configuracion (parametro, valor) VALUES (?, ?)");
 			ps.setString(1, parametro);
 			ps.setString(2, valor);
 			
@@ -86,7 +86,7 @@ public class MConfiguracion
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("UPDATE configuracion SET valor = ? WHERE parametro = ?");
+			PreparedStatement ps = conexion.prepareStatement("UPDATE private.configuracion SET valor = ? WHERE parametro = ?");
 			ps.setString(1, valor);
 			ps.setString(2, parametro);
 			
@@ -108,7 +108,7 @@ public class MConfiguracion
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("DELETE FROM configuracion WHERE parametro = ?");
+			PreparedStatement ps = conexion.prepareStatement("DELETE FROM private.configuracion WHERE parametro = ?");
 			ps.setString(1, parametro);
 			
 			return ps.executeUpdate() > 0;

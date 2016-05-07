@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-ng-app="jeecommerce">
 	
 	<head>
 		<meta charset="utf-8">
@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/less/main.min.css">
+		<link rel="stylesheet" href="css/less/main.css">
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,7 +29,6 @@
 		
 		<nav id="header-navbar" class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse-menu">
 						<span class="sr-only">Desplegar menú</span>
@@ -119,250 +118,45 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-2">
-					<div class="caja-menu">
+					<div class="caja-menu" data-ng-controller="categoriasController as catCtrl">
 						<h3>Categorías</h3>
-						<ul class="fa-ul">
-							<li><i class="fa-li fa fa-leaf fa-fw"></i> <a href="javascript:void(0)">Productos</a></li>
-							<li><i class="fa-li fa fa-cube fa-fw"></i> <a href="javascript:void(0)">Servicios</a></li>
+						<ul id="list-categorias">
 						</ul>
 					</div>
-
-					<div class="caja-menu">
-						<h3>Filtrar</h3>
-
-						<div class="form-group">
-							<div class="input-group">
-								<input type="search" class="form-control" name="buscar" placeholder="Buscar">
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-default">Buscar</button>
-								</span>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="radio">
-								<label for="filtrar-en-stock">
-									<input type="radio" name="filtrar-stock" value="todos" placeholder="">
-									En stock
-								</label>
-							</div>
-
-							<div class="radio">
-								<label for="filtrar-en-stock">
-									<input type="radio" name="filtrar-stock" value="en-stock" placeholder="">
-									Agotado
-								</label>
-							</div>
-
-							<div class="radio">
-								<label for="filtrar-en-stock">
-									<input type="radio" name="filtrar-stock" value="agotado" placeholder="">
-									Agotado
-								</label>
-							</div>
-						</div>
-					</div>
 				</div>
 
-				<div id="lista-productos" class="col-sm-10">
+				<section id="lista-productos" class="col-sm-10" data-ng-controller="catalogoController as catalogoCtrl">
 					<h1>Lista de Productos</h1>
-
-					<div class="row">
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<div class="fa-stack fa-lg icono">
-								<i class="fa fa-square fa-stack-2x fa-inverse"></i>
-								<i class="fa fa-exclamation fa-stack-1x text-danger"></i>
-							</div>
-
-							<img src="img/tractor-img.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Recogida de Alfalfa <small class="text-danger">(Agotado!)</small></h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success disabled">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a data-toggle="modal" href="#popup-avisarme" class="btn btn-md btn-warning"><i class="fa fa-phone"></i> Avísame</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/alfalfa-packs.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Alfalfa Secada al Sol</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<div class="fa-stack fa-lg icono">
-								<i class="fa fa-circle fa-stack-2x fa-inverse"></i>
-								<i class="fa fa-check fa-stack-1x text-success"></i>
-							</div>
-							<img src="img/alfalfa-packs.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Alfalfa Secada al Sol <small class="text-success">(Nuevo!)</small></h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/girasol.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Pipas de Girasol</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-					</div>
-					<div class="row">
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/girasol.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Pipas de Girasol</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<div class="fa-stack fa-lg icono">
-								<i class="fa fa-circle fa-stack-2x fa-inverse"></i>
-								<i class="fa fa-check fa-stack-1x text-success"></i>
-							</div>
-							<img src="img/tractor-img.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Recogida de Alfalfa <small class="text-success">(Nuevo!)</small></h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
+					<p class="text-danger" data-ng-hide="productos.length > 0">No se han encontrado productos según su criterio</p>
+					<div class="col-sm-3 col-xs-12 caja-producto" data-ng-repeat="producto in productos">
+					<a data-ng-href="{{ ABS_PATH }}/producto.html?artid={{ producto.artid }}"><h1>{{ producto.nombre }}</h1></a>
+						
+						<div class="fa-stack fa-lg icono" data-ng-show="producto.stock === 0">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-exclamation fa-stack-1x text-danger"></i>
 						</div>
 						
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/alfalfa-packs.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Alfalfa Secada al Sol</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-						
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/girasol.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Pipas de Girasol</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
+						<div class="fa-stack fa-lg icono" data-ng-show="producto.stock != 0 && producto.fechaCreacion < fechaActual - 259200000">
+							<i class="fa fa-circle fa-stack-2x"></i>
+							<i class="fa fa-check fa-stack-1x text-success"></i>
+						</div>						
 
+						<a data-ng-href="{{ ABS_PATH }}/producto.html?artid={{ producto.artid }}">
+							<img data-ng-src="img/productos/{{ producto.imagen }}" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
+							<h5 class="titulo-producto">{{ producto.nombre }} <small class="text-danger" data-ng-show="producto.stock === 0">(Agotado!)</small> <small class="text-success" data-ng-show="producto.stock != 0 && producto.fechaCreacion < fechaActual - 259200000">(Nuevo!)</small></h5>
+						</a>
+						<!-- Más tarde será un botón -->
+						<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
+						<a href="carro.html" class="btn btn-md btn-success disabled">Añadir <i class="fa fa-cart-plus"></i></a>
+						<a data-ng-show="producto.stock === 0" data-toggle="modal" href="#popup-avisarme" class="btn btn-md btn-warning"><i class="fa fa-phone"></i> Avísame</a>
 					</div>
-					<div class="row">
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<div class="fa-stack fa-lg icono">
-								<i class="fa fa-square fa-stack-2x fa-inverse"></i>
-								<i class="fa fa-exclamation fa-stack-1x text-danger"></i>
-							</div>
-
-							<img src="img/tractor-img.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Recogida de Alfalfa <small class="text-danger">(¡Agotado!)</small></h5>
-							<!-- Provisional -->
-							<!-- <button class="btn btn-md btn-success disabled">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success disabled">Añadir <i class="fa fa-cart-plus"></i></a>
-							<a data-toggle="modal" href="#popup-avisarme" class="btn btn-md btn-warning"><i class="fa fa-phone"></i> Avísame</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/girasol.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Pipas de Girasol</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/tractor-img.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Recogida de Alfalfa</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/tractor-img.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Recogida de Alfalfa</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-					</div>
-					<div class="row">
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/alfalfa-packs.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Alfalfa Secada al Sol</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/tractor-img.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Recogida de Alfalfa</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/alfalfa-packs.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Alfalfa Secada al Sol</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-
-						<div class="col-sm-3 col-xs-12 caja-producto">
-							<img src="img/alfalfa-packs.jpg" alt="Alfalfa Packs" class="img-responsive img-thumbnail">
-							<h5 class="titulo-producto">Alfalfa Secada al Sol</h5>
-							<!-- Más tarde será un botón -->
-							<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-							<a href="carro.html" class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button>
-							<a href="producto.html" class="btn btn-md btn-primary"><i class="fa fa-eye"></i> Ver más</a>
-							<p class="valoracion"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><i class="fa fa-star-o"></i></p>
-						</div>
-					</div>
-				</div>
+				</section>
 			</div>
 		</div>
 
 		<div class="text-center">
-			<lu class="pagination" id="paginacion-productos">
-				<li class="active"><a href="javascript:void(0)">1</a></li>
-				<li><a href="javascript:void(0)">2</a></li>
-				<li><a href="javascript:void(0)">3</a></li>
-				<li><a href="javascript:void(0)">4</a></li>
+			<ul class="pagination" id="paginacion-productos" data-ng-controller="paginacionController as pagCtrl">
+				<li class="active" data-ng-repeat="i in [] | range: paginas + 1"><a href="javascript:void(0)">{{ i+1 }}</a></li>
 			</ul>
 		</div>
 
@@ -375,8 +169,7 @@
 					<ul class="lista-footer">
 						<li><i class="fa fa-phone fa-fw"></i> 555-123-321</li>
 						<li><i class="fa fa-whatsapp fa-fw"></i> 555-123-321</li>
-						<li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:proyecto@final.daw">proyecto@final.daw</a></li>
-Avísame</ul>
+						<li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:proyecto@final.daw">proyecto@final.daw</a></li></ul>
 				</div>
 				
 				<div class="col-sm-3 col-xs-12 col-xs-centered footer-caja">
@@ -447,6 +240,11 @@ Avísame</ul>
  		<!-- Angular -->
  		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
  		<!-- Scripts propios -->
+ 		<script type="text/javascript" charset="utf-8">
+ 			var ABS_PATH = "<%= request.getContextPath() %>";
+ 		</script>
  		<script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
+ 		<script src="js/angular/app.js" type="text/javascript" charset="utf-8"></script>
+ 		<script src="js/angular/catalogo.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

@@ -1,4 +1,4 @@
-angular.module('proyectoFinal', [])
+angular.module('jeecommerce', [])
 	   .controller('cvCtrl', ['$scope', function($scope){
 
 	   		$scope.cv = {};
