@@ -58,7 +58,7 @@ public class MArticulos
 			
 		} catch (SQLException x) {
 			
-			System.err.println("Error SQL -> MArticulos:getPrimerUsuario()");
+			System.err.println("Error SQL -> MArticulos:getProximoArticulo()");
 			System.err.println("Mensaje de error -> " + x.getMessage());
 			
 			x.printStackTrace();

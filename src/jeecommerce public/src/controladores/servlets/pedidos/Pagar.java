@@ -1,4 +1,4 @@
-package controladores.servlets;
+package controladores.servlets.pedidos;
 
 import java.io.IOException;
 import java.util.Calendar;

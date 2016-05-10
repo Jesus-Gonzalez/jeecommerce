@@ -1,4 +1,4 @@
-package controladores.servlets;
+package controladores.servlets.usuario;
 
 import java.io.IOException;
 import java.sql.Connection;

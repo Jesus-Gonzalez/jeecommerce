@@ -9,7 +9,9 @@ public class Articulo
 	
 	public String 	codArticulo,
 					nombre,
-					descripcion;
+					descripcion,
+					imagen,
+					nombreCategoria;
 	
 	public int cantidad;
 	public BigDecimal precio;
