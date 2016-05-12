@@ -7,8 +7,7 @@ public class Articulo
 	public long	artid,
 				catid;
 	
-	public String 	codArticulo,
-					nombre,
+	public String 	nombre,
 					descripcion,
 					imagen,
 					nombreCategoria;
