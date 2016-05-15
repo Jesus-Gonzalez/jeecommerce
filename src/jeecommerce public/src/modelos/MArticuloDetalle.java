@@ -102,6 +102,23 @@ public class MArticuloDetalle
 			x.printStackTrace();
 		
 			System.exit(-44045);
+			
+		} finally {
+			try
+			{
+				
+				conexion.setAutoCommit(true);
+				
+			} catch (SQLException x) {
+				
+				System.err.println("Error SQL -> MArticuloDetalle:getArticuloDetalleByArtId()@AutoCommit(true)");
+				System.err.println("Mensaje de error -> " + x.getMessage());
+				
+				x.printStackTrace();
+			
+				System.exit(-44057);
+						
+			}
 		}
 		
 		return false;

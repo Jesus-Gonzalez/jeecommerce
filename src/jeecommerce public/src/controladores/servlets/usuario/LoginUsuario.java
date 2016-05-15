@@ -55,18 +55,18 @@ public class LoginUsuario extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		String 	nombre = request.getParameter("nombre"),
+		String 	correo = request.getParameter("email"),
 				contrasena = request.getParameter("contrasena"),
 				path = getServletContext().getContextPath();
 		
-		if (nombre == null || contrasena == null || path == null)
+		if (correo == null || contrasena == null || path == null)
 		{
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 			
 		} else {
 			
-			nombre = nombre.trim();
+			correo = correo.trim();
 			contrasena = contrasena.trim();
 		}
 		
@@ -79,7 +79,7 @@ public class LoginUsuario extends HttpServlet {
 					jsonCuenta		= new JsonObject();
 
 		MUsuarios mdlUsuarios = new MUsuarios(conexion);
-		SesionUsuario s = new SesionUsuario();
+		SesionUsuario s = (SesionUsuario) sesion.getAttribute("usuario");
 		
 		boolean recordarme = (request.getParameter("recordar") != null) ? request.getParameter("recordar").equals("true") : false;
 		MRecordarme mdlRecordarme = new MRecordarme(conexion);
@@ -90,13 +90,13 @@ public class LoginUsuario extends HttpServlet {
 		HashMapCookie<String, String> mapaCookies = new CookiesUtils().createCookieMapFromArray("jeecommerce.data", request.getCookies());
 		Cookie c;
 		
-		if (nombre.isEmpty())
+		if (correo.isEmpty())
 		{
 			error = true;
 			jsonUsuario.addProperty("vacio", true);
 			jsonErrores.add("usuario", jsonUsuario);
 			
-		} else if (nombre.length() > 30) {
+		} else if (correo.length() > 30) {
 			
 			error = true;
 			jsonUsuario.addProperty("overflow", true);
@@ -125,7 +125,7 @@ public class LoginUsuario extends HttpServlet {
 		// No existen errores: comprobar datos de inicio y si está activada la cuenta
 		if ( !error )
 		{			
-			mdlUsuarios.getUsuarioByNombre(nombre);
+			mdlUsuarios.getUsuarioByCorreo(correo);
 			
 			// Existe?
 			if ( mdlUsuarios.getProximoUsuario() )
@@ -134,7 +134,7 @@ public class LoginUsuario extends HttpServlet {
 				if (mdlUsuarios.activado)
 				{
 					// Contraseña correcta?
-					if (mdlUsuarios.nombre.equals(nombre) && mdlUsuarios.contrasena.equals(contrasena))
+					if (mdlUsuarios.correo.equals(correo) && mdlUsuarios.contrasena.equals(contrasena))
 					{
 						s.usuario = new Usuario(mdlUsuarios);
 						s.usuario.ip = request.getRemoteAddr();
@@ -142,7 +142,7 @@ public class LoginUsuario extends HttpServlet {
 						
 						s.estado = SesionUsuario.LOGUEADO;
 						
-						sesion.setAttribute("sesion", s);
+						sesion.setAttribute("usuario", s);
 						
 						// Actualizar el usuario de la base de datos, indicando la dir. IP y la ultima fecha de conexión
 						mdlUsuarios.actualizarDireccionIp(s.usuario.uid, s.usuario.ip);
@@ -152,8 +152,8 @@ public class LoginUsuario extends HttpServlet {
 						{							
 							String numAleatorio = String.valueOf(r.nextInt(Integer.MAX_VALUE));
 							
-							mdlRecordarme.id 	= cifrado.hash("SHA-256", r.nextInt(Integer.MAX_VALUE) + nombre + r.nextInt(Integer.MAX_VALUE));
-							mdlRecordarme.salt 	= cifrado.hash("SHA-256", r.nextInt(Integer.MAX_VALUE) + nombre + r.nextInt(Integer.MAX_VALUE));
+							mdlRecordarme.id 	= cifrado.hash("SHA-256", r.nextInt(Integer.MAX_VALUE) + correo + r.nextInt(Integer.MAX_VALUE));
+							mdlRecordarme.salt 	= cifrado.hash("SHA-256", r.nextInt(Integer.MAX_VALUE) + correo + r.nextInt(Integer.MAX_VALUE));
 							mdlRecordarme.token = cifrado.hash("SHA-256", mdlRecordarme.salt + numAleatorio);
 							mdlRecordarme.uid 	= mdlUsuarios.uid;
 							

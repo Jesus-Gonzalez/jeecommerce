@@ -59,7 +59,6 @@ public class ProcesarPerfil extends HttpServlet {
 		{
 			jsonUsuario.addProperty("nombre", mdlUsuarios.nombre);
 			jsonUsuario.addProperty("correo", mdlUsuarios.correo);
-			jsonUsuario.addProperty("pais", mdlUsuarios.pais.toUpperCase());
 			json.add("usuario", jsonUsuario);
 			json.addProperty("success", true);
 			
@@ -116,7 +115,7 @@ public class ProcesarPerfil extends HttpServlet {
 					{
 						jsonPerfil = elementPerfil.getAsJsonObject();
 						
-						if (jsonPerfil.has("correo") && jsonPerfil.has("pais"))
+						if (jsonPerfil.has("correo"))
 						{
 							MUsuarios mdlUsuarios = new MUsuarios(conexion);
 						
@@ -126,7 +125,6 @@ public class ProcesarPerfil extends HttpServlet {
 										jsonErrores = new JsonObject();
 							
 							String 	correo = jsonPerfil.get("correo").getAsString().trim(),
-									pais = jsonPerfil.get("pais").getAsString(),
 									newContrasena, oldContrasena, confirmContrasena;
 							
 							boolean error = false,
@@ -150,16 +148,6 @@ public class ProcesarPerfil extends HttpServlet {
 							
 								modificadoCorreo = true;
 								s.usuario.correo = correo;
-							}
-							
-							if (pais.isEmpty() || pais.length() > 2)
-							{
-								error = true;
-								jsonErrores.addProperty("pais", true);
-							
-							} else {
-								
-								s.usuario.correo = pais.toLowerCase();
 							}
 							
 							if (jsonPerfil.has("oldContrasena") && jsonPerfil.has("newContrasena") && jsonPerfil.has("confirmContrasena"))

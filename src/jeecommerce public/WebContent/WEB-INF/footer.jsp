@@ -62,6 +62,7 @@
  		<script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
 		<!-- Scripts AngularJS propios -->
 		<script src="js/angular/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/angular/usuario.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/catalogo.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/producto.js" type="text/javascript" charset="utf-8"></script>
 	</body>

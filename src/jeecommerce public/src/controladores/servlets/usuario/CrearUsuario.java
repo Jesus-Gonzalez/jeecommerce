@@ -2,7 +2,6 @@ package controladores.servlets.usuario;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,10 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.JsonObject;
 
 import helpers.RecordarmeHelper;
-import modelos.MActivaciones;
 import modelos.MUsuarios;
-import utils.Cifrado;
-import utils.Correo;
 
 @WebServlet("/usuarios/crear")
 public class CrearUsuario extends HttpServlet {
@@ -46,10 +42,7 @@ public class CrearUsuario extends HttpServlet {
 			response.sendRedirect(getServletContext().getContextPath() + "/index.jsp");
 			return;
 		}
-
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-
+		
 		boolean error = false;
 		
 		JsonObject json 		  = new JsonObject(), // JSON principal que se devuelve
@@ -58,13 +51,12 @@ public class CrearUsuario extends HttpServlet {
 				   jsonCorreo  	  = new JsonObject(),
 				   jsonContrasena = new JsonObject();
 		
-		String 	usuario = request.getParameter("usuario"),
+		String 	usuario = request.getParameter("nombre"),
 				contrasena = request.getParameter("contrasena"),
 				contrasenaConfirmar = request.getParameter("contrasenaConfirmar"),
-				correo = request.getParameter("correo"),
-				pais = request.getParameter("pais");
+				correo = request.getParameter("correo");
 		
-		if (usuario == null || contrasena == null || contrasenaConfirmar == null || correo == null || pais == null)
+		if (usuario == null || contrasena == null || contrasenaConfirmar == null || correo == null)
 		{
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return;
@@ -75,11 +67,9 @@ public class CrearUsuario extends HttpServlet {
 			contrasena = contrasena.trim();
 			contrasenaConfirmar = contrasenaConfirmar.trim();
 			correo = correo.trim();
-			pais = pais.toLowerCase().trim();
 		}
 		
 		MUsuarios mdlUsuarios = new MUsuarios(conexion);
-		MActivaciones mdlActivaciones = new MActivaciones(conexion);
 		
 		if (usuario.isEmpty())
 		{
@@ -88,7 +78,7 @@ public class CrearUsuario extends HttpServlet {
 			jsonErrores.add("usuario", jsonUsuario);
 		
 		}
-			else if (usuario.length() > 30)
+			else if (usuario.length() > 123)
 		{
 			error = true;
 			jsonUsuario.addProperty("overflow", true);
@@ -100,18 +90,6 @@ public class CrearUsuario extends HttpServlet {
 				error = true;
 				jsonUsuario.addProperty("underflow", true);
 				jsonErrores.add("usuario", jsonUsuario);
-		}
-			else if (!usuario.matches("^[a-zA-Z0-9]+$"))
-		{
-				error = true;
-				jsonUsuario.addProperty("formato", true);
-				jsonErrores.add("usuario", jsonUsuario);
-		}
-			else if (mdlUsuarios.existeUsuario(usuario))
-		{
-			error = true;
-			jsonUsuario.addProperty("existe", true);
-			jsonErrores.add("usuario", jsonUsuario);
 		}
 		
 		if (correo.isEmpty())
@@ -145,7 +123,7 @@ public class CrearUsuario extends HttpServlet {
 			jsonContrasena.addProperty("underflow", true);
 			jsonErrores.add("contrasena", jsonContrasena);
 		
-		} else if (contrasena.length() > 50) {
+		} else if (contrasena.length() > 78) {
 			
 			
 			error = true;
@@ -158,49 +136,26 @@ public class CrearUsuario extends HttpServlet {
 			jsonContrasena.addProperty("equals", true);
 			jsonErrores.add("contrasena", jsonContrasena);
 		}
-		
-		if (pais.isEmpty() || pais.length() > 2)
-		{
-			error = true;
-			jsonErrores.addProperty("pais", true);
-		}
-		
+			
 		if (error)
 		{
 			json.add("error", jsonErrores);
 		
 		} else {
 			
-			long uid = mdlUsuarios.registrarUsuario(usuario, contrasena, correo, pais);
+			long uid = mdlUsuarios.registrarUsuario(usuario, contrasena, correo);
 			
 			if (uid == -1)
 			{
 				
 				json.addProperty("errorRegistrando", true);
-			
 			} else {
-				
-				String clave = new Cifrado().creaClaveActivacion(correo);
-				// 10 días en milisegundos = 10 * 24 * 60 * 60 * 1000 = 864000000
-				long fechaLimite = Calendar.getInstance().getTimeInMillis() + 864000000L;
-				long aid = mdlActivaciones.registraActivacion(uid, clave, fechaLimite);
-				
-				Correo utilCorreo = new Correo(correo);
-				
-				String protocolo = request.getScheme();
-				int port = request.getServerPort();
-				String strPort = "";
-				
-				if (! ((port == 80 && protocolo.equals("http")) ||  (port == 443 && protocolo.equals("https"))) )
-					strPort = ":" + port;
-				
-				String url = protocolo + "://" + request.getServerName() + strPort + request.getContextPath();
-				utilCorreo.enviarCorreoActivacion(url, clave, aid);
-				
-				json.addProperty("success", true);
+				json.addProperty("exito", true);
 			}
 		}
 
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
 		response.getWriter().write(json.toString());
 		
 	}

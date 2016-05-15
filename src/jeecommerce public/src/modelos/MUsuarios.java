@@ -16,7 +16,6 @@ public class MUsuarios
 		String 	nombre,
 				contrasena,
 				correo,
-				pais,
 				ip;
 	public
 		boolean activado;
@@ -59,7 +58,6 @@ public class MUsuarios
 				nombre = rs.getString("nombre");
 				contrasena = rs.getString("contrasena");
 				correo = rs.getString("correo");
-				pais = rs.getString("pais");
 				activado = rs.getBoolean("activado");
 
 				fechaRegistro = rs.getTimestamp("fecha_registro").getTime();
@@ -67,7 +65,8 @@ public class MUsuarios
 				
 				ip = rs.getString("direccion_ip");
 
-				datosCompras = (Integer[]) rs.getArray("datos_compras").getArray();
+				datosCompras = rs.getArray("datos_compras") != null ? (Integer[]) rs.getArray("datos_compras").getArray() : null;
+				
 				
 				return true;
 				
@@ -158,17 +157,16 @@ public class MUsuarios
 		}
 	}
 	
-	public long registrarUsuario(String nombre, String contrasena, String correo, String pais)
+	public long registrarUsuario(String nombre, String contrasena, String correo)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("INSERT INTO usuarios (nombre, contrasena, correo, pais, activado, fecha_registro) VALUES(?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conexion.prepareStatement("INSERT INTO usuarios (nombre, contrasena, correo, activado, fecha_registro) VALUES(?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, nombre);
 			ps.setString(2, contrasena);
 			ps.setString(3, correo);
-			ps.setString(4, pais);
-			ps.setBoolean(5, false);
-			ps.setTimestamp(6, new Timestamp(Calendar.getInstance().getTimeInMillis()));
+			ps.setBoolean(4, true);
+			ps.setTimestamp(5, new Timestamp(Calendar.getInstance().getTimeInMillis()));
 			
 			ps.executeUpdate();
 
@@ -248,20 +246,19 @@ public class MUsuarios
 	
 	public void actualizaUsuario()
 	{
-		actualizaUsuarioByUid(uid, nombre, contrasena, correo, pais, activado);
+		actualizaUsuarioByUid(uid, nombre, contrasena, correo, activado);
 	}
 	
-	public void actualizaUsuarioByUid(long uid, String nombre, String contrasena, String correo, String pais, boolean activado)
+	public void actualizaUsuarioByUid(long uid, String nombre, String contrasena, String correo, boolean activado)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("UPDATE usuarios SET nombre = ?, contrasena = ?, correo = ?, pais = ?, activado = ? WHERE uid = ?");
+			PreparedStatement ps = conexion.prepareStatement("UPDATE usuarios SET nombre = ?, contrasena = ?, correo = ?, activado = ? WHERE uid = ?");
 			ps.setString(1, nombre);
 			ps.setString(2, contrasena);
 			ps.setString(3, correo);
-			ps.setString(4, pais);
-			ps.setBoolean(5, activado);
-			ps.setLong(6, uid);
+			ps.setBoolean(4, activado);
+			ps.setLong(5, uid);
 			
 			ps.executeUpdate();
 			

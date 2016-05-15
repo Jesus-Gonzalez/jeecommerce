@@ -83,8 +83,8 @@
 						</li>
 
 					<%
-
-						boolean estaLogueado = sesion.usuario != null;
+					
+						boolean estaLogueado = sesion.usuario != null && sesion.estado == SesionUsuario.LOGUEADO;
 
 						String nombre = estaLogueado ? sesion.usuario.nombre : "Anónimo";
 
