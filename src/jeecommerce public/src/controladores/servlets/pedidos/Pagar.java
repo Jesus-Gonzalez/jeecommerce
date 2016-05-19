@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.stripe.Stripe;
 import com.stripe.exception.APIConnectionException;
 import com.stripe.exception.AuthenticationException;
 import com.stripe.exception.CardException;
@@ -53,6 +54,8 @@ public class Pagar extends HttpServlet {
 		{
 			case "tarjeta":
 				
+				Stripe.apiKey = "sk_test_6YxNZaAlxoCr9J8oK6PY0J6U";
+				
 				String tkn = jsonDatos.get("token").getAsString();
 				if (tkn == null)
 				{
@@ -67,7 +70,7 @@ public class Pagar extends HttpServlet {
 					Map<String, Object> chargeParams = new HashMap<String, Object>();
 					chargeParams.put("amount", sesion.carro.total.intValue() * 100);
 					chargeParams.put("currency", "eur");
-					chargeParams.put("source", tkn); // obtained with Stripe.js
+					chargeParams.put("source", tkn);
 					chargeParams.put("description", "Email: " + sesion.usuario.correo + " - UID: " + sesion.usuario.uid + " - Fecha: " + Calendar.getInstance().getTime() + " - Cantidad: " + sesion.carro.total);
 
 					Charge cargo = Charge.create(chargeParams);

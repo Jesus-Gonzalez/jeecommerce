@@ -25,7 +25,7 @@ public class CreaDireccion extends HttpServlet {
 	throws ServletException, IOException
 	{
 		HttpSession hs = request.getSession();
-		SesionUsuario sesion = (SesionUsuario) hs.getAttribute("sesion");
+		SesionUsuario sesion = (SesionUsuario) hs.getAttribute("usuario");
 		Connection conexion = (Connection) hs.getAttribute("conexion");
 		
 		if (sesion.estado != SesionUsuario.LOGUEADO)
@@ -45,7 +45,6 @@ public class CreaDireccion extends HttpServlet {
 		String	nombre = jsonDireccion.get("nombre").getAsString(),
 				direccion = jsonDireccion.get("direccion").getAsString(),
 				localidad = jsonDireccion.get("localidad").getAsString(),
-				provincia = jsonDireccion.get("provincia").getAsString(),
 				codigoPostal = jsonDireccion.get("codpostal").getAsString(),
 				telefono = jsonDireccion.get("telefono").getAsString();
 		
@@ -56,7 +55,7 @@ public class CreaDireccion extends HttpServlet {
 		}
 		
 		MDirecciones mdlDirecciones = new MDirecciones(conexion);
-		long did = mdlDirecciones.creaDireccion(sesion.usuario.uid, nombre, direccion, localidad, provincia, codigoPostal, telefono);
+		long did = mdlDirecciones.creaDireccion(sesion.usuario.uid, nombre, direccion, localidad, codigoPostal, telefono);
 		
 		JsonObject jsonRespuesta = new JsonObject();
 		

@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="css/alertify/alertify.min.css" />
     <link rel="stylesheet" href="css/alertify/themes/default.min.css" />
     <!-- Main custom CSS -->
-		<link rel="stylesheet" href="css/less/main.min.css">
+	<link rel="stylesheet" href="css/less/main.css">
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -83,7 +83,7 @@
 						</li>
 
 					<%
-					
+
 						boolean estaLogueado = sesion.usuario != null && sesion.estado == SesionUsuario.LOGUEADO;
 
 						String nombre = estaLogueado ? sesion.usuario.nombre : "Anónimo";
@@ -92,12 +92,15 @@
 
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <%= nombre %> <%= estaLogueado ? "<b class=\"caret\">" : "" %></b></a>
-							<% if (estaLogueado) { %>
 							<ul class="dropdown-menu header-dropdown">
+							<% if (estaLogueado) { %>
 								<li><a href="configuracion.html">Configuración</a></li>
-								<li><a href="index.html" class="btn btn-xs btn-danger">Salir</a></li>
-							</ul>
+								<li><a href="salir.html" class="btn btn-xs btn-danger">Salir</a></li>
+							<% } else { %>
+								<li><a href="login" class="btn btn-xs btn-success">Registrarse</a></li>
+								<li><a href="login" class="btn btn-xs btn-info">Identificarse</a></li>
 							<% } %>
+							</ul>
 						</li>
 					</ul>
 				</div>

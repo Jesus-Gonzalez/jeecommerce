@@ -41,8 +41,7 @@ public class DesconectarUsuario extends HttpServlet {
 		RecordarmeHelper hlpRecordarme = new RecordarmeHelper();
 		hlpRecordarme.comprobarCookieRecordarme(request, response, session);
 		
-		Connection conexion = (Connection) session.getAttribute("conexion");
-		SesionUsuario sesion = (SesionUsuario) session.getAttribute("sesion");
+		SesionUsuario sesion = (SesionUsuario) session.getAttribute("usuario");
 		
 		if (sesion == null || sesion.usuario == null)
 		{
@@ -67,7 +66,7 @@ public class DesconectarUsuario extends HttpServlet {
 		
 		session.invalidate();
 		
-		response.sendRedirect(getServletContext().getContextPath() + "/index.jsp");
+		response.sendRedirect(getServletContext().getContextPath() + "/catalogo.html");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

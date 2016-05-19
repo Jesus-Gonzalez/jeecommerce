@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/less/main.min.css">
+		<link rel="stylesheet" href="css/less/main.css">
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,7 +26,7 @@
 	</head>
 
 	<body>
-		
+
 		<div id="portada-header" class="jumbotron">
 			<div class="background-image"></div>
 			<div class="container contenido">
@@ -66,7 +66,7 @@
 				<div class="col-sm-2 col-xs-12">
 					<img src="img/alfalfa.jpg" alt="Tractor en el campo" class="img-responsive img-circle img-thumbnail">
 				</div>
-				
+
 				<div class="col-sm-8 col-xs-12">
 					<h2 class="text-warning">Trato al Cliente Personalizado <i class="fa fa-briefcase"></i></h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium quo quibusdam dolore animi cumque. A voluptates voluptatem, ratione beatae aliquid numquam magni doloremque veniam tempora modi nihil tenetur cupiditate distinctio.</p>

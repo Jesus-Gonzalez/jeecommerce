@@ -1,3 +1,6 @@
+var REFERRER = typeof REFERRER === 'undefined' ? undefined : REFERRER;
+
+
 angular.module('jeecommerce')
         .controller('registroController', function($scope, $http){
 
@@ -20,7 +23,7 @@ angular.module('jeecommerce')
                       contrasenaConfirmar: recontrasena
                     }
             })
-            .done(function(data) {
+            .done(function successOnReg(data) {
               console.log("success@registro");
 
             console.log(data);
@@ -41,19 +44,19 @@ angular.module('jeecommerce')
                         contrasena: contrasena
                       }
               })
-              .done(function(data) {
+              .done(function successOnLoginAfterReg(data) {
                 console.log("success@login");
-                console.log(data)
+                console.log(data);
+
+                alertify.success("Se ha registrado e identificado con éxito en el sitio web.");
+
+                window.location.href = REFERRER || 'catalogo.html';
               })
-              .fail(function() {
+              .fail(function failOnLoginAfterReg() {
                 console.log("error@login");
               });
-
-              // setTimeout(function(){
-              //   window.location.href = ABS_PATH + "/carro.html";
-              // }, 567);
             })
-            .fail(function(data) {
+            .fail(function failOnReg(data) {
               console.log("error@registro");
               console.log(data);
               alertify.error("Ha sucedido un error creando el usuario. Por favor, compruebe los campos.");
@@ -66,4 +69,34 @@ angular.module('jeecommerce')
         })
         .controller('loginController', function($scope, $http){
 
+          $('#login').on('submit', function onLoginSubmit(){
+
+            console.log("email: " + $scope.email);
+            console.log("contrasena: " + $scope.contrasena);
+
+            $.ajax({
+              url: ABS_PATH + '/usuarios/login',
+              type: 'POST',
+              dataType: 'json',
+              data: {
+                      email: $scope.email,
+                      contrasena: $scope.contrasena
+                    }
+            })
+            .done(function(data) {
+              console.log("success@login");
+              console.log(data);
+
+              alertify.success("Se ha identificado con éxito en el sitio web.");
+
+              window.location.href = REFERRER || 'catalogo.html';
+            })
+            .fail(function(data) {
+              console.log("error@login");
+              console.log("error log: " + data);
+              alertify.error("Ha sucedido un error identificándose. Inténtelo de nuevo.");
+            });
+
+            return false;
+          });
         });

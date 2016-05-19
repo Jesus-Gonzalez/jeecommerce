@@ -53,7 +53,6 @@ public class GetDirecciones extends HttpServlet {
 			jsonDireccion.addProperty("nombre", mdlDirecciones.nombre);
 			jsonDireccion.addProperty("direccion", mdlDirecciones.direccion);
 			jsonDireccion.addProperty("localidad", mdlDirecciones.localidad);
-			jsonDireccion.addProperty("provincia", mdlDirecciones.provincia);
 			jsonDireccion.addProperty("codpostal", mdlDirecciones.codigoPostal);
 			jsonDireccion.addProperty("telefono", mdlDirecciones.telefono);
 			

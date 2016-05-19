@@ -8,7 +8,6 @@ public class Direccion
 	public String 	direccion,
 					localidad,
 					codigoPostal,
-					provincia,
 					nombre,
 					telefono;
 }

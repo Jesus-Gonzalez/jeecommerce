@@ -11,7 +11,7 @@ implements ServletContextListener
 	@Override
 	public void contextInitialized(ServletContextEvent sce)
 	{
-		Stripe.apiKey = "sk_test_6YxNZaAlxoCr9J8oK6PY0J6U";
+		// No hacer nada
 	}
 	
 	@Override

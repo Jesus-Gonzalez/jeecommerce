@@ -41,29 +41,29 @@
 				</div>
 
 				<div class="col-sm-6 col-xs-12">
-					<div class="panel panel-primary">
+					<div class="panel panel-primary" data-ng-controller="loginController">
 						<div class="panel-heading">
 							<h3 class="panel-title"><i class="fa fa-users"></i> Identificarse</h3>
 						</div>
 						<div class="panel-body">
-							<form id="registro">
+							<form id="login">
 								<div class="col-xs-10 col-xs-offset-1 text-center">
 									<p class="text-success text-center">¿Ya está registrado?</p>
 
 									<div class="input-group campo">
-										<input type="email" class="form-control" placeholder="nombre@gmail.com">
+										<input id="login-email" type="email" class="form-control" placeholder="nombre@gmail.com" data-ng-model="email">
 										<div class="input-group-addon"><i class="fa fa-at"></i></div>
 									</div>
 
 									<div class="input-group campo">
-										<input type="password" class="form-control" placeholder="Contraseña">
+										<input id="login-pwd" type="password" class="form-control" placeholder="Contraseña" data-ng-model="contrasena">
 										<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
 									</div>
 
 									<button id="btn-identificarse" name="entrar" class="btn btn-lg btn-primary campo" role="button">Identificarse <span class="glyphicon glyphicon-send"></span></button>
 
 									<span class="input-group-btn">
-										<button type="button" class="btn btn-sm btn-warning campo"><span class="glyphicon glyphicon-lock"></span> ¡Olvidé mi contraseña!</button>
+										<button type="submit" class="btn btn-sm btn-warning campo"><span class="glyphicon glyphicon-lock"></span> ¡Olvidé mi contraseña!</button>
 									</span>
 								</div>
 							</form>
@@ -72,5 +72,20 @@
 				</div>
 			</div>
 		</section>
+
+
+<%
+
+String referrer = (String) request.getAttribute("referrer");
+
+%>
+
+<% if (referrer != null) { %>
+<script type="text/javascript">
+
+	var REFERRER = '<%= referrer %>';
+
+</script>
+<% } %>
 
 <%@ include file="/WEB-INF/footer.jsp" %>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="modelos.Direccion" %>
 
@@ -16,12 +16,13 @@
 			<% for (Direccion direccion : lstDirecciones) { %>
 
 				<div data-did="<%= direccion.did %>" class="direccion">
-					<p><strong>fa-carNombre:</strong> <%= direccion.nombre %></p>
-					<p><strong><i class="fa fa-phone"></i> Teléfono:</strong> <%= direccion.telefono %></p>
+				<input type="radio" class="slc-direccion" name="direccion" value="<%= direccion.did %>">
+					<p><strong><i class="fa fa-fw fa-user"></i> Nombre:</strong> <%= direccion.nombre %></p>
+					<p><strong><i class="fa fa-fw fa-phone"></i> Teléfono:</strong> <%= direccion.telefono %></p>
 					<div>
 						<strong><i class="fa fa-fw fa-map-marker"></i> Ubicación:</strong>
 						<p><%= direccion.direccion %></p>
-						<p><%= direccion.localidad %> (<%= direccion.codigoPostal %>) - <%= direccion.provincia %></p>
+						<p><%= direccion.localidad %> (<%= direccion.codigoPostal %>)</p>
 					</div>
 				</div>
 
@@ -33,51 +34,45 @@
 			  <div class="panel panel-default">
 			    <div class="panel-heading">
 			      <h4 class="panel-title">
-			        <a data-toggle="collapse" data-parent="#crear-direccion-form" href="javascript:void(0)">
+			        <a data-toggle="collapse" data-parent="#crear-direccion-form" href="#crear-direccion-form">
 			          <i class="fa fa-plus"></i> Crear Dirección
 			        </a>
 			      </h4>
 			    </div>
-			    <div id="crear-direccion-form" class="panel-collapse collapse">
+					<div id="crear-direccion-form" class="panel-collapse collapse">
 						<div class="panel-body">
 							<form id="form-crear-direccion">
 								<!-- Nombre -->
 								<div class="input-group">
-									<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-								  <input type="text" id="input-nombre" class="form-control" placeholder="Nombre de persona a quien se envía el pedido">
+									<span class="input-group-addon"><span class="fa fa-fw fa-user"></span></span>
+								  <input data-ng-model="nombre" type="text" id="input-nombre" class="form-control" placeholder="Nombre de persona a quien se envía el pedido">
 								</div>
 
 								<!-- Dirección -->
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-road"></i></span>
-								  <input type="text" id="input-direccion" class="form-control" placeholder="Dirección donde se envía">
+									<span class="input-group-addon"><i class="fa fa-fw fa-road"></i></span>
+								  <input data-ng-model="direccion" type="text" id="input-direccion" class="form-control" placeholder="Dirección donde se envía">
 								</div>
 
 								<!-- Localidad -->
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-								  <input type="text" id="input-localidad" class="form-control" placeholder="Localidad del envío">
+									<span class="input-group-addon"><i class="fa fa-fw fa-map-marker"></i></span>
+								  <input data-ng-model="localidad" type="text" id="input-localidad" class="form-control" placeholder="Localidad del envío">
 								</div>
 
 								<!-- Código Postal -->
 								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-map"></i></span>
-								  <input type="number" id="input-codigo-postal" class="form-control" placeholder="Código postal de la localidad del envío">
-								</div>
-
-								<!-- Provincia -->
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-map-o"></i></span>
-								  <input type="text" id="input-provincia" class="form-control" placeholder="Provincia de la localidad del envío">
+									<span class="input-group-addon"><i class="fa fa-fw fa-map-o"></i></span>
+								  <input data-ng-model="codpostal" type="number" id="input-codigo-postal" class="form-control" placeholder="Código postal de la localidad del envío">
 								</div>
 
 								<!-- Teléfono -->
 								<div class="input-group">
-									<span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-								  <input type="tel" id="input-telefono" class="form-control" placeholder="(Opcional) Teléfono de contacto">
+									<span class="input-group-addon"><span class="fa fa-fw fa-phone"></span></span>
+								  <input data-ng-model="telefono" type="tel" id="input-telefono" class="form-control" placeholder="(Opcional) Teléfono de contacto">
 								</div>
 
-								<button type="button" id="btn-anadir-direccion"><span class="glyphicon glyphicon-plus"></span> Añadir Dirección</button>
+								<button type="button" id="btn-anadir-direccion" class="btn btn-primary" ng-click="anadirDireccion()"><span class="glyphicon glyphicon-plus"></span> Añadir Dirección</button>
 							</form>
 			      </div>
 			    </div>
@@ -93,12 +88,12 @@
 				  <div class="panel panel-default">
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
-				        <a data-toggle="collapse" data-parent="#slc-transferencia" href="#">
+				        <a data-toggle="collapse" data-parent="#panel-forma-pago" href="#slc-transferencia">
 				          Transferencia Bancaria
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="slc-transferencia" class="panel-collapse collapse in">
+				    <div id="slc-transferencia" class="panel-collapse collapse">
 				      <div class="panel-body">
 				        <input type="radio" name="forma-pago" value="transferencia"> Pagar con transferencia bancaria
 				      </div>
@@ -108,12 +103,12 @@
 					<div class="panel panel-default">
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
-				        <a data-toggle="collapse" data-parent="#slc-" href="#">
+				        <a data-toggle="collapse" data-parent="#panel-forma-pago" href="#slc-metalico">
 									Metálico
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="" class="panel-collapse collapse">
+				    <div id="slc-metalico" class="panel-collapse collapse">
 				      <div class="panel-body">
 								<input type="radio" name="forma-pago" value="metalico"> Pagar en metálico
 				      </div>
@@ -123,12 +118,12 @@
 					<div class="panel panel-default">
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
-				        <a data-toggle="collapse" data-parent="#" href="#">
+				        <a data-toggle="collapse" data-parent="#panel-forma-pago" href="#slc-contrarrembolso">
 									Contrarrembolso
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="" class="panel-collapse collapse">
+				    <div id="slc-contrarrembolso" class="panel-collapse collapse">
 				      <div class="panel-body">
 								<input type="radio" name="forma-pago" value="contrarrembolso"> Pagar contrarrembolso
 				      </div>
@@ -138,27 +133,25 @@
 					<div class="panel panel-default">
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
-				        <a data-toggle="collapse" data-parent="#" href="#">
+				        <a data-toggle="collapse" data-parent="#panel-forma-pago" href="#slc-tarjeta">
 									Tarjeta de Crédito/Débito
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="" class="panel-collapse collapse">
+				    <div id="slc-tarjeta" class="panel-collapse collapse in">
 				      <div class="panel-body">
-								<input type="text" id="input-dueno" placeholder="Dueño de la tarjeta">
+								<input data-ng-model="numeroTarjeta" type="number" id="numero-tarjeta" placeholder="Número de la tarjeta">
 									<br>
-								<input type="text" id="numero-tarjeta" placeholder="Número de la tarjeta">
+								<input data-ng-model="mesCaducidadTarjeta" type="number" id="mes-caducidad" placeholder="Mes">
+								<input data-ng-model="anoCaducidadTarjeta" type="number" id="ano-caducidad" placeholder="Año">
 									<br>
-								<input type="text" id="mes-caducidad" placeholder="Mes">
-								<input type="text" id="mes-caducidad" placeholder="Año">
-									<br>
-								<input type="number" name="codigo-seguridad" placeholder="Código Seguridad">
+								<input data-ng-model="cvc" type="number" name="codigo-seguridad" placeholder="Código Seguridad">
 				      </div>
 				    </div>
 				  </div>
 				</div>
 
-				<button type="button" id="btn-submit-forma-pago">Realizar el Pago</button>
+				<button data-ng-click="pagar()" type="button" id="btn-submit-forma-pago" class="btn btn-success"><i class="fa fa-money"></i> Realizar el Pago</button>
 			</form>
 
 
@@ -189,4 +182,9 @@
 		</p>
 	</div>
 
+<!-- Stripe.JS -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+  Stripe.setPublishableKey('pk_test_eL3o8HZknknKswKMESgfYBXA');
+</script>
 <%@ include file="/WEB-INF/footer.jsp" %>

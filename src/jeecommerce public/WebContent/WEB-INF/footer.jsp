@@ -46,9 +46,7 @@
 			</div>
 		</footer>
 
-		<script type="text/javascript">
-			var ABS_PATH = '<%= request.getContextPath() %>';
-		</script>
+		<script type="text/javascript">var ABS_PATH = '<%= request.getContextPath() %>';</script>
 
 		<!-- jQuery -->
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
@@ -65,5 +63,6 @@
 		<script src="js/angular/usuario.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/catalogo.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/producto.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/angular/pedido.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

@@ -37,6 +37,12 @@ public class Comprar extends HttpServlet {
 			response.sendRedirect("/catalogo.html");
 		}
 		
+		if (sesion.carro == null || sesion.carro.articulos == null || sesion.carro.articulos.size() == 0)
+		{
+			request.getRequestDispatcher("/catalogo.html").forward(request, response);
+			return;
+		}
+		
 		if (sesion == null || sesion.usuario == null || sesion.estado != SesionUsuario.LOGUEADO)
 		{
 			request.setAttribute("referrer", "/comprar");
@@ -60,7 +66,6 @@ public class Comprar extends HttpServlet {
 			direccion.direccion = mdlDirecciones.direccion;
 			direccion.localidad = mdlDirecciones.localidad;
 			direccion.codigoPostal = mdlDirecciones.codigoPostal;
-			direccion.provincia = mdlDirecciones.provincia;
 			direccion.telefono = mdlDirecciones.telefono;
 			
 			lstDirecciones.add(direccion);

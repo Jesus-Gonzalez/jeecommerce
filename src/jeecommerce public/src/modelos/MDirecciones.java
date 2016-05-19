@@ -13,7 +13,6 @@ public class MDirecciones
 	public String 	direccion,
 					localidad,
 					codigoPostal,
-					provincia,
 					nombre,
 					telefono;
 	
@@ -36,7 +35,6 @@ public class MDirecciones
 				direccion = rs.getString("direccion");
 				localidad = rs.getString("localidad");
 				codigoPostal = rs.getString("codigo_postal");
-				provincia = rs.getString("provincia");
 				nombre = rs.getString("nombre");
 				telefono = rs.getString("telefono");
 				
@@ -97,15 +95,15 @@ public class MDirecciones
 		}
 	}
 	
-	public long creaDireccion(long uid, String nombre, String direccion, String localidad, String provincia, String codigoPostal, String telefono)
+	public long creaDireccion(long uid, String nombre, String direccion, String localidad, String codigoPostal, String telefono)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("INSERT INTO direcciones (nombre, direccion, localidad, provincia, codigo_postal, telefono) VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setString(1, nombre);
-			ps.setString(2, direccion);
-			ps.setString(3, localidad);
-			ps.setString(4, provincia);
+			PreparedStatement ps = conexion.prepareStatement("INSERT INTO direcciones (uid, nombre, direccion, localidad, codigo_postal, telefono) VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setLong(1, uid);
+			ps.setString(2, nombre);
+			ps.setString(3, direccion);
+			ps.setString(4, localidad);
 			ps.setString(5, codigoPostal);
 			ps.setString(6, telefono);
 			
@@ -157,19 +155,18 @@ public class MDirecciones
 		return eliminaDireccion(did);
 	}
 	
-	public boolean actualizaDireccion(long did, long uid, String direccion, String localidad, String codigoPostal, String provincia, String nombre, String telefono)
+	public boolean actualizaDireccion(long did, long uid, String direccion, String localidad, String codigoPostal, String nombre, String telefono)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("UPDATE direcciones SET uid = ?, direccion = ?, localidad = ?, codigo_postal = ?, provincia = ?, nombre = ?, telefono = ? WHERE did = ?");
+			PreparedStatement ps = conexion.prepareStatement("UPDATE direcciones SET uid = ?, direccion = ?, localidad = ?, codigo_postal = ?, nombre = ?, telefono = ? WHERE did = ?");
 			ps.setLong(1, uid);
 			ps.setString(2, direccion);
 			ps.setString(3, localidad);
 			ps.setString(4, codigoPostal);
-			ps.setString(5, provincia);
-			ps.setString(6, nombre);
-			ps.setString(7, telefono);
-			ps.setLong(8, did);
+			ps.setString(5, nombre);
+			ps.setString(6, telefono);
+			ps.setLong(7, did);
 			
 			return ps.executeUpdate() > 0;
 			
@@ -188,6 +185,6 @@ public class MDirecciones
 	
 	public boolean actualizaDireccion()
 	{
-		return actualizaDireccion(did, uid, direccion, localidad, codigoPostal, provincia, nombre, telefono);
+		return actualizaDireccion(did, uid, direccion, localidad, codigoPostal, nombre, telefono);
 	}
 }
