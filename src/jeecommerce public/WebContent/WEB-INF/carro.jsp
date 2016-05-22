@@ -41,7 +41,7 @@
 						<td class="item-carro-nombre"><%= articulo.nombre %> <small class="precio">(<%= articulo.precio %> €)</small></td>
 						<td class="item-carro-cantidad">
 							<div class="input-group input-group-cantidad">
-								<input type="number" id="item-1-cantidad" value="10" min="1" value="<%= articulo.cantidad %>" placeholder="Cantidad" class="form-control">
+								<input type="number" id="item-1-cantidad" min="1" value="<%= articulo.cantidad %>" placeholder="Cantidad" class="form-control">
 
 								<span class="input-group-btn">
 									<button class="actualizar-cantidad-producto" type="button" class="btn btn-warning">

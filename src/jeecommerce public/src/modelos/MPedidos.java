@@ -11,6 +11,7 @@ public class MPedidos
 {
 
 	public long pid,
+				did,
 				uid;
 	
 	public byte estado,
@@ -147,17 +148,18 @@ public class MPedidos
 		}
 	}
 	
-	public long crearPedido(long uid, long fecha, byte estado, byte formaPago, BigDecimal importe, String observaciones)
+	public long crearPedido(long uid, long did, long fecha, byte estado, byte formaPago, BigDecimal importe, String observaciones)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos (uid, fecha, estado, forma_pago, importe, observaciones) VALUES (?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos (uid, did, fecha, estado, forma_pago, importe, observaciones) VALUES (?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setLong(1, uid);
-			ps.setTimestamp(2, new Timestamp(fecha));
-			ps.setByte(3, estado);
-			ps.setByte(4, formaPago);
-			ps.setBigDecimal(5, importe);
-			ps.setString(6, observaciones);
+			ps.setLong(2, did);
+			ps.setTimestamp(3, new Timestamp(fecha));
+			ps.setByte(4, estado);
+			ps.setByte(5, formaPago);
+			ps.setBigDecimal(6, importe);
+			ps.setString(7, observaciones);
 			
 			if ( ps.executeUpdate() > 0 )
 			{
@@ -179,18 +181,19 @@ public class MPedidos
 		return -1;
 	}
 	
-	public boolean actualizaPedido(long pid, long uid, long fecha, byte estado, byte formaPago, BigDecimal importe, String observaciones)
+	public boolean actualizaPedido(long pid, long did, long uid, long fecha, byte estado, byte formaPago, BigDecimal importe, String observaciones)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("UPDATE pedidos SET uid = ?, fecha = ?, estado = ?, forma_pago = ?, importe = ?, observaciones = ? WHERE pid = ?");
+			PreparedStatement ps = conexion.prepareStatement("UPDATE pedidos SET uid = ?, did = ?, fecha = ?, estado = ?, forma_pago = ?, importe = ?, observaciones = ? WHERE pid = ?");
 			ps.setLong(1, uid);
-			ps.setTimestamp(2, new Timestamp(fecha));
-			ps.setByte(3, estado);
-			ps.setByte(4, formaPago);
-			ps.setBigDecimal(5, importe);
-			ps.setString(6, observaciones);
-			ps.setLong(7, pid);
+			ps.setLong(2, did);
+			ps.setTimestamp(3, new Timestamp(fecha));
+			ps.setByte(4, estado);
+			ps.setByte(5, formaPago);
+			ps.setBigDecimal(6, importe);
+			ps.setString(7, observaciones);
+			ps.setLong(8, pid);
 			
 			return ps.executeUpdate() > 0;
 			
@@ -209,7 +212,7 @@ public class MPedidos
 	
 	public boolean actualizaPedido()
 	{
-		return actualizaPedido(pid, uid, fecha, estado, formaPago, importe, observaciones);
+		return actualizaPedido(pid, did, uid, fecha, estado, formaPago, importe, observaciones);
 	}
 
 	public boolean eliminaPedidoByPid(long pid)

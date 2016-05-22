@@ -4,6 +4,10 @@ angular.module('jeecommerce')
          var did,
              payment;
 
+        $scope.direcciones = [];
+
+        $scope.pid = "";
+
          $scope.anadirDireccion = function anadirDireccion(){
 
             var nombre = $('#input-nombre').val(),
@@ -24,24 +28,61 @@ angular.module('jeecommerce')
                      telefono: $scope.telefono
                    }
                  }).then(function createDireccionSuccessCallback(data, status, headers, config) {
-                        console.log("did returned: " + data.data.did)
-
                         if (data.data.did)
                           did = data.data.did;
 
-                        $('#direcciones-wrapper').slideUp(345, function afterDireccionesHide(){
-                          $('#pago-wrapper').css('display', 'none').removeClass('hidden').slideDown(987, function afterPagoShow(){
-                            console.log("slided down pago-wrapper");
-
-                            alertify.success('Dirección creada, proceda a pagar el pedido.');
-
-                            $('html,body').animate( { 'scrollTop': $('#pago-wrapper').offset().top } );
-                          })
-                        });
+                        alertify.success('Dirección creada, proceda a pagar el pedido.');
+                        doDireccionesHide();
+                        $scope.direcciones.push({
+                                                  did: did,
+                                                  nombre: $scope.nombre,
+                                                  direccion: $scope.direccion,
+                                                  localidad: $scope.localidad,
+                                                  codigoPostal: $scope.codpostal,
+                                                  telefono: $scope.telefono
+                                                });
+                        $scope.nombre = $scope.direccion = $scope.localidad = $scope.codpostal = $scope.telefono = "";
                      },
                      function errorOnCreateDireccionCallback(data, status, headers, config) {
                        alertify.error("Ha sucedido algún error, por favor, verifique los campos introducidos");
                      });
+          };
+
+          $scope.seleccionarDireccion = function seleccionarDireccion(_did){
+            did = _did;
+            doDireccionesHide();
+          };
+
+
+          function doDireccionesHide(){
+            $('#direcciones-wrapper').slideUp(345, function afterDireccionesHide(){
+              $('#pago-wrapper').css('display', 'none').removeClass('hidden').slideDown(987, function afterPagoShow(){
+
+                $('html,body').animate( { 'scrollTop': $('#pago-wrapper').offset().top } );
+
+                $('#crear-direccion-panel').removeClass('in');
+                $('#direcciones-wrapper').addClass('hidden');
+              })
+            });
+          }
+
+          function doDireccionesShow(){
+            $('#pago-wrapper').slideUp(345, function afterDireccionesHide(){
+              $('#direcciones-wrapper').css('display', 'none').removeClass('hidden').slideDown(987, function afterPagoShow(){
+
+                $('html,body').animate( { 'scrollTop': $('#direcciones-wrapper').offset().top } );
+
+                $('#pago-wrapper').addClass('hidden');
+              })
+            });
+          }
+
+
+
+          // Payment Actions //
+
+          $scope.returnToDirecciones = function returnToDirecciones(){
+            doDireccionesShow();
           };
 
           $scope.pagar = function pagar(){
@@ -58,25 +99,56 @@ angular.module('jeecommerce')
 
               }, function createStripeTokenCallback(status, response) {
 
-                console.log("token generado: " + response.id);
+                hacerPago({
+                  formaPago: 'tarjeta',
+                  token: response.id
+                });
 
-                $http({
-                  method: 'POST',
-                  url: '/pagar',
-                  data: {
-                    formaPago: 'tarjeta',
-                    token: response.id
-                  }
-                }).then(function onPaymentDone(response) {
-                    console.log("success@pagarConTarjeta");
-                    console.log(response);
-                  }, function errOnPaymentDone(response) {
-                    console.log("error@pagarConTarjeta");
-                    console.log(response);
-                  });
               });
             } else {
-              console.log("Not paying with credit card");
+              var formaPago = $('input[type="radio"][name="forma-pago"]:checked').val();
+
+              hacerPago({ formaPago: formaPago });
+
+            }
+
+            function hacerPago(data)
+            {
+              if (typeof did === 'undefined')
+                return;
+
+              data.did = did;
+
+              $http({
+                method: 'POST',
+                url: '/pagar',
+                data: data
+              }).then(function onPaymentDone(response) {
+
+                  var pid = response.data.pid;
+
+                  if (pid)
+                  {
+                    $('#pasos-wrapper').fadeOut('fast', function fadeOutPasos() {
+                      $('.pid-identificador').each(function(i,l){
+                        $(l).text(pid);
+                      });
+
+                      if (data.formaPago != "contrarrembolso")
+                      {
+                        $('#forma-pago-' + data.formaPago).removeClass('hidden');
+                      }
+
+                      $('#pedido-confirmado-wrapper').hide().removeClass('hidden').fadeIn(767);
+                    });
+                  } else {
+                    alertify.error("Ha sucedido un error creando su pedido. Inténtelo de nuevo o pruebe más tarde.");
+                  }
+
+                }, function errOnPaymentDone(response) {
+                  console.log("error@hacerPago");
+                  console.log(response);
+                });
             }
 
           };

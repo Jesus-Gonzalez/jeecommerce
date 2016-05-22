@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelos.Banco;
 import modelos.Carro;
 import modelos.Direccion;
+import modelos.MBancos;
 import modelos.MDirecciones;
 import modelos.SesionUsuario;
 
@@ -52,6 +54,7 @@ public class Comprar extends HttpServlet {
 		
 		Connection conexion = (Connection) hs.getAttribute("conexion");
 		
+		// Get user address list
 		List<Direccion> lstDirecciones = new LinkedList<Direccion>();
 		Direccion direccion;
 		MDirecciones mdlDirecciones = new MDirecciones(conexion);
@@ -72,6 +75,23 @@ public class Comprar extends HttpServlet {
 		}
 		
 		request.setAttribute("lista.direcciones", lstDirecciones);
+		
+		
+		// Get available banks
+		List<Banco> lstBancos = new LinkedList<Banco>();
+		MBancos mdlBancos = new MBancos(conexion);
+		mdlBancos.getBancos();
+		
+		while (mdlBancos.getProximoBanco())
+		{
+			if (!mdlBancos.activo)
+				continue;
+			
+			lstBancos.add(new Banco(mdlBancos.bid, mdlBancos.nombre, mdlBancos.numero, mdlBancos.activo));
+			
+		}
+		
+		request.setAttribute("lista.bancos", lstBancos);
 		
 		request.getRequestDispatcher("/WEB-INF/comprar.jsp").forward(request, response);
 		return;

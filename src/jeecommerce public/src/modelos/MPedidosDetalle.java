@@ -70,7 +70,7 @@ public class MPedidosDetalle
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("INSERT INTO detalles_pedidos (pid, aid, cantidad) VALUES (?, ?, ?)");
+			PreparedStatement ps = conexion.prepareStatement("INSERT INTO pedidos_detalles (pid, artid, cantidad) VALUES (?, ?, ?)");
 			ps.setLong(1, pid);
 			ps.setLong(2, aid);
 			ps.setInt(3, cantidad);
@@ -94,7 +94,7 @@ public class MPedidosDetalle
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("UPDATE detalles_pedidos SET pid = ?, aid = ?, cantidad = ? WHERE pid = ? AND aid = ?");
+			PreparedStatement ps = conexion.prepareStatement("UPDATE pedidos_detalles SET pid = ?, artid = ?, cantidad = ? WHERE pid = ? AND artid = ?");
 			ps.setLong(1, pid);
 			ps.setLong(2, aid);
 			ps.setInt(3, cantidad);
@@ -125,7 +125,7 @@ public class MPedidosDetalle
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("DELETE FROM detalles_pedidos WHERE pid = ? AND aid = ?");
+			PreparedStatement ps = conexion.prepareStatement("DELETE FROM pedidos_detalles WHERE pid = ? AND artid = ?");
 			ps.setLong(1, pid);
 			ps.setLong(2, aid);
 			
