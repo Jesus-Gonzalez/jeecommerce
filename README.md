@@ -4,13 +4,13 @@
 
 # Tecnologies Used
 On the backend:
-Java EE 7
-PostgreSQL 9.5
+* Java EE 7
+* PostgreSQL 9.5
 
 On the frontend:
-jQuery 1.x
-AngularJS 1.x
-Bootstrap 3.x
+* jQuery 1.x
+* AngularJS 1.x
+* Bootstrap 3.x
 
 # Libraries used
 
