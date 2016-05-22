@@ -1,6 +1,6 @@
 # Introduction
 
-*jeecommerce* is a ecommerce platform using Java as backend.
+*jeecommerce* is an ecommerce platform running Java as backend.
 
 # Tecnologies Used
 On the backend:
