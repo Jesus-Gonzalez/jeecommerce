@@ -29,6 +29,18 @@ These libraries are:
 
 Every library (but Stripe) is available at Debian repositories.
 
+# How am I developing?
+
+I'm using the latest Eclipse IDE: Neon release.
+
+I'm also using Atom in order to write HTML/CSS/Javascript.
+
+I use pgadmin3 to manage databases, run test queries and fast-edit tables/constraints/etc
+
+I'm using PostgreSQL 9.5 as DBMS and OpenJDK 8.
+
+All of this under Debian 9 Stretch in both my laptop and desktop computer. Sometimes I use Ubuntu 16.04 Xenial as well.
+
 # Work in progress ...
 
 As I'm writting this, I'm still developing the project, and I can say it's not a stable project at all, it's under active development nowadays.
