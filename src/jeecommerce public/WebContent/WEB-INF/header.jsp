@@ -94,7 +94,8 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <%= nombre %> <%= estaLogueado ? "<b class=\"caret\">" : "" %></b></a>
 							<ul class="dropdown-menu header-dropdown">
 							<% if (estaLogueado) { %>
-								<li><a href="configuracion.html">Configuración</a></li>
+								<li><a href="mi-cuenta.html">Mi Cuenta</a></li>
+								<li><a href="gestion-pedidos.html">Gestionar Pedidos</a></li>
 								<li><a href="salir.html" class="btn btn-xs btn-danger">Salir</a></li>
 							<% } else { %>
 								<li><a href="login" class="btn btn-xs btn-success">Registrarse</a></li>

@@ -28,48 +28,48 @@ import utils.Correo;
 public class ProcesarPerfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	throws ServletException, IOException
-	{
-		HttpSession session = request.getSession(false);
-		
-		if (session == null)
-			return;
-		
-		Connection conexion = (Connection) session.getAttribute("conexion");
-		SesionUsuario s = (SesionUsuario) session.getAttribute("sesion");
-
-		RecordarmeHelper hlpRecordarme = new RecordarmeHelper();
-		hlpRecordarme.comprobarCookieRecordarme(request, response, request.getSession());
-		
-		if (s.estado == SesionUsuario.CONECTADO || s.usuario == null)
-		{
-			response.sendError(HttpServletResponse.SC_FORBIDDEN);
-			return;
-		}
-		
-		JsonObject 	json = new JsonObject(),
-					jsonUsuario = new JsonObject();
-		
-		MUsuarios mdlUsuarios = new MUsuarios(conexion);
-		
-		mdlUsuarios.getUsuarioByUid(s.usuario.uid);
-		
-		if (mdlUsuarios.getProximoUsuario())
-		{
-			jsonUsuario.addProperty("nombre", mdlUsuarios.nombre);
-			jsonUsuario.addProperty("correo", mdlUsuarios.correo);
-			json.add("usuario", jsonUsuario);
-			json.addProperty("success", true);
-			
-			response.getWriter().write(json.toString());
-			
-		} else {
-			
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-			return;
-		}
-	}
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//	throws ServletException, IOException
+//	{
+//		HttpSession session = request.getSession(false);
+//		
+//		if (session == null)
+//			return;
+//		
+//		Connection conexion = (Connection) session.getAttribute("conexion");
+//		SesionUsuario s = (SesionUsuario) session.getAttribute("sesion");
+//
+//		RecordarmeHelper hlpRecordarme = new RecordarmeHelper();
+//		hlpRecordarme.comprobarCookieRecordarme(request, response, request.getSession());
+//		
+//		if (s.estado == SesionUsuario.CONECTADO || s.usuario == null)
+//		{
+//			response.sendError(HttpServletResponse.SC_FORBIDDEN);
+//			return;
+//		}
+//		
+//		JsonObject 	json = new JsonObject(),
+//					jsonUsuario = new JsonObject();
+//		
+//		MUsuarios mdlUsuarios = new MUsuarios(conexion);
+//		
+//		mdlUsuarios.getUsuarioByUid(s.usuario.uid);
+//		
+//		if (mdlUsuarios.getProximoUsuario())
+//		{
+//			jsonUsuario.addProperty("nombre", mdlUsuarios.nombre);
+//			jsonUsuario.addProperty("correo", mdlUsuarios.correo);
+//			json.add("usuario", jsonUsuario);
+//			json.addProperty("success", true);
+//			
+//			response.getWriter().write(json.toString());
+//			
+//		} else {
+//			
+//			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+//			return;
+//		}
+//	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException
@@ -80,7 +80,7 @@ public class ProcesarPerfil extends HttpServlet {
 		hlpRecordarme.comprobarCookieRecordarme(request, response, session);
 
 		Connection conexion = (Connection) session.getAttribute("conexion");
-		SesionUsuario s = (SesionUsuario) session.getAttribute("sesion");
+		SesionUsuario s = (SesionUsuario) session.getAttribute("usuario");
 		
 		if (s.estado == SesionUsuario.CONECTADO || s.usuario == null)
 		{
@@ -178,13 +178,6 @@ public class ProcesarPerfil extends HttpServlet {
 										jsonContrasena.addProperty("underflow", true);
 										jsonErrores.add("contrasena", jsonContrasena);
 									
-									} else if (newContrasena.length() > 50) {
-										
-										
-										error = true;
-										jsonContrasena.addProperty("overflow", true);
-										jsonErrores.add("contrasena", jsonContrasena);
-										
 									} else if (!newContrasena.equals(confirmContrasena)) {
 										
 										error = true;
@@ -208,14 +201,14 @@ public class ProcesarPerfil extends HttpServlet {
 								if (modificadoCorreo || modificadoContrasena)
 								{
 									MActivaciones mdlActivaciones = new MActivaciones(conexion);
-									String clave = new Cifrado().creaClaveActivacion(correo);
+									final String clave = new Cifrado().creaClaveActivacion(correo);
 									// 10 días en milisegundos = 10 * 24 * 60 * 60 * 1000 = 864000000
 									long fechaLimite = Calendar.getInstance().getTimeInMillis() + 864000000L;
-									long aid = mdlActivaciones.registraActivacion(s.usuario.uid, clave, fechaLimite);
+									final long aid = mdlActivaciones.registraActivacion(s.usuario.uid, clave, fechaLimite);
 									
 									s.usuario.activado = false;
 									
-									Correo utlCorreo = new Correo(s.usuario.correo);
+									final Correo utlCorreo = new Correo(s.usuario.correo);
 									
 									String protocolo = request.getScheme();
 									int port = request.getServerPort();
@@ -224,8 +217,19 @@ public class ProcesarPerfil extends HttpServlet {
 									if (! ((port == 80 && protocolo.equals("http")) ||  (port == 443 && protocolo.equals("https"))) )
 										strPort = ":" + port;
 									
-									String url = protocolo + "://" + request.getServerName() + strPort + request.getContextPath();
-									utlCorreo.enviarCorreoActivacion(url, clave, aid);
+									final String url = protocolo + "://" + request.getServerName() + strPort + request.getContextPath();
+									
+									// Crea un hilo para el envío del correo
+									new Thread() {
+										
+										@Override
+										public void run() {
+											
+											utlCorreo.enviarCorreoActivacion(url, clave, aid);
+											
+										}
+										
+									};
 									
 									json.addProperty("activacion", true);
 									

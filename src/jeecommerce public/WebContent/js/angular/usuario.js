@@ -71,9 +71,6 @@ angular.module('jeecommerce')
 
           $('#login').on('submit', function onLoginSubmit(){
 
-            console.log("email: " + $scope.email);
-            console.log("contrasena: " + $scope.contrasena);
-
             $.ajax({
               url: ABS_PATH + '/usuarios/login',
               type: 'POST',
@@ -87,9 +84,41 @@ angular.module('jeecommerce')
               console.log("success@login");
               console.log(data);
 
-              alertify.success("Se ha identificado con éxito en el sitio web.");
+              if (!data.error)
+              {
+                alertify.success("Se ha identificado con éxito en el sitio web.");
+                window.location.href = REFERRER || 'catalogo.html';
+                return;
+              }
 
-              window.location.href = REFERRER || 'catalogo.html';
+              if (data.error)
+              {
+                if (data.error.usuario.existe)
+                {
+                  alertify.error("El usuario introducido no existe.");
+                  $('#login-email').parent().addClass('has-error');
+                  $('#login-email').on('keyDown.login-email', function keyDownLoginEmail() {
+                    $('#login-email').parent().removeClass('has-error');
+                    $('#login-email').off('keyDown.login-email');
+                  });
+                }
+                else if (data.error.usuario.contrasena)
+                {
+                  alertify.error("La contraseña introducida no es correcta.");
+                  $('#login-pwd').parent().addClass('has-error');
+                  // Arrow functions sample: ES2015
+                  $('#login-pwd').on('keydown.login-pwd', () => {
+                    $('#login-pwd').parent().removeClass('has-error');
+                    $('#login-pwd').off('keydown.login-pwd');
+                  });
+
+                  // Let's keep this here, just in case the final browser won't support arrow functions
+                  $('#login-pwd').on('keydown.login-pwd', function() {
+                    $('#login-pwd').parent().removeClass('has-error');
+                    $('#login-pwd').off('keydown.login-pwd');
+                  });
+                }
+              }
             })
             .fail(function(data) {
               console.log("error@login");

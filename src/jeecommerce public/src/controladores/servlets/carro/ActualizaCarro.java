@@ -1,13 +1,13 @@
 package controladores.servlets.carro;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -43,11 +43,15 @@ public class ActualizaCarro extends HttpServlet {
 			return;
 		}
 
+		JsonObject jsonRespuesta = new JsonObject();
 		SesionUsuario sesion = (SesionUsuario) request.getSession().getAttribute("usuario");
+		Articulo articulo;
 		
 		switch (operacion)
 		{
 			case "delete":
+				articulo = sesion.carro.articulos.get(idArticulo);
+				sesion.carro.total = sesion.carro.total.subtract( articulo.precio.multiply(BigDecimal.valueOf(articulo.cantidad)) );
 				sesion.carro.articulos.remove(idArticulo);
 				break;
 				
@@ -65,9 +69,14 @@ public class ActualizaCarro extends HttpServlet {
 					return;
 				}
 				
-				Articulo articulo = sesion.carro.articulos.get(idArticulo);
+				articulo = sesion.carro.articulos.get(idArticulo);
+				sesion.carro.total = sesion.carro.total.add( articulo.precio.multiply(BigDecimal.valueOf(cantidad - articulo.cantidad)) );
+				
 				articulo.cantidad = cantidad;
 				sesion.carro.articulos.put(idArticulo, articulo);
+				
+				jsonRespuesta.addProperty("subtotal", articulo.precio.multiply(BigDecimal.valueOf(articulo.cantidad)).multiply(BigDecimal.valueOf(100)).intValue());
+				
 				break;
 				
 			default:
@@ -75,8 +84,8 @@ public class ActualizaCarro extends HttpServlet {
 				return;
 		}
 		
-		JsonObject jsonRespuesta = new JsonObject();
 		jsonRespuesta.addProperty("exito", true);
+		jsonRespuesta.addProperty("total", sesion.carro.total);
 		
 		response.getWriter().write(jsonRespuesta.toString());
 	}

@@ -72,7 +72,7 @@ extends HttpServlet
 		
 		JsonObject respuesta = new JsonObject();
 		
-		respuesta.addProperty("paginas", numProductos / numElementosPorPagina);
+		respuesta.addProperty("paginas", (int) Math.ceil((double)numProductos / numElementosPorPagina));
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");

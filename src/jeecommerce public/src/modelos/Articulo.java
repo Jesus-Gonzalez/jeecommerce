@@ -14,4 +14,6 @@ public class Articulo
 	
 	public int cantidad;
 	public BigDecimal precio;
+	
+	public boolean destacado;
 }

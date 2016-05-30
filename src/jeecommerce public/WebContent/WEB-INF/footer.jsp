@@ -59,10 +59,14 @@
  		<!-- Scripts propios -->
  		<script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
 		<!-- Scripts AngularJS propios -->
+		<!-- Debería minificar y combinar los scripts a continuación, pero no lo haré con propósitos de demostración -->
+		<!-- I should minify and bundle these, but for demostration purposes I will let these as multiple script files -->
 		<script src="js/angular/app.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/usuario.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/catalogo.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/producto.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/angular/carro.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/pedido.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/angular/mi-cuenta.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

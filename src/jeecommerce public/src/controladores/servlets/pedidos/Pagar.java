@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.FutureTask;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -174,9 +175,21 @@ public class Pagar extends HttpServlet {
 		// Reinicializar carro
 		sesion.carro = new Carro();
 		
-		// Enviar correo indicando que ha realizado un pedido
-		Correo utlCorreo = new Correo(sesion.usuario.correo);
-		utlCorreo.enviarPedidoRealizado(pid);
+		// Enviar correo asíncronamente indicando que ha realizado un pedido
+		System.out.println("Creating thread");
+		final String fnlCorreo = sesion.usuario.correo;
+		final long fnlPid = pid;
+		new Thread()
+		{
+			@Override
+			public void run() {
+				System.out.println("Running thread");
+				Correo utlCorreo = new Correo(fnlCorreo);
+				utlCorreo.enviarPedidoRealizado(fnlPid);
+				System.out.println("Thread run");
+			}
+		}.start();
+		System.out.println("Thread created");
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");

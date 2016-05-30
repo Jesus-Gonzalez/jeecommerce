@@ -24,6 +24,8 @@ public class MArticulos
 	
 	public long fechaCreacion;
 	
+	public boolean destacado;
+	
 	private Connection conexion;
 	private ResultSet rs;
 	
@@ -51,6 +53,8 @@ public class MArticulos
 				stock = rs.getInt("stock");
 				
 				fechaCreacion = rs.getTimestamp("fecha_creacion").getTime();
+				
+				destacado = rs.getBoolean("destacado");
 				
 				return true;
 				
@@ -157,11 +161,11 @@ public class MArticulos
 		}
 	}
 	
-	public long creaArticulo(long catid, BigDecimal precio, String nombre, String descripcion, String imagen, int stock, int minimo, long fechaCreacion)
+	public long creaArticulo(long catid, BigDecimal precio, String nombre, String descripcion, String imagen, int stock, int minimo, long fechaCreacion, boolean destacado)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("INSERT INTO articulos (catid, precio, nombre, descripcion, imagen, stock, minimo, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conexion.prepareStatement("INSERT INTO articulos (catid, precio, nombre, descripcion, imagen, stock, minimo, fecha_creacion, destacado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setLong(1, catid);
 			ps.setBigDecimal(2, precio);
 			ps.setString(3, nombre);
@@ -170,6 +174,7 @@ public class MArticulos
 			ps.setInt(6, stock);
 			ps.setInt(7, minimo);
 			ps.setTimestamp(8, new Timestamp(fechaCreacion));
+			ps.setBoolean(9, destacado);
 			
 			ps.executeUpdate();
 
@@ -196,14 +201,14 @@ public class MArticulos
 	
 	public long creaArticulo()
 	{
-		return creaArticulo(catid, precio, nombre, descripcion, imagen, stock, minimo, fechaCreacion);
+		return creaArticulo(catid, precio, nombre, descripcion, imagen, stock, minimo, fechaCreacion, destacado);
 	}
 	
-	public boolean actualizaArticulo(long artid, long catid, BigDecimal precio, String nombre, String descripcion, String imagen, int stock, int minimo, long fechaCreacion)
+	public boolean actualizaArticulo(long artid, long catid, BigDecimal precio, String nombre, String descripcion, String imagen, int stock, int minimo, long fechaCreacion, boolean destacado)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("UPDATE articulos SET catid = ?, precio = ?, nombre = ?, descripcion = ?, imagen = ?, stock = ?, minimo = ?, fecha_creacion = ? WHERE artid = ?");
+			PreparedStatement ps = conexion.prepareStatement("UPDATE articulos SET catid = ?, precio = ?, nombre = ?, descripcion = ?, imagen = ?, stock = ?, minimo = ?, fecha_creacion = ?, destacado = ? WHERE artid = ?");
 			
 			ps.setLong(1, catid);
 			ps.setBigDecimal(2, precio);
@@ -213,7 +218,8 @@ public class MArticulos
 			ps.setInt(6, stock);
 			ps.setInt(7, minimo);
 			ps.setTimestamp(8, new Timestamp(fechaCreacion));
-			ps.setLong(9, artid);
+			ps.setBoolean(9, destacado);
+			ps.setLong(10, artid);
 			
 			int filasAfectadas = ps.executeUpdate();
 			
@@ -234,7 +240,7 @@ public class MArticulos
 	
 	public boolean actualizaArticulo()
 	{
-		return actualizaArticulo(artid, catid, precio, nombre, descripcion, imagen, stock, minimo, fechaCreacion);
+		return actualizaArticulo(artid, catid, precio, nombre, descripcion, imagen, stock, minimo, fechaCreacion, destacado);
 	}
 	
 	public boolean eliminaArticulo(long artid)

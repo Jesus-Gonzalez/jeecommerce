@@ -1,6 +1,59 @@
 // TODO: Fix pagination
 
 angular.module('jeecommerce')
+			.service('productosService', function($http){
+
+				this.anadirAlCarro = function(artid, cantidad){
+
+					if (typeof cantidad === 'undefined')
+					{
+						try {
+								var cantidad = new Number(0);
+								cantidad = new Number($('#txt-cantidad-anadir').val());
+
+						} catch (e) {
+
+							alertify.error("Debe introducir un número como cantidad");
+							return;
+
+						}
+					}
+
+
+					if (typeof cantidad ==='undefined' || cantidad === 0)
+					{
+						alertify.error("Debe introducir una cantidad para el producto/servicio")
+						return;
+					}
+
+					$http({
+
+						method: 'POST',
+						url: ABS_PATH + '/carro/add',
+						data: { artid: artid, cantidad: cantidad }
+
+					}).then(function successCallback(response) {
+
+							if (response.data.exito && response.data.exito === true)
+							{
+								alertify.success("Se ha añadido el producto al carro.");
+
+								$('#lbl-carro-total').text(response.data.total);
+								$('#lbl-carro-count').text(response.data.countArticulos);
+
+							} else {
+								alertify.error("Ha ocurrido un error al añadir el producto al carro.");
+							}
+
+						}, function errorCallback(response) {
+
+							alertify.error("Ha ocurrido un error al añadir el producto al carro.");
+
+						});
+				};
+
+				return this;
+			})
 	   	.factory('catalogoFactory', function($http){
 
 	   		return {
@@ -11,15 +64,17 @@ angular.module('jeecommerce')
 
 	   			paginas: 0,
 
-	   			loadProductos: function(callback, pagina){
+					pagina: 0,
+
+	   			loadProductos: function(callback){
 
 	   				var factoria = this;
 
-	   				if (!this.categoria)
+	   				if (typeof this.categoria === 'undefined')
 	   					this.categoria = -1;
 
-	   				if (!this.pagina)
-	   					this.pagina = 1;
+						if (typeof this.pagina === 'undefined')
+							this.pagina = 0;
 
 	   				$http({
 
@@ -28,8 +83,6 @@ angular.module('jeecommerce')
 					  data: { categoria: this.categoria, pagina: this.pagina }
 
 					}).then(function successCallback(response) {
-
-						console.log(response.data);
 
 					    factoria.productos = response.data;
 
@@ -61,8 +114,6 @@ angular.module('jeecommerce')
 
 					    factoria.paginas = response.data.paginas;
 
-							console.log("getPaginas: ", response)
-
 					    if (callback)
 					    	callback();
 
@@ -77,6 +128,7 @@ angular.module('jeecommerce')
 	   		}
 
 	   	})
+			// Controlador de las categorías
 	   	.controller('categoriasController', ['$http', '$scope', 'catalogoFactory', function($http, $scope, $catalogo){
 
 			$scope.categorias = [];
@@ -87,8 +139,6 @@ angular.module('jeecommerce')
 				url: ABS_PATH + '/categorias/get'
 
 			}).then(function success(response){
-
-				console.log("success@get.categorias", response);
 
 				var categorias = response.data,
 					categoria;
@@ -140,9 +190,12 @@ angular.module('jeecommerce')
 			});
 
 		}])
-		.controller('catalogoController', ['$scope', 'catalogoFactory', function($scope, $catalogo){
+		// Controlador del catálogo
+		.controller('catalogoController', ['$scope', 'catalogoFactory', 'productosService', function($scope, $catalogo, $productos){
 
 			$scope.fechaActual = new Date().getTime();
+
+			$scope.anadirAlCarro = $productos.anadirAlCarro;
 
 			// Cuando la página cargue por primera vez el controlador:
 			// Se establece la categoría como -1 (indefinida/todas categorias)
@@ -154,17 +207,21 @@ angular.module('jeecommerce')
 			$scope.$watch(function(){ return $catalogo.productos; }, function(nuevoValor, oldValor){
 				if (typeof nuevoValor != 'undefined' && typeof nuevoValor.paginas === 'undefined')
 				{
-					console.log("nuevo: ", nuevoValor);
-					console.log("productos: ", $catalogo.productos);
 					$scope.productos = $catalogo.productos;
 				}
 			});
 		}])
+		// Controlador de paginación del catálogo
 		.controller('paginacionController', ['$scope', 'catalogoFactory', function($scope, $catalogo){
 
-			$scope.fechaActual = new Date().getTime();
-
 			$catalogo.loadPaginas();
+
+			$scope.$watch(function(){ return $catalogo.pagina; }, function(nuevo, old){
+				if (typeof nuevo != 'undefined')
+				{
+					$scope.pagina = $catalogo.pagina;
+				}
+			});
 
 			$scope.$watch(function(){ return $catalogo.paginas; }, function(nuevo, old){
 				if (typeof nuevo != 'undefined')
@@ -172,5 +229,10 @@ angular.module('jeecommerce')
 					$scope.paginas = $catalogo.paginas;
 				}
 			});
+
+			$scope.irToPagina = function(pagina){
+				$catalogo.pagina = pagina;
+				$catalogo.loadProductos();
+			};
 
 		}]);

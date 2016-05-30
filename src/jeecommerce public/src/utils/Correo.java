@@ -30,7 +30,7 @@ public class Correo
 							  new javax.mail.Authenticator() {
 								protected PasswordAuthentication getPasswordAuthentication() {
 									return new PasswordAuthentication("postmaster@sandbox37e14fb025c04887818258cb2c0e7c8c.mailgun.org",
-																	  "__PRIVATE__");
+																	  "c04887818258cb");
 								}
 							  });
 		
@@ -68,38 +68,12 @@ public class Correo
 						"<p>Una vez acceda al enlace siguiente, podrá empezar a desafiar a otros usuarios.</p>" +
 						"<p><a href='" + url + "/activacion.jsp?id=" + aid + "&clave=" + clave + "'>Click aquí para activar su cuenta</a></p>" +
 						"<p>En caso de no disponer de un cliente de correo que soporte formato HTML, copie y pegue la siguiente dirección en la barra de navegación de su navegador web:</p>" +
-						"<p>" + url + "/activacion.jsp?id=" + aid + "&clave=" + clave + "</p>" +
+						"<p>" + url + "/activacion.html?id=" + aid + "&clave=" + clave + "</p>" +
 						"<br>" +
 						"<p><strong>Java EE Commerce</strong></p>";
 	
 		enviarCorreoHtml(html, "activaciones@jeecommerce", "Java EE Commerce - Activar Cuenta");
 		
-	}
-	
-	public void enviarCorreoAviso()
-	{	
-		// TODO URL
-		String html = 	"<h1>Java EE Commerce</h1>" +
-						"<h2>Activación de Cuenta</h2>" +
-						"<p>Le recordamos que debe activar su cuenta en el sitio.</p>" +
-						"<p>Dentro de 3 días, si no ha activado su cuenta, procederemos a eliminarla por completo del sitio.</p>" +
-						"<p>Nota: <i>Si no ha recibido la clave de activación, puede solicitar una clave nueva desde el sitio web.</i></p>" +						
-						"<br>" +
-						"<p><strong>Java EE Commerce</strong></p>";
-	
-		enviarCorreoHtml(html, "activaciones@jeecommerce", "Java EE Commerce - Aviso de Activación de Cuenta");
-	}
-	
-	public void enviarCorreoCuentaEliminada()
-	{
-		String html = 	"<h1>Java EE Commerce</h1>" +
-				"<h2>Cuenta Eliminada</h2>" +
-				"<p>Su cuenta ha sido eliminada del sitio.</p>" +
-				"<p>Si lo desea, puede volver a registrarse, pero recuerde activar su cuenta completamente.</p>" +						
-				"<br>" +
-				"<p><strong>Java EE Commerce</strong></p>";
-
-		enviarCorreoHtml(html, "activaciones@jeecommerce", "Java EE Commerce - Aviso de Activación de Cuenta");
 	}
 	
 	public void enviarNombreDeUsuario(String nombre)
@@ -111,7 +85,7 @@ public class Correo
 				"<br>" +
 				"<p><strong>Java EE Commerce</strong></p>";
 
-		enviarCorreoHtml(html, "activaciones@jeecommerce", "Java EE Commerce - Recuperación de Nombre Usuario");
+		enviarCorreoHtml(html, "olvide.datos@jeecommerce", "Java EE Commerce - Recuperación de Nombre Usuario");
 	}
 	
 	public void enviarContrasena(String contrasena)
@@ -123,7 +97,7 @@ public class Correo
 				"<br>" +
 				"<p><strong>Java EE Commerce</strong></p>";
 
-		enviarCorreoHtml(html, "activaciones@jeecommerce", "Java EE Commerce - Recuperación de Contraseña");
+		enviarCorreoHtml(html, "olvide.datos@jeecommerce", "Java EE Commerce - Recuperación de Contraseña");
 	}
 	
 	public void enviarPedidoRealizado(long pid)

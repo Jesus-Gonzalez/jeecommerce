@@ -30,7 +30,7 @@ public class Correo
 							  new javax.mail.Authenticator() {
 								protected PasswordAuthentication getPasswordAuthentication() {
 									return new PasswordAuthentication("postmaster@sandbox37e14fb025c04887818258cb2c0e7c8c.mailgun.org",
-																	  "__PRIVATE__");
+																	  "c04887818258cb");
 								}
 							  });
 		

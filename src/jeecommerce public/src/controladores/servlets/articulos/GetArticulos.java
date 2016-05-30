@@ -72,11 +72,11 @@ public class GetArticulos extends HttpServlet {
 		
 		if (categoria == -1)
 		{
-			mdlArticulos.getLatestArticulos(numElementosPorPagina, ((pagina - 1) * numElementosPorPagina));
+			mdlArticulos.getLatestArticulos(numElementosPorPagina, (pagina * numElementosPorPagina));
 			
 		} else {
 			
-			mdlArticulos.getArticulosByCatId(categoria, numElementosPorPagina, (pagina - 1) * numElementosPorPagina);
+			mdlArticulos.getArticulosByCatId(categoria, numElementosPorPagina, pagina * numElementosPorPagina);
 		}
 		
 		JsonArray jsonArticulos = new JsonArray();
@@ -93,6 +93,7 @@ public class GetArticulos extends HttpServlet {
 			jsonArticulo.addProperty("imagen", mdlArticulos.imagen);
 			jsonArticulo.addProperty("stock", mdlArticulos.stock);
 			jsonArticulo.addProperty("fechaCreacion", mdlArticulos.fechaCreacion);
+			jsonArticulo.addProperty("destacado", mdlArticulos.destacado);
 			
 			jsonArticulos.add(jsonArticulo);
 		}
