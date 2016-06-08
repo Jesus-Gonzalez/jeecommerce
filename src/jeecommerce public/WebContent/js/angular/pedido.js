@@ -81,6 +81,21 @@ angular.module('jeecommerce')
 
           // Payment Actions //
 
+          // Starts selection month/year
+
+          $(document).ready(function() {
+            var fechaActual = new Date(),
+                mes = (fechaActual.getMonth() + 1).toString(),
+                ano = fechaActual.getFullYear().toString();
+
+            mes = mes[1] ? mes : "0" + mes;
+
+            $('#mes-caducidad-tarjeta').find('option[value="' + mes + '"]').attr('selected', true);
+            $('#ano-caducidad-tarjeta').find('option[value="' + ano + '"]').attr('selected', true);
+          });
+
+          // End selection month year
+
           $scope.returnToDirecciones = function returnToDirecciones(){
             doDireccionesShow();
           };
@@ -90,12 +105,40 @@ angular.module('jeecommerce')
             // Comprobar si se va a realizar el pago con tarjeta
             if ($('#slc-tarjeta').hasClass('in'))
             {
+              var $numeroTarjeta = $('#numero-tarjeta'),
+                  $mesCaducidad = $('#mes-caducidad-tarjeta'),
+                  $anoCaducidad = $('#ano-caducidad-tarjeta'),
+                  $cvc = $('#cvc-tarjeta');
+
+              // TODO: Añadir validación de número de tarjeta
+              if (!$numeroTarjeta.val())
+              {
+                alertify.error("Introduzca una tarjeta de crédito válida.");
+
+                $numeroTarjeta.parent().addClass('has-error');
+                $numeroTarjeta.on('focus', function keyDownLoginEmail() {
+                  $numeroTarjeta.parent().removeClass('has-error');
+                  $numeroTarjeta.off('focus');
+                });
+              }
+
+              if (!$cvc.val())
+              {
+                alertify.error("Debe introducir un código de seguridad para la tarjeta.");
+
+                $cvc.parent().addClass('has-error');
+                $cvc.on('focus', function keyDownLoginEmail() {
+                  $cvc.parent().removeClass('has-error');
+                  $cvc.off('focus');
+                });
+              }
+
               Stripe.card.createToken({
 
-                number: $scope.numeroTarjeta,
-                exp_month: $scope.mesCaducidadTarjeta,
-                exp_year: $scope.anoCaducidadTarjeta,
-                cvc: $scope.cvc
+                number: $numeroTarjeta.val(),
+                exp_month: $mesCaducidad.val(),
+                exp_year: $anoCaducidad.val(),
+                cvc: $cvc.val()
 
               }, function createStripeTokenCallback(status, response) {
 

@@ -3,8 +3,6 @@ package controladores.listeners;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import com.stripe.Stripe;
-
 public class ContextListener
 implements ServletContextListener
 {	

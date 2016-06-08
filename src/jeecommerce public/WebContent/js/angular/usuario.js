@@ -24,14 +24,10 @@ angular.module('jeecommerce')
                     }
             })
             .done(function successOnReg(data) {
-              console.log("success@registro");
-
-            console.log(data);
 
               if (data.error)
               {
                 alertify.error("Error creando al usuario");
-                console.log(data.error);
                 return;
               }
 
@@ -45,15 +41,14 @@ angular.module('jeecommerce')
                       }
               })
               .done(function successOnLoginAfterReg(data) {
-                console.log("success@login");
-                console.log(data);
 
                 alertify.success("Se ha registrado e identificado con éxito en el sitio web.");
 
                 window.location.href = REFERRER || 'catalogo.html';
               })
-              .fail(function failOnLoginAfterReg() {
+              .fail(function failOnLoginAfterReg(data) {
                 console.log("error@login");
+                console.log(data);
               });
             })
             .fail(function failOnReg(data) {
@@ -93,30 +88,44 @@ angular.module('jeecommerce')
 
               if (data.error)
               {
-                if (data.error.usuario.existe)
+                if (data.error.cuenta && data.error.cuenta.activado)
                 {
-                  alertify.error("El usuario introducido no existe.");
+                  alertify.error("La cuenta está pendiente de activación.");
                   $('#login-email').parent().addClass('has-error');
                   $('#login-email').on('keyDown.login-email', function keyDownLoginEmail() {
                     $('#login-email').parent().removeClass('has-error');
                     $('#login-email').off('keyDown.login-email');
                   });
+                  return;
                 }
-                else if (data.error.usuario.contrasena)
-                {
-                  alertify.error("La contraseña introducida no es correcta.");
-                  $('#login-pwd').parent().addClass('has-error');
-                  // Arrow functions sample: ES2015
-                  $('#login-pwd').on('keydown.login-pwd', () => {
-                    $('#login-pwd').parent().removeClass('has-error');
-                    $('#login-pwd').off('keydown.login-pwd');
-                  });
 
-                  // Let's keep this here, just in case the final browser won't support arrow functions
-                  $('#login-pwd').on('keydown.login-pwd', function() {
-                    $('#login-pwd').parent().removeClass('has-error');
-                    $('#login-pwd').off('keydown.login-pwd');
-                  });
+                if (data.usuario)
+                {
+                  if (data.error.usuario.existe)
+                  {
+                    alertify.error("El usuario introducido no existe.");
+                    $('#login-email').parent().addClass('has-error');
+                    $('#login-email').on('keyDown.login-email', function keyDownLoginEmail() {
+                      $('#login-email').parent().removeClass('has-error');
+                      $('#login-email').off('keyDown.login-email');
+                    });
+                  }
+                  else if (data.error.usuario.contrasena)
+                  {
+                    alertify.error("La contraseña introducida no es correcta.");
+                    $('#login-pwd').parent().addClass('has-error');
+                    // Arrow functions sample: ES2015
+                    $('#login-pwd').on('keydown.login-pwd', () => {
+                      $('#login-pwd').parent().removeClass('has-error');
+                      $('#login-pwd').off('keydown.login-pwd');
+                    });
+
+                    // Let's keep this here, just in case the final browser won't support arrow functions
+                    $('#login-pwd').on('keydown.login-pwd', function() {
+                      $('#login-pwd').parent().removeClass('has-error');
+                      $('#login-pwd').off('keydown.login-pwd');
+                    });
+                  }
                 }
               }
             })

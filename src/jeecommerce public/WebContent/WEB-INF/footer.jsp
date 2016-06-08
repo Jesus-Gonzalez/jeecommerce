@@ -68,5 +68,6 @@
 		<script src="js/angular/carro.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/pedido.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/angular/mi-cuenta.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/angular/editar-direccion.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.FutureTask;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -84,6 +83,12 @@ public class Pagar extends HttpServlet {
 			case "tarjeta":
 				
 				Stripe.apiKey = "sk_test_6YxNZaAlxoCr9J8oK6PY0J6U";
+				
+				if (!jsonDatos.has("token"))
+				{
+					response.sendError(HttpServletResponse.SC_BAD_REQUEST, "No se ha establecido token");
+					return;
+				}
 				
 				String tkn = jsonDatos.get("token").getAsString();
 				if (tkn == null)

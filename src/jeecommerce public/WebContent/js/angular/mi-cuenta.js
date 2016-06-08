@@ -78,7 +78,9 @@ angular.module('jeecommerce')
         };
 
         $scope.modificarDireccion = function(did){
-          console.log("modificando dirección", did);
+
+          window.location.href = ABS_PATH + '/editar-direccion.html?did=' + did;
+
         };
 
       });
