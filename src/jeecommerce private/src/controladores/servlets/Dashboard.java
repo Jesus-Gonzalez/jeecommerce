@@ -25,6 +25,7 @@ extends HttpServlet
 
 		if (sesion != null && sesion.esAdministrador && sesion.estado == SesionUsuario.LOGUEADO)
 		{
+			request.setAttribute("seccion", "dashboard");
 			request.getRequestDispatcher("/WEB-INF/dashboard.jsp").forward(request, response);
 			return;
 		}

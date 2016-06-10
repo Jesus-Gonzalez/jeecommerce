@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="modelos.Articulo" %>
+<%@ page import="java.sql.Connection" %>
 <%@ page import="java.util.List" %>
+<%@ page import="helpers.CategoriasHelper" %>
 
 <%
 	List<Articulo> lstProductos = (List<Articulo>) request.getAttribute("lista.articulos");
+  	Connection conexion = (Connection) request.getSession().getAttribute("conexion");
 %>
 
 <%@ include file="/WEB-INF/header.jsp" %>
@@ -12,14 +15,8 @@
 
   <%@ include file="/WEB-INF/sidebar.jsp" %>
 
-    <h1>Gestión de Productos</h1>
-    <h2>Acciones <i class="fa fa-play"></i></h2>
-    <ul class="fa-ul">
-      <li><a href="javascript:void(0)" data-ng-click="showCrearProducto()"><i class="fa-li fa fa-plus"></i> Crear Producto</a></li>
-    </ul>
-
-    <div id="crearProducto">
-      <form data-ng-submit="doCrearProducto()">
+    <div id="form-producto">
+      <form>
         <div class="form-group">
           <label for="nombre-producto">Nombre producto</label>
           <input type="text" class="form-control" id="nombre-producto" placeholder="eg. Sal para cultivo">
@@ -28,6 +25,9 @@
       </form>
     </div>
 
+    <h1>Gestión de Productos</h1>
+    <h2>Acciones <i class="fa fa-play"></i></h2>
+    <button class="btn btn-success" data-ng-click="showCrearProducto()"><i class="fa fa-plus"></i> Crear Producto</button>
 
     <h2>Productos</h2>
     <div class="filtro">
@@ -41,7 +41,7 @@
 
 	<% } else { %>
 
-		<table class="table-striped">
+		<table id="tabla-productos" class="table-striped">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -91,4 +91,10 @@
     <% } %>
 </div>
 
+<script charset="utf-8">
+<%
+	String jsonCategorias = CategoriasHelper.getCategoriasRecursive(conexion, 1).toString();
+%>
+  var categorias = <%= jsonCategorias %>;
+</script>
 <%@ include file="/WEB-INF/footer.jsp" %>

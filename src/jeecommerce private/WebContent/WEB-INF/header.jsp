@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="es" data-ng-app="jeecommerce">
+<html lang="es" data-ng-app="jeecommerce.private">
 
 	<head>
 		<meta charset="utf-8">

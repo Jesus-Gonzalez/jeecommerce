@@ -14,7 +14,7 @@ public class ColorsHelper
 		
 		for (int i=0; i < 6; i++)
 		{
-			color += hexCaracteres[r.nextInt(17)];
+			color += hexCaracteres[r.nextInt(16)];
 		}
 		
 		return color;

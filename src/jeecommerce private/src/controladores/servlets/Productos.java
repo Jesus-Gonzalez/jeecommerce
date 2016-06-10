@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import helpers.CategoriasHelper;
 import modelos.Articulo;
 import modelos.MArticulos;
+import modelos.MCategorias;
 import modelos.SesionUsuario;
 
 @WebServlet("/productos")
@@ -112,3 +114,4 @@ public class Productos extends HttpServlet {
 		return;
 	}
 }
+
