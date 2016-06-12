@@ -23,7 +23,7 @@
 		right: 0;
 
 		z-index: 9999;
-		
+
 		padding: 2.5em;
 	}
 }
@@ -79,4 +79,22 @@
 div.img-testimonio
 {
 	margin-top: 1em;
+}
+
+.mostrar-caja-slide-from-right {
+  transform: translateX(100%);
+  animation: mostrar-caja-slide-from-right 1.23s ease forwards;
+}
+
+@keyframes mostrar-caja-slide-from-right {
+  to { transform: translateX(0); }
+}
+
+.mostrar-caja-slide-from-bottom {
+  transform: translateY(256px);
+  animation: mostrar-caja-slide-from-bottom 1s ease forwards;
+}
+
+@keyframes mostrar-caja-slide-from-bottom {
+  to { transform: translateX(0); }
 }

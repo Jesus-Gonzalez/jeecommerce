@@ -12,4 +12,20 @@ $(document).ready(function(){
 
 	});
 
+	$(window).scroll(function(event) {
+	  $(".caja").each(function(i, el) {
+	    var el = $(el);
+	    if (el.visible(true)) {
+	      el.addClass("mostrar-caja-slide-from-right");
+	    }
+	  });
+
+		$(".portada-caja").each(function(i, el) {
+	    var el = $(el);
+	    if (el.visible(true)) {
+	      el.addClass("mostrar-caja-slide-from-bottom");
+	    }
+	  });
+	});
+
 });

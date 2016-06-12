@@ -38,7 +38,7 @@
 		</div>
 
 		<div id="intro-main-container" class="container">
-			<div class="row">
+			<div class="row caja">
 				<div class="col-sm-2 col-xs-12">
 					<img src="img/alfalfa-packs.jpg" alt="Packs Alfalfa" class="img-responsive img-circle img-thumbnail">
 				</div>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row caja">
 				<div class="col-sm-2 col-xs-12">
 					<img src="img/tractor.jpg" alt="Tractor en el campo" class="img-responsive img-circle img-thumbnail">
 				</div>
@@ -62,7 +62,7 @@
 				<a href="catalogo.html" class="btn btn-lg btn-primary">Ver Catálogo <span class="glyphicon glyphicon-shopping-cart"></span></a>
 			</div>
 
-			<div class="row">
+			<div class="row caja">
 				<div class="col-sm-2 col-xs-12">
 					<img src="img/alfalfa.jpg" alt="Tractor en el campo" class="img-responsive img-circle img-thumbnail">
 				</div>
@@ -117,12 +117,13 @@
 
 		<!-- jQuery -->
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.isVisible.js" type="text/javascript" charset="utf-8"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
  		<!-- Angular -->
  		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
  		<!-- Scripts propios -->
- 		<script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
  		<!-- Scripts portada -->
 		<script src="js/scripts-portada.js" type="text/javascript" charset="utf-8"></script>
 		<!-- ReactJS -->
