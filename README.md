@@ -45,6 +45,12 @@ All of this under Debian 9 Stretch in both my laptop and desktop computer. Somet
 
 As I'm writting this, I'm still developing the project, and I can say it's not a stable project at all, it's under active development nowadays.
 
+# Security Risk
+
+It's important to notice that I'm not escaping the input characters by users anyhow. It would be a requirement to sanitize every user input.
+
+I repeat, potential security risk.
+
 # Credits
 
 This is a student project, but anyone willing to fork this, contribute or cherry-picking whatever you like, you are allowed to.

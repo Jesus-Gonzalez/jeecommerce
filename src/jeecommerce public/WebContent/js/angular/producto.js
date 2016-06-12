@@ -30,12 +30,11 @@ angular.module('jeecommerce')
               }
             }).then(function successOnComment(response){
               console.log("success", response);
-              var comentario = {
+
+              $scope.comentarios.push({
                 contenido: $scope.contenido,
                 fecha: new Date()
-              };
-
-              $scope.comentarios.push(comentario);
+              });
 
               $('#wrapper-sin-comentarios').hide();
 

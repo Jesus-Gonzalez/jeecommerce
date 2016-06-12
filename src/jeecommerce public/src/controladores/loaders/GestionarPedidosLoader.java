@@ -44,7 +44,7 @@ public class GestionarPedidosLoader extends HttpServlet {
 		
 		try
 		{
-			numItems = Integer.parseInt(mdlConfiguracion.valor);
+			numItems = 20;
 			
 			String pagina = request.getParameter("pagina");
 			if (pagina == null)

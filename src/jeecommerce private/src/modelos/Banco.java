@@ -9,6 +9,8 @@ public class Banco
 	
 	public boolean activo;
 	
+	public Banco() {}
+	
 	public Banco(long bid, String nombre, String numero, boolean activo)
 	{
 		this.bid = bid;

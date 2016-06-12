@@ -28,5 +28,6 @@
 		<script src="js/angular/app.js" type="text/javascript" charset="utf-8"></script>
 		<!-- <script src="js/angular/usuario.js" type="text/javascript" charset="utf-8"></script> -->
 		<script src="js/angular/productos.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/angular/bancos.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

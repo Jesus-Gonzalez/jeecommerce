@@ -68,16 +68,22 @@ public class MBancos
 		}
 	}
 	
-	public boolean creaBanco(String nombre, String numero, boolean activo)
+	public long creaBanco(String nombre, String numero, boolean activo)
 	{
 		try
 		{
-			PreparedStatement ps = conexion.prepareStatement("INSERT INTO private.bancos (nombre, numero, activo) VALUES (?, ?, ?)"); 
+			PreparedStatement ps = conexion.prepareStatement("INSERT INTO private.bancos (nombre, numero, activo) VALUES (?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS); 
 			ps.setString(1, nombre);
 			ps.setString(2, numero);
 			ps.setBoolean(3, activo);
 			
-			return ps.executeUpdate() > 0;
+			if (ps.executeUpdate() > 0)
+			{
+				ResultSet rs = ps.getGeneratedKeys();
+				
+				rs.next();
+				return rs.getLong(1);
+			}
 			
 		} catch (SQLException x) {
 			
@@ -90,7 +96,7 @@ public class MBancos
 			
 		}
 		
-		return false;
+		return -1;
 	}
 	
 	public boolean actualizaBanco(long bid, String nombre, String numero, boolean activo)
@@ -147,5 +153,28 @@ public class MBancos
 	public boolean borraBanco()
 	{
 		return borraBancoByBid(bid);
+	}
+	
+	public boolean getBancoByBid(long bid)
+	{
+		try
+		{
+			PreparedStatement ps = conexion.prepareStatement("SELECT * FROM private.bancos WHERE bid = ?");
+			ps.setLong(1, bid);
+		
+			rs = ps.executeQuery();
+			
+			return getProximoBanco();
+			
+		} catch (SQLException x) {
+			System.err.println("Error SQL -> MBancos:getBancoByBid()");
+			System.err.println("Mensaje de error -> " + x.getMessage());
+			
+			x.printStackTrace();
+		
+			System.exit(-83835);
+		}
+		
+		return false;
 	}
 }

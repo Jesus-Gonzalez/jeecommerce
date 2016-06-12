@@ -210,6 +210,10 @@ angular.module('jeecommerce')
 					$scope.productos = $catalogo.productos;
 				}
 			});
+
+			$scope.setAvisarmeArtId = function setAvisarmeArtId(artid) {
+				$('#hidden-artid').val(artid);
+			};
 		}])
 		// Controlador de paginación del catálogo
 		.controller('paginacionController', ['$scope', 'catalogoFactory', function($scope, $catalogo){
@@ -235,4 +239,31 @@ angular.module('jeecommerce')
 				$catalogo.loadProductos();
 			};
 
-		}]);
+		}])
+		.controller('avisameController', function($scope, $http){
+
+			$scope.doAvisame = function doAvisame() {
+
+				$http({
+					url: ABS_PATH + "/avisame/crear",
+					method: 'POST',
+					data: {
+						artid: $('#hidden-artid').val(),
+						correo: $('#email-avisarme').val()
+					}
+				}).then(function successCrearAvisame(response){
+					if (response.data.exito)
+					{
+						alertify.success("Gracias. Se ha registrado su aviso. Se le enviará un aviso a su correo electrónico cuando tengamos este artículo en stock de nuevo.");
+					} else {
+						alertify.error("Ha sucedido un problema registrando el aviso.");
+					}
+				}, function errorCrearAvisame(response){
+					console.log("error@avisar", response);
+					alertify.error("Ha sucedido un problema registrando el aviso.");
+				});
+
+				$('#popup-avisarme').modal('hide');
+			};
+
+		});

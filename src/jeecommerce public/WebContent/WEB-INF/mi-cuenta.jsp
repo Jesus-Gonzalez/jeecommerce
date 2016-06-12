@@ -33,9 +33,13 @@
       <div class="alert alert-warning" data-ng-show="cuentaNecesitaVerificacion">
         <h2><i class="fa fa-lock"></i> Cuenta Pendiente de Activación</h2>
         <p>
-          Ya que ha cambiado su correo electrónico, ahora debe <strong>activar su cuenta</strong>.
+          Ya que ha cambiado su correo electrónico o contraseña, ahora debe <strong>activar su cuenta</strong>.
           Por favor acceda a su correo electrónico y acceda al enlace.
           Gracias.
+        </p>
+        <p>
+          Nota: Tenga en cuenta que el correo de activación puede tardar varios minutos en llegar a su buzón de correo.
+          Si no llega el correo, compruebe su buzón de spam/correo no deseado.
         </p>
       </div>
 

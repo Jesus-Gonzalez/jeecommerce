@@ -76,9 +76,6 @@ angular.module('jeecommerce')
                     }
             })
             .done(function(data) {
-              console.log("success@login");
-              console.log(data);
-
               if (!data.error)
               {
                 alertify.success("Se ha identificado con éxito en el sitio web.");
@@ -99,7 +96,19 @@ angular.module('jeecommerce')
                   return;
                 }
 
-                if (data.usuario)
+                if (data.error.contrasena)
+                {
+                  alertify.error("La contraseña introducida no es correcta.");
+                  $('#login-pwd').parent().addClass('has-error');
+
+                  // Let's keep this here, just in case the final browser won't support arrow functions
+                  $('#login-pwd').on('keydown.login-pwd', function() {
+                    $('#login-pwd').parent().removeClass('has-error');
+                    $('#login-pwd').off('keydown.login-pwd');
+                  });
+                }
+
+                if (data.error.usuario)
                 {
                   if (data.error.usuario.existe)
                   {

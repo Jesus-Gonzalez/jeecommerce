@@ -58,6 +58,8 @@ public class CreaComentarioAsync extends HttpServlet {
 		// Secret
 		// 6Le6PCITAAAAAEMfDZx9V3cs6dvRxsQ0PH0ObHeL
 		
+		// Vamos a utilizar variable constantes "final" como prueba.
+		
 		// La comprobación del captcha se hará de forma asíncrona para evitar bloqueos
 		final String captchaResponse = jsonComentario.get("captchaResponse").getAsString();
 		final CloseableHttpAsyncClient httpClient = HttpAsyncClients.createDefault();

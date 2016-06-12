@@ -39,7 +39,7 @@
 						<!-- Más tarde será un botón -->
 						<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
 						<button class="btn btn-md btn-success" data-ng-click="anadirAlCarro(producto.artid, 1)">Añadir <i class="fa fa-cart-plus"></i></button>
-						<a data-ng-show="producto.stock === 0" data-toggle="modal" href="#popup-avisarme" class="btn btn-md btn-warning"><i class="fa fa-phone"></i> Avísame</a>
+						<a data-ng-show="producto.stock === 0" data-toggle="modal" href="#popup-avisarme" class="btn btn-md btn-warning" data-ng-click="setAvisarmeArtId(producto.artid)"><i class="fa fa-phone"></i> Avísame</a>
 					</div>
 				</section>
 			</div>
@@ -51,7 +51,7 @@
 			</ul>
 		</div>
 
-		<div class="modal fade" id="popup-avisarme">
+		<div class="modal fade" id="popup-avisarme" data-ng-controller="avisameController">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -67,13 +67,14 @@
 								<span class="input-group-addon"><i class="fa fa-at"></i></span>
 
 								<input type="email" class="form-control" id="email-avisarme" placeholder="nombre@empresa.es">
+								<input type="hidden" id="hidden-artid">
 							</div>
 						</form>
 					</div>
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-primary">Avísame</button>
+						<button type="button" class="btn btn-primary" data-ng-click="doAvisame()">Avísame</button>
 					</div>
 				</div>
 			</div>
