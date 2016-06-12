@@ -26,6 +26,13 @@ $(document).ready(function(){
 	      el.addClass("mostrar-caja-slide-from-bottom");
 	    }
 	  });
+
+		$("#btn-catalogo").each(function(i, el) {
+	    var el = $(el);
+	    if (el.visible(true)) {
+	      el.addClass("mostrar-opacity");
+	    }
+	  });
 	});
 
 });

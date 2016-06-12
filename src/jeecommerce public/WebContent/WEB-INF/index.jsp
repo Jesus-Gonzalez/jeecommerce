@@ -59,7 +59,7 @@
 			</div>
 
 			<div class="row text-center">
-				<a href="catalogo.html" class="btn btn-lg btn-primary">Ver Catálogo <span class="glyphicon glyphicon-shopping-cart"></span></a>
+				<a href="catalogo.html" class="btn btn-lg btn-primary" id="btn-catalogo">Ver Catálogo <span class="glyphicon glyphicon-shopping-cart"></span></a>
 			</div>
 
 			<div class="row caja">
