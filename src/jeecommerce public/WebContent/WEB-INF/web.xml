@@ -10,15 +10,15 @@
   </context-param>
   <context-param>
     <param-name>dbDatabase</param-name>
-    <param-value>jeecommerce</param-value>
+    <param-value>jgonzalez</param-value>
   </context-param>
   <context-param>
     <param-name>dbUsername</param-name>
-    <param-value>commerce</param-value>
+    <param-value>jgonzalez</param-value>
   </context-param>
   <context-param>
     <param-name>dbPassword</param-name>
-    <param-value>commerce</param-value>
+    <param-value>jgonzalez</param-value>
   </context-param>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
