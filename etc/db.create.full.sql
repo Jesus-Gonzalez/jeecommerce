@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.3
 -- Dumped by pg_dump version 9.5.3
 
--- Started on 2016-05-28 18:53:18 CEST
+-- Started on 2016-06-12 12:42:16 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,25 +16,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 2300 (class 1262 OID 16385)
--- Name: jeecommerce; Type: DATABASE; Schema: -; Owner: -
---
-
-CREATE DATABASE jeecommerce WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'es_ES.UTF-8' LC_CTYPE = 'es_ES.UTF-8';
-
-
-\connect jeecommerce
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- TOC entry 8 (class 2615 OID 16386)
+-- TOC entry 8 (class 2615 OID 16387)
 -- Name: chats; Type: SCHEMA; Schema: -; Owner: -
 --
 
@@ -42,7 +24,7 @@ CREATE SCHEMA chats;
 
 
 --
--- TOC entry 9 (class 2615 OID 16387)
+-- TOC entry 9 (class 2615 OID 16388)
 -- Name: private; Type: SCHEMA; Schema: -; Owner: -
 --
 
@@ -58,7 +40,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2302 (class 0 OID 0)
+-- TOC entry 2311 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
 --
@@ -69,7 +51,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 211 (class 1255 OID 16388)
+-- TOC entry 213 (class 1255 OID 16389)
 -- Name: crear_bienvenida(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -86,7 +68,7 @@ $$;
 
 
 --
--- TOC entry 224 (class 1255 OID 32953)
+-- TOC entry 214 (class 1255 OID 16390)
 -- Name: get_articulo_detalle(bigint); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -124,7 +106,7 @@ SET search_path = chats, pg_catalog;
 SET default_with_oids = false;
 
 --
--- TOC entry 183 (class 1259 OID 16389)
+-- TOC entry 183 (class 1259 OID 16391)
 -- Name: chats; Type: TABLE; Schema: chats; Owner: -
 --
 
@@ -140,7 +122,7 @@ CREATE TABLE chats (
 
 
 --
--- TOC entry 184 (class 1259 OID 16395)
+-- TOC entry 184 (class 1259 OID 16397)
 -- Name: chats_chid_seq; Type: SEQUENCE; Schema: chats; Owner: -
 --
 
@@ -153,7 +135,7 @@ CREATE SEQUENCE chats_chid_seq
 
 
 --
--- TOC entry 2303 (class 0 OID 0)
+-- TOC entry 2312 (class 0 OID 0)
 -- Dependencies: 184
 -- Name: chats_chid_seq; Type: SEQUENCE OWNED BY; Schema: chats; Owner: -
 --
@@ -162,7 +144,7 @@ ALTER SEQUENCE chats_chid_seq OWNED BY chats.chid;
 
 
 --
--- TOC entry 185 (class 1259 OID 16397)
+-- TOC entry 185 (class 1259 OID 16399)
 -- Name: chats_mensajes; Type: TABLE; Schema: chats; Owner: -
 --
 
@@ -176,7 +158,7 @@ CREATE TABLE chats_mensajes (
 
 
 --
--- TOC entry 186 (class 1259 OID 16403)
+-- TOC entry 186 (class 1259 OID 16405)
 -- Name: chats_mensajes_chmid_seq; Type: SEQUENCE; Schema: chats; Owner: -
 --
 
@@ -189,7 +171,7 @@ CREATE SEQUENCE chats_mensajes_chmid_seq
 
 
 --
--- TOC entry 2304 (class 0 OID 0)
+-- TOC entry 2313 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: chats_mensajes_chmid_seq; Type: SEQUENCE OWNED BY; Schema: chats; Owner: -
 --
@@ -200,7 +182,7 @@ ALTER SEQUENCE chats_mensajes_chmid_seq OWNED BY chats_mensajes.chmid;
 SET search_path = private, pg_catalog;
 
 --
--- TOC entry 187 (class 1259 OID 16405)
+-- TOC entry 187 (class 1259 OID 16407)
 -- Name: administradores; Type: TABLE; Schema: private; Owner: -
 --
 
@@ -212,7 +194,7 @@ CREATE TABLE administradores (
 
 
 --
--- TOC entry 188 (class 1259 OID 16411)
+-- TOC entry 188 (class 1259 OID 16413)
 -- Name: administradores_adminid_seq; Type: SEQUENCE; Schema: private; Owner: -
 --
 
@@ -225,7 +207,7 @@ CREATE SEQUENCE administradores_adminid_seq
 
 
 --
--- TOC entry 2305 (class 0 OID 0)
+-- TOC entry 2314 (class 0 OID 0)
 -- Dependencies: 188
 -- Name: administradores_adminid_seq; Type: SEQUENCE OWNED BY; Schema: private; Owner: -
 --
@@ -234,7 +216,7 @@ ALTER SEQUENCE administradores_adminid_seq OWNED BY administradores.adminid;
 
 
 --
--- TOC entry 209 (class 1259 OID 33005)
+-- TOC entry 189 (class 1259 OID 16415)
 -- Name: bancos; Type: TABLE; Schema: private; Owner: -
 --
 
@@ -247,7 +229,7 @@ CREATE TABLE bancos (
 
 
 --
--- TOC entry 208 (class 1259 OID 33003)
+-- TOC entry 190 (class 1259 OID 16422)
 -- Name: bancos_bid_seq; Type: SEQUENCE; Schema: private; Owner: -
 --
 
@@ -260,8 +242,8 @@ CREATE SEQUENCE bancos_bid_seq
 
 
 --
--- TOC entry 2306 (class 0 OID 0)
--- Dependencies: 208
+-- TOC entry 2315 (class 0 OID 0)
+-- Dependencies: 190
 -- Name: bancos_bid_seq; Type: SEQUENCE OWNED BY; Schema: private; Owner: -
 --
 
@@ -269,7 +251,7 @@ ALTER SEQUENCE bancos_bid_seq OWNED BY bancos.bid;
 
 
 --
--- TOC entry 204 (class 1259 OID 16545)
+-- TOC entry 191 (class 1259 OID 16424)
 -- Name: configuracion; Type: TABLE; Schema: private; Owner: -
 --
 
@@ -279,10 +261,45 @@ CREATE TABLE configuracion (
 );
 
 
+--
+-- TOC entry 212 (class 1259 OID 16631)
+-- Name: contacto; Type: TABLE; Schema: private; Owner: -
+--
+
+CREATE TABLE contacto (
+    cid bigint NOT NULL,
+    tipo smallint NOT NULL,
+    numero character varying NOT NULL,
+    mostrar boolean NOT NULL
+);
+
+
+--
+-- TOC entry 211 (class 1259 OID 16629)
+-- Name: contacto_cid_seq; Type: SEQUENCE; Schema: private; Owner: -
+--
+
+CREATE SEQUENCE contacto_cid_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- TOC entry 2316 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: contacto_cid_seq; Type: SEQUENCE OWNED BY; Schema: private; Owner: -
+--
+
+ALTER SEQUENCE contacto_cid_seq OWNED BY contacto.cid;
+
+
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 189 (class 1259 OID 16413)
+-- TOC entry 192 (class 1259 OID 16430)
 -- Name: activaciones; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -295,7 +312,7 @@ CREATE TABLE activaciones (
 
 
 --
--- TOC entry 190 (class 1259 OID 16419)
+-- TOC entry 193 (class 1259 OID 16436)
 -- Name: activaciones_aid_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -308,8 +325,8 @@ CREATE SEQUENCE activaciones_aid_seq
 
 
 --
--- TOC entry 2307 (class 0 OID 0)
--- Dependencies: 190
+-- TOC entry 2317 (class 0 OID 0)
+-- Dependencies: 193
 -- Name: activaciones_aid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -317,7 +334,7 @@ ALTER SEQUENCE activaciones_aid_seq OWNED BY activaciones.aid;
 
 
 --
--- TOC entry 191 (class 1259 OID 16421)
+-- TOC entry 194 (class 1259 OID 16438)
 -- Name: articulos; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -336,7 +353,7 @@ CREATE TABLE articulos (
 
 
 --
--- TOC entry 192 (class 1259 OID 16427)
+-- TOC entry 195 (class 1259 OID 16446)
 -- Name: articulos_artid_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -349,8 +366,8 @@ CREATE SEQUENCE articulos_artid_seq
 
 
 --
--- TOC entry 2308 (class 0 OID 0)
--- Dependencies: 192
+-- TOC entry 2318 (class 0 OID 0)
+-- Dependencies: 195
 -- Name: articulos_artid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -358,19 +375,19 @@ ALTER SEQUENCE articulos_artid_seq OWNED BY articulos.artid;
 
 
 --
--- TOC entry 210 (class 1259 OID 33030)
+-- TOC entry 196 (class 1259 OID 16448)
 -- Name: avisos_stock; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE avisos_stock (
     artid bigint NOT NULL,
-    uid bigint NOT NULL,
-    avisado boolean
+    avisado boolean,
+    correo character varying NOT NULL
 );
 
 
 --
--- TOC entry 193 (class 1259 OID 16429)
+-- TOC entry 197 (class 1259 OID 16451)
 -- Name: bienvenida; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -382,7 +399,7 @@ CREATE TABLE bienvenida (
 
 
 --
--- TOC entry 194 (class 1259 OID 16433)
+-- TOC entry 198 (class 1259 OID 16455)
 -- Name: bienvenida_bid_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -395,8 +412,8 @@ CREATE SEQUENCE bienvenida_bid_seq
 
 
 --
--- TOC entry 2309 (class 0 OID 0)
--- Dependencies: 194
+-- TOC entry 2319 (class 0 OID 0)
+-- Dependencies: 198
 -- Name: bienvenida_bid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -404,7 +421,7 @@ ALTER SEQUENCE bienvenida_bid_seq OWNED BY bienvenida.bid;
 
 
 --
--- TOC entry 195 (class 1259 OID 16435)
+-- TOC entry 199 (class 1259 OID 16457)
 -- Name: categorias; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -417,7 +434,7 @@ CREATE TABLE categorias (
 
 
 --
--- TOC entry 196 (class 1259 OID 16441)
+-- TOC entry 200 (class 1259 OID 16463)
 -- Name: categorias_catid_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -430,8 +447,8 @@ CREATE SEQUENCE categorias_catid_seq
 
 
 --
--- TOC entry 2310 (class 0 OID 0)
--- Dependencies: 196
+-- TOC entry 2320 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: categorias_catid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -439,7 +456,7 @@ ALTER SEQUENCE categorias_catid_seq OWNED BY categorias.catid;
 
 
 --
--- TOC entry 206 (class 1259 OID 32956)
+-- TOC entry 201 (class 1259 OID 16465)
 -- Name: comentarios; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -448,12 +465,12 @@ CREATE TABLE comentarios (
     uid bigint NOT NULL,
     artid bigint NOT NULL,
     contenido character varying NOT NULL,
-    fecha time without time zone DEFAULT now() NOT NULL
+    fecha timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
 --
--- TOC entry 205 (class 1259 OID 32954)
+-- TOC entry 202 (class 1259 OID 16472)
 -- Name: comentarios_cid_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -466,8 +483,8 @@ CREATE SEQUENCE comentarios_cid_seq
 
 
 --
--- TOC entry 2311 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 2321 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: comentarios_cid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -475,7 +492,7 @@ ALTER SEQUENCE comentarios_cid_seq OWNED BY comentarios.cid;
 
 
 --
--- TOC entry 197 (class 1259 OID 16443)
+-- TOC entry 203 (class 1259 OID 16474)
 -- Name: direcciones; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -491,7 +508,7 @@ CREATE TABLE direcciones (
 
 
 --
--- TOC entry 198 (class 1259 OID 16449)
+-- TOC entry 204 (class 1259 OID 16480)
 -- Name: direcciones_did_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -504,8 +521,8 @@ CREATE SEQUENCE direcciones_did_seq
 
 
 --
--- TOC entry 2312 (class 0 OID 0)
--- Dependencies: 198
+-- TOC entry 2322 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: direcciones_did_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -513,7 +530,7 @@ ALTER SEQUENCE direcciones_did_seq OWNED BY direcciones.did;
 
 
 --
--- TOC entry 199 (class 1259 OID 16451)
+-- TOC entry 205 (class 1259 OID 16482)
 -- Name: pedidos; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -530,7 +547,7 @@ CREATE TABLE pedidos (
 
 
 --
--- TOC entry 200 (class 1259 OID 16457)
+-- TOC entry 206 (class 1259 OID 16488)
 -- Name: pedidos_detalles; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -542,7 +559,7 @@ CREATE TABLE pedidos_detalles (
 
 
 --
--- TOC entry 201 (class 1259 OID 16460)
+-- TOC entry 207 (class 1259 OID 16491)
 -- Name: pedidos_pid_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -555,8 +572,8 @@ CREATE SEQUENCE pedidos_pid_seq
 
 
 --
--- TOC entry 2313 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 2323 (class 0 OID 0)
+-- Dependencies: 207
 -- Name: pedidos_pid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -564,7 +581,7 @@ ALTER SEQUENCE pedidos_pid_seq OWNED BY pedidos.pid;
 
 
 --
--- TOC entry 207 (class 1259 OID 32978)
+-- TOC entry 208 (class 1259 OID 16493)
 -- Name: recordarme; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -577,7 +594,7 @@ CREATE TABLE recordarme (
 
 
 --
--- TOC entry 202 (class 1259 OID 16462)
+-- TOC entry 209 (class 1259 OID 16499)
 -- Name: usuarios; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -595,7 +612,7 @@ CREATE TABLE usuarios (
 
 
 --
--- TOC entry 203 (class 1259 OID 16470)
+-- TOC entry 210 (class 1259 OID 16507)
 -- Name: usuarios_uid_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -608,8 +625,8 @@ CREATE SEQUENCE usuarios_uid_seq
 
 
 --
--- TOC entry 2314 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 2324 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: usuarios_uid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -619,7 +636,7 @@ ALTER SEQUENCE usuarios_uid_seq OWNED BY usuarios.uid;
 SET search_path = chats, pg_catalog;
 
 --
--- TOC entry 2084 (class 2604 OID 16472)
+-- TOC entry 2092 (class 2604 OID 16509)
 -- Name: chid; Type: DEFAULT; Schema: chats; Owner: -
 --
 
@@ -627,7 +644,7 @@ ALTER TABLE ONLY chats ALTER COLUMN chid SET DEFAULT nextval('chats_chid_seq'::r
 
 
 --
--- TOC entry 2085 (class 2604 OID 16473)
+-- TOC entry 2093 (class 2604 OID 16510)
 -- Name: chmid; Type: DEFAULT; Schema: chats; Owner: -
 --
 
@@ -637,7 +654,7 @@ ALTER TABLE ONLY chats_mensajes ALTER COLUMN chmid SET DEFAULT nextval('chats_me
 SET search_path = private, pg_catalog;
 
 --
--- TOC entry 2086 (class 2604 OID 16474)
+-- TOC entry 2094 (class 2604 OID 16511)
 -- Name: adminid; Type: DEFAULT; Schema: private; Owner: -
 --
 
@@ -645,17 +662,25 @@ ALTER TABLE ONLY administradores ALTER COLUMN adminid SET DEFAULT nextval('admin
 
 
 --
--- TOC entry 2101 (class 2604 OID 33008)
+-- TOC entry 2096 (class 2604 OID 16512)
 -- Name: bid; Type: DEFAULT; Schema: private; Owner: -
 --
 
 ALTER TABLE ONLY bancos ALTER COLUMN bid SET DEFAULT nextval('bancos_bid_seq'::regclass);
 
 
+--
+-- TOC entry 2111 (class 2604 OID 16634)
+-- Name: cid; Type: DEFAULT; Schema: private; Owner: -
+--
+
+ALTER TABLE ONLY contacto ALTER COLUMN cid SET DEFAULT nextval('contacto_cid_seq'::regclass);
+
+
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2087 (class 2604 OID 16475)
+-- TOC entry 2097 (class 2604 OID 16513)
 -- Name: aid; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -663,7 +688,7 @@ ALTER TABLE ONLY activaciones ALTER COLUMN aid SET DEFAULT nextval('activaciones
 
 
 --
--- TOC entry 2088 (class 2604 OID 16476)
+-- TOC entry 2100 (class 2604 OID 16514)
 -- Name: artid; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -671,7 +696,7 @@ ALTER TABLE ONLY articulos ALTER COLUMN artid SET DEFAULT nextval('articulos_art
 
 
 --
--- TOC entry 2092 (class 2604 OID 16477)
+-- TOC entry 2102 (class 2604 OID 16515)
 -- Name: bid; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -679,7 +704,7 @@ ALTER TABLE ONLY bienvenida ALTER COLUMN bid SET DEFAULT nextval('bienvenida_bid
 
 
 --
--- TOC entry 2093 (class 2604 OID 16478)
+-- TOC entry 2103 (class 2604 OID 16516)
 -- Name: catid; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -687,7 +712,7 @@ ALTER TABLE ONLY categorias ALTER COLUMN catid SET DEFAULT nextval('categorias_c
 
 
 --
--- TOC entry 2099 (class 2604 OID 32959)
+-- TOC entry 2104 (class 2604 OID 16517)
 -- Name: cid; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -695,7 +720,7 @@ ALTER TABLE ONLY comentarios ALTER COLUMN cid SET DEFAULT nextval('comentarios_c
 
 
 --
--- TOC entry 2094 (class 2604 OID 16479)
+-- TOC entry 2106 (class 2604 OID 16518)
 -- Name: did; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -703,7 +728,7 @@ ALTER TABLE ONLY direcciones ALTER COLUMN did SET DEFAULT nextval('direcciones_d
 
 
 --
--- TOC entry 2095 (class 2604 OID 16480)
+-- TOC entry 2107 (class 2604 OID 16519)
 -- Name: pid; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -711,7 +736,7 @@ ALTER TABLE ONLY pedidos ALTER COLUMN pid SET DEFAULT nextval('pedidos_pid_seq':
 
 
 --
--- TOC entry 2098 (class 2604 OID 16481)
+-- TOC entry 2110 (class 2604 OID 16520)
 -- Name: uid; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -721,7 +746,7 @@ ALTER TABLE ONLY usuarios ALTER COLUMN uid SET DEFAULT nextval('usuarios_uid_seq
 SET search_path = chats, pg_catalog;
 
 --
--- TOC entry 2268 (class 0 OID 16389)
+-- TOC entry 2275 (class 0 OID 16391)
 -- Dependencies: 183
 -- Data for Name: chats; Type: TABLE DATA; Schema: chats; Owner: -
 --
@@ -731,7 +756,7 @@ COPY chats (chid, nombre, email, asunto, fecha, estado, uuid) FROM stdin;
 
 
 --
--- TOC entry 2315 (class 0 OID 0)
+-- TOC entry 2325 (class 0 OID 0)
 -- Dependencies: 184
 -- Name: chats_chid_seq; Type: SEQUENCE SET; Schema: chats; Owner: -
 --
@@ -740,7 +765,7 @@ SELECT pg_catalog.setval('chats_chid_seq', 1, false);
 
 
 --
--- TOC entry 2270 (class 0 OID 16397)
+-- TOC entry 2277 (class 0 OID 16399)
 -- Dependencies: 185
 -- Data for Name: chats_mensajes; Type: TABLE DATA; Schema: chats; Owner: -
 --
@@ -750,7 +775,7 @@ COPY chats_mensajes (chmid, chid, es_usuario, mensaje, fecha) FROM stdin;
 
 
 --
--- TOC entry 2316 (class 0 OID 0)
+-- TOC entry 2326 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: chats_mensajes_chmid_seq; Type: SEQUENCE SET; Schema: chats; Owner: -
 --
@@ -761,27 +786,28 @@ SELECT pg_catalog.setval('chats_mensajes_chmid_seq', 1, false);
 SET search_path = private, pg_catalog;
 
 --
--- TOC entry 2272 (class 0 OID 16405)
+-- TOC entry 2279 (class 0 OID 16407)
 -- Dependencies: 187
 -- Data for Name: administradores; Type: TABLE DATA; Schema: private; Owner: -
 --
 
 COPY administradores (adminid, nombre, contrasena) FROM stdin;
+1	jesus	jesus
 \.
 
 
 --
--- TOC entry 2317 (class 0 OID 0)
+-- TOC entry 2327 (class 0 OID 0)
 -- Dependencies: 188
 -- Name: administradores_adminid_seq; Type: SEQUENCE SET; Schema: private; Owner: -
 --
 
-SELECT pg_catalog.setval('administradores_adminid_seq', 1, false);
+SELECT pg_catalog.setval('administradores_adminid_seq', 1, true);
 
 
 --
--- TOC entry 2294 (class 0 OID 33005)
--- Dependencies: 209
+-- TOC entry 2281 (class 0 OID 16415)
+-- Dependencies: 189
 -- Data for Name: bancos; Type: TABLE DATA; Schema: private; Owner: -
 --
 
@@ -789,34 +815,55 @@ COPY bancos (bid, nombre, numero, activo) FROM stdin;
 3	BBVA	11455881428845688658	t
 4	Banco Santander	451154458745878458	t
 5	ING	4247892918189181991	t
+10	Banco Popular de España	1000 2000 3000 4000	f
 \.
 
 
 --
--- TOC entry 2318 (class 0 OID 0)
--- Dependencies: 208
+-- TOC entry 2328 (class 0 OID 0)
+-- Dependencies: 190
 -- Name: bancos_bid_seq; Type: SEQUENCE SET; Schema: private; Owner: -
 --
 
-SELECT pg_catalog.setval('bancos_bid_seq', 5, true);
+SELECT pg_catalog.setval('bancos_bid_seq', 10, true);
 
 
 --
--- TOC entry 2289 (class 0 OID 16545)
--- Dependencies: 204
+-- TOC entry 2283 (class 0 OID 16424)
+-- Dependencies: 191
 -- Data for Name: configuracion; Type: TABLE DATA; Schema: private; Owner: -
 --
 
 COPY configuracion (parametro, valor) FROM stdin;
 NumElementosPorPagina	3
+NumItemsGestionPedidos	20
 \.
+
+
+--
+-- TOC entry 2304 (class 0 OID 16631)
+-- Dependencies: 212
+-- Data for Name: contacto; Type: TABLE DATA; Schema: private; Owner: -
+--
+
+COPY contacto (cid, tipo, numero, mostrar) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2329 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: contacto_cid_seq; Type: SEQUENCE SET; Schema: private; Owner: -
+--
+
+SELECT pg_catalog.setval('contacto_cid_seq', 1, false);
 
 
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2274 (class 0 OID 16413)
--- Dependencies: 189
+-- TOC entry 2284 (class 0 OID 16430)
+-- Dependencies: 192
 -- Data for Name: activaciones; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -825,17 +872,17 @@ COPY activaciones (aid, uid, clave, fecha_limite) FROM stdin;
 
 
 --
--- TOC entry 2319 (class 0 OID 0)
--- Dependencies: 190
+-- TOC entry 2330 (class 0 OID 0)
+-- Dependencies: 193
 -- Name: activaciones_aid_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('activaciones_aid_seq', 3, true);
+SELECT pg_catalog.setval('activaciones_aid_seq', 4, true);
 
 
 --
--- TOC entry 2276 (class 0 OID 16421)
--- Dependencies: 191
+-- TOC entry 2286 (class 0 OID 16438)
+-- Dependencies: 194
 -- Data for Name: articulos; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -848,8 +895,8 @@ COPY articulos (artid, catid, nombre, descripcion, precio, imagen, stock, minimo
 
 
 --
--- TOC entry 2320 (class 0 OID 0)
--- Dependencies: 192
+-- TOC entry 2331 (class 0 OID 0)
+-- Dependencies: 195
 -- Name: articulos_artid_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -857,18 +904,19 @@ SELECT pg_catalog.setval('articulos_artid_seq', 4, true);
 
 
 --
--- TOC entry 2295 (class 0 OID 33030)
--- Dependencies: 210
+-- TOC entry 2288 (class 0 OID 16448)
+-- Dependencies: 196
 -- Data for Name: avisos_stock; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY avisos_stock (artid, uid, avisado) FROM stdin;
+COPY avisos_stock (artid, avisado, correo) FROM stdin;
+3	\N	hola@mundo.com
 \.
 
 
 --
--- TOC entry 2278 (class 0 OID 16429)
--- Dependencies: 193
+-- TOC entry 2289 (class 0 OID 16451)
+-- Dependencies: 197
 -- Data for Name: bienvenida; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -878,8 +926,8 @@ COPY bienvenida (uid, enviado, bid) FROM stdin;
 
 
 --
--- TOC entry 2321 (class 0 OID 0)
--- Dependencies: 194
+-- TOC entry 2332 (class 0 OID 0)
+-- Dependencies: 198
 -- Name: bienvenida_bid_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -887,8 +935,8 @@ SELECT pg_catalog.setval('bienvenida_bid_seq', 29, true);
 
 
 --
--- TOC entry 2280 (class 0 OID 16435)
--- Dependencies: 195
+-- TOC entry 2291 (class 0 OID 16457)
+-- Dependencies: 199
 -- Data for Name: categorias; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -902,8 +950,8 @@ COPY categorias (catid, supercat, nombre, descripcion) FROM stdin;
 
 
 --
--- TOC entry 2322 (class 0 OID 0)
--- Dependencies: 196
+-- TOC entry 2333 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: categorias_catid_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -911,27 +959,29 @@ SELECT pg_catalog.setval('categorias_catid_seq', 5, true);
 
 
 --
--- TOC entry 2291 (class 0 OID 32956)
--- Dependencies: 206
+-- TOC entry 2293 (class 0 OID 16465)
+-- Dependencies: 201
 -- Data for Name: comentarios; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY comentarios (cid, uid, artid, contenido, fecha) FROM stdin;
+3	-1	4	Muy buen producto!	2016-06-10 00:59:56.071
+4	-1	2	Buen producto	2016-06-11 19:15:22.817
 \.
 
 
 --
--- TOC entry 2323 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 2334 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: comentarios_cid_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('comentarios_cid_seq', 1, false);
+SELECT pg_catalog.setval('comentarios_cid_seq', 4, true);
 
 
 --
--- TOC entry 2282 (class 0 OID 16443)
--- Dependencies: 197
+-- TOC entry 2295 (class 0 OID 16474)
+-- Dependencies: 203
 -- Data for Name: direcciones; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -942,8 +992,8 @@ COPY direcciones (did, uid, nombre, direccion, localidad, codigo_postal, telefon
 
 
 --
--- TOC entry 2324 (class 0 OID 0)
--- Dependencies: 198
+-- TOC entry 2335 (class 0 OID 0)
+-- Dependencies: 204
 -- Name: direcciones_did_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -951,8 +1001,8 @@ SELECT pg_catalog.setval('direcciones_did_seq', 35, true);
 
 
 --
--- TOC entry 2284 (class 0 OID 16451)
--- Dependencies: 199
+-- TOC entry 2297 (class 0 OID 16482)
+-- Dependencies: 205
 -- Data for Name: pedidos; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -960,12 +1010,16 @@ COPY pedidos (pid, fecha, estado, importe, forma_pago, observaciones, uid, did) 
 14	2016-05-22 13:04:30.627	1	4.55	4		30	35
 15	2016-05-22 20:26:25.266	1	9.10	1		30	35
 16	2016-05-22 20:35:09.293	1	9.10	0		30	35
+17	2016-06-06 12:40:07.58	1	32.85	2		30	35
+18	2016-06-07 23:33:33.26	1	32.80	2		30	34
+19	2016-06-07 23:33:33.267	1	32.80	2		30	34
+20	2016-06-11 19:20:58.756	1	22.75	2		30	34
 \.
 
 
 --
--- TOC entry 2285 (class 0 OID 16457)
--- Dependencies: 200
+-- TOC entry 2298 (class 0 OID 16488)
+-- Dependencies: 206
 -- Data for Name: pedidos_detalles; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -973,21 +1027,25 @@ COPY pedidos_detalles (pid, artid, cantidad) FROM stdin;
 14	2	1
 15	2	2
 16	2	2
+17	1	73
+19	3	8
+18	3	8
+20	2	5
 \.
 
 
 --
--- TOC entry 2325 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 2336 (class 0 OID 0)
+-- Dependencies: 207
 -- Name: pedidos_pid_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pedidos_pid_seq', 16, true);
+SELECT pg_catalog.setval('pedidos_pid_seq', 20, true);
 
 
 --
--- TOC entry 2292 (class 0 OID 32978)
--- Dependencies: 207
+-- TOC entry 2300 (class 0 OID 16493)
+-- Dependencies: 208
 -- Data for Name: recordarme; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -996,19 +1054,19 @@ COPY recordarme (id, token, salt, uid) FROM stdin;
 
 
 --
--- TOC entry 2287 (class 0 OID 16462)
--- Dependencies: 202
+-- TOC entry 2301 (class 0 OID 16499)
+-- Dependencies: 209
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY usuarios (uid, correo, contrasena, nombre, fecha_registro, fecha_conexion, direccion_ip, datos_compras, activado) FROM stdin;
-30	dev@jesusd.net	123123123	Jesus Gonzalez	2016-05-22 11:39:06.156	2016-05-27 21:32:56.782	::1	\N	t
+30	jesus92gz@gmail.com	123123123	Jesus Gonzalez	2016-05-22 11:39:06.156	2016-06-11 19:37:47.277	::1	\N	t
 \.
 
 
 --
--- TOC entry 2326 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 2337 (class 0 OID 0)
+-- Dependencies: 210
 -- Name: usuarios_uid_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -1018,7 +1076,7 @@ SELECT pg_catalog.setval('usuarios_uid_seq', 30, true);
 SET search_path = chats, pg_catalog;
 
 --
--- TOC entry 2104 (class 2606 OID 16483)
+-- TOC entry 2113 (class 2606 OID 16522)
 -- Name: pk_chats; Type: CONSTRAINT; Schema: chats; Owner: -
 --
 
@@ -1027,7 +1085,7 @@ ALTER TABLE ONLY chats
 
 
 --
--- TOC entry 2106 (class 2606 OID 16485)
+-- TOC entry 2115 (class 2606 OID 16524)
 -- Name: pk_chats_mensajes; Type: CONSTRAINT; Schema: chats; Owner: -
 --
 
@@ -1038,7 +1096,7 @@ ALTER TABLE ONLY chats_mensajes
 SET search_path = private, pg_catalog;
 
 --
--- TOC entry 2108 (class 2606 OID 16487)
+-- TOC entry 2117 (class 2606 OID 16526)
 -- Name: pk_administradores; Type: CONSTRAINT; Schema: private; Owner: -
 --
 
@@ -1047,7 +1105,7 @@ ALTER TABLE ONLY administradores
 
 
 --
--- TOC entry 2136 (class 2606 OID 33013)
+-- TOC entry 2119 (class 2606 OID 16528)
 -- Name: pk_bancos; Type: CONSTRAINT; Schema: private; Owner: -
 --
 
@@ -1056,7 +1114,7 @@ ALTER TABLE ONLY bancos
 
 
 --
--- TOC entry 2130 (class 2606 OID 16552)
+-- TOC entry 2121 (class 2606 OID 16530)
 -- Name: pk_configuracion; Type: CONSTRAINT; Schema: private; Owner: -
 --
 
@@ -1064,10 +1122,19 @@ ALTER TABLE ONLY configuracion
     ADD CONSTRAINT pk_configuracion PRIMARY KEY (parametro);
 
 
+--
+-- TOC entry 2147 (class 2606 OID 16639)
+-- Name: pk_contacto; Type: CONSTRAINT; Schema: private; Owner: -
+--
+
+ALTER TABLE ONLY contacto
+    ADD CONSTRAINT pk_contacto PRIMARY KEY (cid);
+
+
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2110 (class 2606 OID 16489)
+-- TOC entry 2123 (class 2606 OID 16532)
 -- Name: pk_activaciones; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1076,16 +1143,7 @@ ALTER TABLE ONLY activaciones
 
 
 --
--- TOC entry 2138 (class 2606 OID 33034)
--- Name: pk_avisos_stock; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY avisos_stock
-    ADD CONSTRAINT pk_avisos_stock PRIMARY KEY (artid, uid);
-
-
---
--- TOC entry 2114 (class 2606 OID 16493)
+-- TOC entry 2127 (class 2606 OID 16536)
 -- Name: pk_bienvenida; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1094,7 +1152,7 @@ ALTER TABLE ONLY bienvenida
 
 
 --
--- TOC entry 2116 (class 2606 OID 16495)
+-- TOC entry 2129 (class 2606 OID 16538)
 -- Name: pk_categorias; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1103,7 +1161,7 @@ ALTER TABLE ONLY categorias
 
 
 --
--- TOC entry 2132 (class 2606 OID 32965)
+-- TOC entry 2131 (class 2606 OID 16540)
 -- Name: pk_comentarios; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1112,7 +1170,7 @@ ALTER TABLE ONLY comentarios
 
 
 --
--- TOC entry 2118 (class 2606 OID 16497)
+-- TOC entry 2133 (class 2606 OID 16542)
 -- Name: pk_direcciones; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1121,7 +1179,7 @@ ALTER TABLE ONLY direcciones
 
 
 --
--- TOC entry 2122 (class 2606 OID 16499)
+-- TOC entry 2137 (class 2606 OID 16544)
 -- Name: pk_pedidos; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1130,7 +1188,7 @@ ALTER TABLE ONLY pedidos
 
 
 --
--- TOC entry 2124 (class 2606 OID 16501)
+-- TOC entry 2139 (class 2606 OID 16546)
 -- Name: pk_pedidos_detalles; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1139,7 +1197,7 @@ ALTER TABLE ONLY pedidos_detalles
 
 
 --
--- TOC entry 2134 (class 2606 OID 32985)
+-- TOC entry 2141 (class 2606 OID 16548)
 -- Name: pk_recordarme; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1148,7 +1206,7 @@ ALTER TABLE ONLY recordarme
 
 
 --
--- TOC entry 2126 (class 2606 OID 16503)
+-- TOC entry 2143 (class 2606 OID 16550)
 -- Name: pk_usuarios; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1157,7 +1215,7 @@ ALTER TABLE ONLY usuarios
 
 
 --
--- TOC entry 2112 (class 2606 OID 16505)
+-- TOC entry 2125 (class 2606 OID 16552)
 -- Name: unq_articulos_artid; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1166,7 +1224,7 @@ ALTER TABLE ONLY articulos
 
 
 --
--- TOC entry 2128 (class 2606 OID 16507)
+-- TOC entry 2145 (class 2606 OID 16554)
 -- Name: unq_usuarios_email; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1175,7 +1233,7 @@ ALTER TABLE ONLY usuarios
 
 
 --
--- TOC entry 2119 (class 1259 OID 33002)
+-- TOC entry 2134 (class 1259 OID 16555)
 -- Name: fki_pedidos_direcciones; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1183,7 +1241,7 @@ CREATE INDEX fki_pedidos_direcciones ON pedidos USING btree (did, uid);
 
 
 --
--- TOC entry 2120 (class 1259 OID 32996)
+-- TOC entry 2135 (class 1259 OID 16556)
 -- Name: fki_pedidos_usuarios; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1191,7 +1249,7 @@ CREATE INDEX fki_pedidos_usuarios ON pedidos USING btree (uid);
 
 
 --
--- TOC entry 2153 (class 2620 OID 32977)
+-- TOC entry 2160 (class 2620 OID 16557)
 -- Name: trigger_crear_bienvenida; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -1201,7 +1259,7 @@ CREATE TRIGGER trigger_crear_bienvenida AFTER INSERT ON usuarios FOR EACH ROW EX
 SET search_path = chats, pg_catalog;
 
 --
--- TOC entry 2139 (class 2606 OID 16509)
+-- TOC entry 2148 (class 2606 OID 16558)
 -- Name: fk_chats_mensajes_chid; Type: FK CONSTRAINT; Schema: chats; Owner: -
 --
 
@@ -1212,7 +1270,7 @@ ALTER TABLE ONLY chats_mensajes
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2140 (class 2606 OID 16514)
+-- TOC entry 2149 (class 2606 OID 16563)
 -- Name: fk_activaciones_uid; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1221,7 +1279,7 @@ ALTER TABLE ONLY activaciones
 
 
 --
--- TOC entry 2151 (class 2606 OID 33035)
+-- TOC entry 2150 (class 2606 OID 16568)
 -- Name: fk_avisos_stock_articulos; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1230,16 +1288,7 @@ ALTER TABLE ONLY avisos_stock
 
 
 --
--- TOC entry 2152 (class 2606 OID 33040)
--- Name: fk_avisos_stock_usuarios; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY avisos_stock
-    ADD CONSTRAINT fk_avisos_stock_usuarios FOREIGN KEY (uid) REFERENCES usuarios(uid);
-
-
---
--- TOC entry 2141 (class 2606 OID 16519)
+-- TOC entry 2151 (class 2606 OID 16578)
 -- Name: fk_bienvenida_uid; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1248,7 +1297,7 @@ ALTER TABLE ONLY bienvenida
 
 
 --
--- TOC entry 2142 (class 2606 OID 16524)
+-- TOC entry 2152 (class 2606 OID 16583)
 -- Name: fk_categorias_supercat; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1257,7 +1306,7 @@ ALTER TABLE ONLY categorias
 
 
 --
--- TOC entry 2149 (class 2606 OID 32971)
+-- TOC entry 2153 (class 2606 OID 16588)
 -- Name: fk_comentarios_artid; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1266,16 +1315,7 @@ ALTER TABLE ONLY comentarios
 
 
 --
--- TOC entry 2148 (class 2606 OID 32966)
--- Name: fk_comentarios_uid; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY comentarios
-    ADD CONSTRAINT fk_comentarios_uid FOREIGN KEY (uid) REFERENCES usuarios(uid);
-
-
---
--- TOC entry 2143 (class 2606 OID 16529)
+-- TOC entry 2154 (class 2606 OID 16598)
 -- Name: fk_direcciones_uid; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1284,7 +1324,7 @@ ALTER TABLE ONLY direcciones
 
 
 --
--- TOC entry 2146 (class 2606 OID 16534)
+-- TOC entry 2157 (class 2606 OID 16603)
 -- Name: fk_pedidos_detalles_artid; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1293,7 +1333,7 @@ ALTER TABLE ONLY pedidos_detalles
 
 
 --
--- TOC entry 2147 (class 2606 OID 16539)
+-- TOC entry 2158 (class 2606 OID 16608)
 -- Name: fk_pedidos_detalles_pid; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1302,7 +1342,7 @@ ALTER TABLE ONLY pedidos_detalles
 
 
 --
--- TOC entry 2145 (class 2606 OID 32997)
+-- TOC entry 2155 (class 2606 OID 16613)
 -- Name: fk_pedidos_direcciones; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1311,7 +1351,7 @@ ALTER TABLE ONLY pedidos
 
 
 --
--- TOC entry 2144 (class 2606 OID 32991)
+-- TOC entry 2156 (class 2606 OID 16618)
 -- Name: fk_pedidos_usuarios; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1320,7 +1360,7 @@ ALTER TABLE ONLY pedidos
 
 
 --
--- TOC entry 2150 (class 2606 OID 32986)
+-- TOC entry 2159 (class 2606 OID 16623)
 -- Name: fk_recordarme_uid; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1328,7 +1368,7 @@ ALTER TABLE ONLY recordarme
     ADD CONSTRAINT fk_recordarme_uid FOREIGN KEY (uid) REFERENCES usuarios(uid);
 
 
--- Completed on 2016-05-28 18:53:18 CEST
+-- Completed on 2016-06-12 12:42:18 CEST
 
 --
 -- PostgreSQL database dump complete

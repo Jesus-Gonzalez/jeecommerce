@@ -1,5 +1,11 @@
-﻿CREATE OR REPLACE FUNCTION get_articulo_detalle (bigint)
-RETURNS SETOF refcursor AS $$
+--
+-- TOC entry 214 (class 1255 OID 16390)
+-- Name: get_articulo_detalle(bigint); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION get_articulo_detalle(bigint) RETURNS SETOF refcursor
+    LANGUAGE plpgsql
+    AS $_$
 BEGIN
 
 DECLARE cur_articulos refcursor;
@@ -23,4 +29,4 @@ DECLARE cur_comentarios refcursor;
 	END;
 
 END
-$$ LANGUAGE plpgsql;
+$_$;
