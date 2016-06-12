@@ -164,7 +164,7 @@ angular.module('jeecommerce')
 
               $http({
                 method: 'POST',
-                url: '/pagar',
+                url: ABS_PATH + '/pagar',
                 data: data
               }).then(function onPaymentDone(response) {
 

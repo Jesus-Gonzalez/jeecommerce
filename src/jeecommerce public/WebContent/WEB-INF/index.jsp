@@ -85,13 +85,14 @@
 			</div>
 
 			<h2>Testimonios</h2>
-			<div class="row intro-textos">
+			<div id="testimonios-react"></div>
+			<%-- <div class="row intro-textos">
 				<section class="col-sm-4 col-xs-12 portada-caja destacado">
 					<div class="img-testimonio text-center">
 						<img src="img/autor.png" alt="Foto Jesús González" class="img-circle" width="128" height="128">
 					</div>
 					<h2>Lorem Ipsum <i class="fa fa-fighter-jet"></i></h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, iusto, modi.</p>
+					<p></p>
 				</section>
 
 				<section class="col-sm-4 col-xs-12 portada-caja destacado">
@@ -109,7 +110,7 @@
 					<h2>Lorem Ipsum <i class="fa fa-university"></i></h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis praesentium explicabo officia doloremque rem quis expedita blanditiis, pariatur ex omnis, laboriosam mollitia eos maiores beatae nostrum reprehenderit. Necessitatibus expedita, aut.</p>
 				</section>
-			</div>
+			</div> --%>
 		</div>
 
 		<div class="spacer"></div>
@@ -123,6 +124,10 @@
  		<!-- Scripts propios -->
  		<script src="js/scripts.js" type="text/javascript" charset="utf-8"></script>
  		<!-- Scripts portada -->
- 		<script src="js/scripts-portada.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/scripts-portada.js" type="text/javascript" charset="utf-8"></script>
+		<!-- ReactJS -->
+		<script src="js/react.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/react-dom.min.js" type="text/javascript" charset="utf-8"></script>
+ 		<script src="js/react-testimonios.min.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

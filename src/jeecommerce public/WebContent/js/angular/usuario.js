@@ -44,7 +44,7 @@ angular.module('jeecommerce')
 
                 alertify.success("Se ha registrado e identificado con éxito en el sitio web.");
 
-                window.location.href = REFERRER || 'catalogo.html';
+                window.location.href = ABS_PATH + REFERRER || 'catalogo.html';
               })
               .fail(function failOnLoginAfterReg(data) {
                 console.log("error@login");
@@ -79,7 +79,7 @@ angular.module('jeecommerce')
               if (!data.error)
               {
                 alertify.success("Se ha identificado con éxito en el sitio web.");
-                window.location.href = REFERRER || 'catalogo.html';
+                window.location.href = ABS_PATH + REFERRER || 'catalogo.html';
                 return;
               }
 
