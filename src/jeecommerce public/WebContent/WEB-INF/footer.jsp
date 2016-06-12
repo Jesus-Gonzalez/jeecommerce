@@ -38,9 +38,8 @@
 				<div class="col-sm-3 col-xs-12 col-xs-centered footer-caja">
 					<h3>Empresa</h3>
 					<ul class="lista-footer">
-						<li><i class="fa fa-map-marker fa-fw"></i> <a href="donde-estamos.html">¿Dónde estamos?</a></li>
-						<li><i class="fa fa-newspaper-o fa-fw"></i> <a href="prensa.html">Prensa</a></li>
-						<li><i class="fa fa-space-shuttle fa-fw"></i> <a href="trabaja.html">Trabaja con nosotros</a></li>
+						<li><i class="fa fa-map-marker fa-fw"></i> <a href="donde-estamos.jsp">¿Dónde estamos?</a></li>
+						<li><i class="fa fa-space-shuttle fa-fw"></i> <a href="trabaja.jsp">Trabaja con nosotros</a></li>
 					</ul>
 				</div>
 			</div>

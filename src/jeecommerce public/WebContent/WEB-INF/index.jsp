@@ -33,7 +33,7 @@
 				<h1><span class="glyphicon glyphicon-leaf"></span> Servicios Agrícolas</h1>
 				<h2><q>El Pena</q></h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<a href="donde-estamos.html" class="btn btn-lg btn-default">¿Quiénes somos? <span class="glyphicon glyphicon-user"></span></a>
+				<a href="donde-estamos.jsp" class="btn btn-lg btn-default">¿Quiénes somos? <span class="glyphicon glyphicon-user"></span></a>
 			</div>
 		</div>
 
