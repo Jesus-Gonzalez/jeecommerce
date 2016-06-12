@@ -8,13 +8,13 @@ public class Main
 {
 	// DB Constantes
 	public static String DB_HOSTNAME = "localhost",
-						 DB_DATABASE = "jeecommerce",
-						 DB_USERNAME = "commerce",
-						 DB_PASSWORD = "commerce";
+						 DB_DATABASE = "jgonzalez",
+						 DB_USERNAME = "jgonzalez",
+						 DB_PASSWORD = "jgonzalez";
 	
 	public static void main(String[] args)
 	{
-		Conexion conexion = new Conexion("localhost", "jeecommerce", "commerce", "commerce");
+		Conexion conexion = new Conexion(DB_HOSTNAME, DB_DATABASE, DB_USERNAME, DB_PASSWORD);
 		
 		MBienvenida mdlBienvenida = new MBienvenida(conexion.creaConexion());
 		
