@@ -1,5 +1,12 @@
 package modelos;
 
+/**
+ * 
+ * Clase contenedora para una dirección
+ * 
+ * @author jesus
+ *
+ */
 public class Direccion
 {
 	public long did,

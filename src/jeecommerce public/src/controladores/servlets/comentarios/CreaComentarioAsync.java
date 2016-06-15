@@ -61,34 +61,56 @@ public class CreaComentarioAsync extends HttpServlet {
 		// Vamos a utilizar variable constantes "final" como prueba.
 		
 		// La comprobación del captcha se hará de forma asíncrona para evitar bloqueos
+		
+		// Obtenemos la respuesta del captcha
 		final String captchaResponse = jsonComentario.get("captchaResponse").getAsString();
+		// Creamos un cliente HTTP Asíncrono
 		final CloseableHttpAsyncClient httpClient = HttpAsyncClients.createDefault();
 		
 		try
 		{
+			// Comenzamos el cliente HTTP
            httpClient.start();
 			
+           // Creamos el objeto HttpPost donde realizaremos la petición POST
            final HttpPost recaptchaRequest = new HttpPost("https://www.google.com/recaptcha/api/siteverify");
+           // Creamos un ArrayList que contiene los parámetros de la petición asíncrona
            final ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>(2);
            
+           // Añadimos los parámetros POST
+           // Considerar establecer "secret" en web.xml
            postParameters.add(new BasicNameValuePair("secret", "6Le6PCITAAAAAEMfDZx9V3cs6dvRxsQ0PH0ObHeL"));
            postParameters.add(new BasicNameValuePair("response", captchaResponse));
 
+           // Se establecen los parámetros
            recaptchaRequest.setEntity(new UrlEncodedFormEntity(postParameters));
            
+           // Se ejecuta la petición asíncronamente
            final Future<HttpResponse> future = httpClient.execute(recaptchaRequest, null);
+           
+           //ASYNC
+           // Aquí podría hacer varias operaciones mientras se completa la petición a la API de Google
+           //ASYNC
+           
+           // Se obtiene la respuesta de la petición
+           // NOTA: Esta operación bloquea la ejecución
            final HttpResponse recaptchaResponse = future.get();
            
+           // Se obtiene la respuesta de la petición
            final HttpEntity entity = recaptchaResponse.getEntity();
            
+           // Se parsea la respuesta de la petición
            final JsonObject jsonRecaptchaResponse = new JsonParser().parse( new BufferedReader(new InputStreamReader(entity.getContent())) ).getAsJsonObject();
            
+           // Si el captcha no es correcto,
            if (jsonRecaptchaResponse.has("success") && jsonRecaptchaResponse.get("success").getAsBoolean() == false)
            {
+        	   // devolver error 400
         	   response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Error captcha");
         	   return;
            }
         }
+		// Si ocurre una excepción devolver error
 		catch (ExecutionException | InterruptedException x)
 		{
 			response.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE, "Error en la solicitud a Recaptcha-Google");
@@ -96,6 +118,7 @@ public class CreaComentarioAsync extends HttpServlet {
 		}
 		finally
 		{
+			// Cerrar el cliente HTTP
 			httpClient.close();
 		}
 		

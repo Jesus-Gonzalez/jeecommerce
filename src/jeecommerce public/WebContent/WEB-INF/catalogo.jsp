@@ -38,7 +38,7 @@
 						</a>
 						<!-- Más tarde será un botón -->
 						<!-- <button class="btn btn-md btn-success">Añadir <i class="fa fa-cart-plus"></i></button> -->
-						<button class="btn btn-md btn-success" data-ng-click="anadirAlCarro(producto.artid, 1)">Añadir <i class="fa fa-cart-plus"></i></button>
+						<button class="btn btn-md btn-success" data-ng-click="anadirAlCarro(producto.artid, 1)" data-ng-hide="producto.stock === 0">Añadir <i class="fa fa-cart-plus"></i></button>
 						<a data-ng-show="producto.stock === 0" data-toggle="modal" href="#popup-avisarme" class="btn btn-md btn-warning" data-ng-click="setAvisarmeArtId(producto.artid)"><i class="fa fa-phone"></i> Avísame</a>
 					</div>
 				</section>

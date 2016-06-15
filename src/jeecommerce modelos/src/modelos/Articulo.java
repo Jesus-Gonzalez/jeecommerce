@@ -2,6 +2,13 @@ package modelos;
 
 import java.math.BigDecimal;
 
+/**
+ * 
+ * Clase contenedora para un artículo
+ * 
+ * @author jesus
+ *
+ */
 public class Articulo
 {
 	public long	artid,

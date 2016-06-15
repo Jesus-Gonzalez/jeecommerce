@@ -1,5 +1,12 @@
 package modelos;
 
+/**
+ * 
+ * Clase contenedora para un banco
+ * 
+ * @author jesus
+ *
+ */
 public class Banco
 {
 	public long bid;

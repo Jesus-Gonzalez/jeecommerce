@@ -1,5 +1,12 @@
 package modelos;
 
+/**
+ * 
+ * Clase contenedora de una sesión de Chat
+ * 
+ * @author jesus
+ *
+ */
 public class SesionChat
 {
 	public Chat chat;
